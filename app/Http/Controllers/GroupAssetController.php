@@ -40,20 +40,19 @@ class GroupAssetController extends Controller
         $request->validate([
             'kode_grup' => 'required',
             'nama_grup_aset' => 'required',
-            'tipe_depresiasi' => 'required',
+           // 'tipe_depresiasi' => 'required',
             'tahun' => 'required',
-            'depresiasi' => 'required',
+            //'depresiasi' => 'required',
         ]);
 
-        // dd($request->all());
+        //dd($request->all());
 
         groupAsset::create([
             'kode_grup' => $request->kode_grup,
             'nama_grup_aset' => $request->nama_grup_aset,
-            'tipe_depresiasi' => $request->tipe_depresiasi,
+            // 'tipe_depresiasi' => $request->tipe_depresiasi,
             'tahun' => $request->tahun,
-            'depresiasi' => $request->depresiasi,
-
+            // 'depresiasi' => $request->depresiasi,
         ]);
 
         return redirect('groupAsset')->with('toast_success', 'Data Berhasil Disimpan!');
