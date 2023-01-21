@@ -11,8 +11,7 @@
             </div>
             <div class="row">
                 <div class="col card-header">
-                    <button type="button" style="float: right;" data-toggle="modal" data-target="#quoteForm"
-                        class="btn btn-success">
+                    <button type="button" style="float: right;" data-toggle="modal" data-target="#quoteForm" class="btn btn-success">
                         <i class="fa fa-plus"></i>
                     </button>
                 </div>
@@ -28,57 +27,23 @@
                                 <th>Kode Jabatan</th>
                                 <th>Nama Jabatan</th>
                                 <th>Created By</th>
-                                <th>Created Date</th>
-                                <th>Update By</th>   
-                                <th>Update Date</th>
+                                <th>Created At</th>
+                                <th>Update By</th>
+                                <th>Update At</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($jabatan as $item)
                             <tr>
-                                <td>1</td>
-                                <td>S-01</td>
-                                <td>Sekretaris</td>
-                                <td>Suneo</td>
-                                <td>16/01/2023</td>
-                                <td>Dayen</td>
-                                <td>18/01/2023</td>
+                                <td>{{ $item->id_jabatan}}</td>
+                                <td>{{ $item->kode_jabatan}}</td>
+                                <td>{{ $item->jabatan}}</td>
+                                <td>{{ $item->created_by}}</td>
+                                <td>{{ $item->created_at}}</td>
+                                <td>{{ $item->updated_by}}</td>
+                                <td>{{ $item->updated_at}}</td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>RBD</td>
-                                <td>Building Renovation</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>CT</td>
-                                <td>Computer & Telephone</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>FF</td>
-                                <td>Furniture & Fixture</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>MV</td>
-                                <td>Kendaraan</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>KE</td>
-                                <td>Kitchen Equipment</td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>_GDL_</td>
-                                <td>Lightning</td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>LO</td>
-                                <td>LOTUYE</td>
-                                </td>
-                                </td>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -98,32 +63,34 @@
     </table>
 </section>
 
-<!--GET a QUOTE MODAL -->
+<!--GET a QUOTE MODAL Tambah-->
 <div class="modal fade" id="quoteForm" tabindex="-1" role="dialog" aria-labelledby="quoteForm" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Tambah Jabatan</span></h4>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">×</span></button>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form action="#">
+                <form action="{{route('simpanJabatan')}}" method="post">
+                    {{ csrf_field() }}
                     <div class="row">
                         <div class="form-group col-4">
-                            <label class="font-weight-bold text-small" for="kodegroupasset">Kode Jabatan<span
-                                    class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="firstname" type="text" placeholder="Kode Jabatan"
-                                required="" />
+                            <label class="font-weight-bold text-small" for="kode_jabatan">Kode Jabatan<span class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="kode_jabatan" name="kode_jabatan" type="text" placeholder="Kode Jabatan" required="" />
+                            @error('kode_jabatan')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                         <div class="form-group col-8">
-                            <label class="font-weight-bold text-small" for="namagroupasset">Nama Jabatan<span
-                                    class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="firstname" type="text" placeholder="Nama Jabatan"
-                                required="" />
+                            <label class="font-weight-bold text-small" for="jabatan">Nama Jabatan<span class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="jabatan" name="jabatan" type="text" placeholder="Nama Jabatan" required="" />
+                            @error('jabatan')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                         <div class="form-group col-lg-12"><br>
-                            <button class="btn btn-success" style="float: right; type="button">
+                            <button class="btn btn-success" style="float: right;" type="submit">
                                 <i class="fa fa-save"></i>
                                 Save
                             </button>

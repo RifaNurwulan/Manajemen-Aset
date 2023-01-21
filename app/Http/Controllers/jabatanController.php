@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\jabatan;
 use Illuminate\Http\Request;
 
 class jabatanController extends Controller
@@ -13,7 +14,8 @@ class jabatanController extends Controller
      */
     public function index()
     {
-        return view('halaman.jabatan');
+        $jabatan = jabatan::paginate(10);
+        return view('halaman.jabatan', compact('jabatan'));
     }
 
     /**
@@ -23,7 +25,7 @@ class jabatanController extends Controller
      */
     public function create()
     {
-        //
+        return view('halaman.jabatan');
     }
 
     /**
@@ -34,7 +36,19 @@ class jabatanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kode_jabatan' => 'required',
+            'jabatan' => 'required',
+        ]);
+
+        // dd($request->all());
+
+        jabatan::create([
+            'kode_jabatan' => $request->kode_jabatan,
+            'jabatan' => $request->jabatan,
+        ]);
+
+        return redirect('jabatan')->with('success', 'Data Berhasil Disimpan!');
     }
 
     /**
@@ -56,7 +70,8 @@ class jabatanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $jabatan = jabatan::findorfail($id);
+        return view('halaman.jabatan', compact('jabatan'));
     }
 
     /**
@@ -68,7 +83,9 @@ class jabatanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $jabatan = jabatan::findorfail($id);
+        $jabatan->update($request->all());
+        return redirect('jabatan')->with('success', 'Data Berhasil Disimpan!');
     }
 
     /**

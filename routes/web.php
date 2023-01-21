@@ -31,12 +31,31 @@ Route::get('/supplier', 'supplierController@index')->name('supplier');
 
 // CRUD groupAsset
 Route::post('/simpangroupAsset', 'groupAssetController@store')->name('simpangroupAsset');
+Route::get('/editgroupasset/{id}', 'groupAssetController@edit')->name('editgroupasset');
+Route::post('/updategroupasset/{id}', 'groupAssetController@update')->name('updategroupasset');
+Route::get('/deletegroupasset/{id}', 'groupAssetController@destroy')->name('deletegroupasset');
 
+// CRUD departement
+Route::post('/simpandepartement', 'departementController@store')->name('simpandepartement');
 
+// CRUD jabatan
+Route::post('/simpanJabatan', 'jabatanController@store')->name('simpanJabatan');
+
+// CRUD Data Karyawan
+Route::post('/simpandataKaryawan', 'dataKaryawanController@store')->name('simpandataKaryawan');
+//Route::get('/dataKaryawan/search', 'dataKaryawanController@search');
+
+// CRUD Satuan
+Route::post('/simpanSatuan', 'satuanController@store')->name('simpanSatuan');
+
+// CRUD Supplier
+Route::post('/simpanSupplier', 'supplierController@store')->name('simpanSupplier');
+Route::post('/editSupplier/{id}', 'supplierController@edit')->name('editSupplier');
+Route::get('/supplier/search', 'supplierController@search');
 
 //Route Modul Transaksi
 Route::get('/listAsset', 'listAssetController@index')->name('listAsset');
-Route::get('/historyAsset', 'historyAssetController@index')->name('historyAsset');
+Route::post('/simpanlistAsset', 'listAssetController@store')->name('simpanlistAsset');
 
 //Route Modul Report
 Route::get('/reportDepresiasi', 'reportDepresiasiController@index')->name('reportDepresiasi');

@@ -11,8 +11,7 @@
             </div>
             <div class="row">
                 <div class="col card-header">
-                    <button type="button" style="float: right; margin-right:10px;" data-toggle="modal"
-                        data-target="#quoteForm" class="btn btn-success">
+                    <button type="button" style="float: right; margin-right:10px;" data-toggle="modal" data-target="#quoteForm" class="btn btn-success">
                         <i class="fa fa-plus"></i>
                     </button>
 
@@ -31,115 +30,35 @@
                                 <th>Singkatan</th>
                                 <th>Status</th>
                                 <th>Created By</th>
-                                <th>Update By</th> 
-                                <th>Action</th>  
+                                <th>Update By</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($departement as $item)
                             <tr>
-                                <td>1</td>
-                                <td>DPT-001</td>
-                                <td>Mitra Sinerji Teknoindo</td>
-                                <td>MST</td>
+                                <td>{{ $item->id_departement}}</td>
+                                <td>{{ $item->kode_departement}}</td>
+                                <td>{{ $item->nama_departement}}</td>
+                                <td>{{ $item->singkatan}}</td>
                                 <td>
-                                    <span class="badge bg-danger">Non-Aktif</span>
+                                    <span class="badge bg-success">Aktif</span>
                                 </td>
-                                <td>Dayen</td>
-                                <td>Suneo</td>
+                                <td>{{ $item->created_by}}</td>
+                                <td>{{ $item->updated_by}}</td>
                                 <td>
                                     <div class="col-group">
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormEdit"
-                                            class="btn btn-warning">
+                                        <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning">
                                             <i class="fa fa-edit"></i>
                                         </button>
 
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormTrash"
-                                            class="btn btn-danger">
+                                        <button type="button" data-toggle="modal" data-target="#quoteFormTrash" class="btn btn-danger">
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>fringilla.euismod.enim@quam.ca</td>
-                                <td>0500 527693</td>
-                                <td>New Quay</td>
-                                <td>
-                                    <span class="badge bg-success">Active</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>mi.Duis@diam.edu</td>
-                                <td>(012165) 76278</td>
-                                <td>Grumo Appula</td>
-                                <td>
-                                    <span class="badge bg-danger">Inactive</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>velit@nec.com</td>
-                                <td>0309 690 7871</td>
-                                <td>Ways</td>
-                                <td>
-                                    <span class="badge bg-success">Active</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>rhoncus.id@Aliquamauctorvelit.net</td>
-                                <td>0500 441046</td>
-                                <td>Rossignol</td>
-                                <td>
-                                    <span class="badge bg-success">Active</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>diam.Sed.diam@anteVivamusnon.org</td>
-                                <td>(01653) 27844</td>
-                                <td>Patna</td>
-                                <td>
-                                    <span class="badge bg-success">Active</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>sodales@nuncsit.org</td>
-                                <td>0800 528324</td>
-                                <td>Mold</td>
-                                <td>
-                                    <span class="badge bg-success">Active</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>gravida.molestie@tinciduntadipiscing.org</td>
-                                <td>(016977) 4107</td>
-                                <td>Marlborough</td>
-                                <td>
-                                    <span class="badge bg-danger">Inactive</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <td>Quisque.purus@mauris.org</td>
-                                <td>(0151) 561 8896</td>
-                                <td>Tresigallo</td>
-                                <td>
-                                    <span class="badge bg-success">Active</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>10</td>
-                                <td>Duis.a.mi@sociisnatoquepenatibus.com</td>
-                                <td>07740 599321</td>
-                                <td>Karapınar</td>
-                                <td>
-                                    <span class="badge bg-success">Active</span>
-                                </td>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -166,35 +85,38 @@
         <div class="modal-content p-md-3">
             <div class="modal-header">
                 <h4 class="modal-title">Tambah Departement</span></h4>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">×</span></button>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form action="#">
+                <form action="{{route('simpandepartement')}}" method="post">
+                    {{ csrf_field() }}
                     <div class="row">
                         <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="kodedepartement">Kode Departement<span
-                                    class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="firstname" type="text" placeholder="Kode Departement"
-                                required="" />
+                            <label class="font-weight-bold text-small" for="kode_departement">Kode Departement<span class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="kode_departement" name="kode_departement" type="text" placeholder="Kode Departement" required="" />
+                            @error('kode_departement')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                         <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="namadepartement">Nama Departement<span
-                                    class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="firstname" type="text" placeholder="Nama Departement"
-                                required="" />
+                            <label class="font-weight-bold text-small" for="nama_departement">Nama Departement<span class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="nama_departement" name="nama_departement" type="text" placeholder="Nama Departement" required="" />
+                            @error('nama_departement')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                         <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="singkatan">Singkatan<span
-                                    class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="firstname" type="text" placeholder="Singkatan"
-                                required="" />
+                            <label class="font-weight-bold text-small" for="singkatan">Singkatan<span class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="singkatan" name="singkatan" type="text" placeholder="Singkatan" required="" />
+                            @error('singkatan')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                         <div class="form-group col-lg-6"><br>
-                        <button class="btn btn-success" style="float: right; type="button">
-                            <i class="fa fa-save"></i>
-                            Save
-                        </button>
+                            <button class="btn btn-success" style="float: right;" type="submit">
+                                <i class="fa fa-save"></i>
+                                Save
+                            </button>
                         </div>
                     </div>
             </div>
@@ -210,35 +132,28 @@
         <div class="modal-content p-md-3">
             <div class="modal-header">
                 <h4 class="modal-title">Edit Departement</span></h4>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">×</span></button>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
                 <form action="#">
                     <div class="row">
                         <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="kodedepartement">Kode Departement<span
-                                    class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="firstname" type="text" placeholder="Kode Departement"
-                                required="" />
+                            <label class="font-weight-bold text-small" for="kodedepartement">Kode Departement<span class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="firstname" type="text" placeholder="Kode Departement" required="" />
                         </div>
                         <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="namadepartement">Nama Departement<span
-                                    class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="firstname" type="text" placeholder="Nama Departement"
-                                required="" />
+                            <label class="font-weight-bold text-small" for="namadepartement">Nama Departement<span class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="firstname" type="text" placeholder="Nama Departement" required="" />
                         </div>
                         <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="singkatan">Singkatan<span
-                                    class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="firstname" type="text" placeholder="Singkatan"
-                                required="" />
+                            <label class="font-weight-bold text-small" for="singkatan">Singkatan<span class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="firstname" type="text" placeholder="Singkatan" required="" />
                         </div>
                         <div class="form-group col-lg-6"><br>
-                        <button class="btn btn-success" style="float: right; type="button">
-                            <i class="fa fa-save"></i>
-                            Save
-                        </button>
+                            <button class="btn btn-success" style="float: right;" type="button">
+                                <i class="fa fa-save"></i>
+                                Save
+                            </button>
                         </div>
                     </div>
             </div>
@@ -255,20 +170,16 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Hapus Departement</span></h4>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">×</span></button>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
                 <form action="#">
                     <div class="row">
                         <div class="form-group col-3">
-                            <label class="font-weight-bold text-small" for="kodegroupasset">Status Departement<span
-                                    class="text-primary ml-1">*</span></label>
+                            <label class="font-weight-bold text-small" for="kodegroupasset">Status Departement<span class="text-primary ml-1">*</span></label>
                             <div class="btn-group mb-2">
                                 <div class="dropdown">
-                                    <button class="btn btn-primary dropdown-toggle me-1" type="button"
-                                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
+                                    <button class="btn btn-primary dropdown-toggle me-1" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Pilih Status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -279,13 +190,11 @@
                             </div>
                         </div>
                         <div class="form-group col-9">
-                            <label class="font-weight-bold text-small" for="namagroupasset">Keterangan Hapus<span
-                                    class="text-primary ml-1">*</span></label>
-                            <textarea class="form-control" id="firstname" type="text" placeholder="Keterangan Hapus"
-                                required=""></textarea>
+                            <label class="font-weight-bold text-small" for="namagroupasset">Keterangan Hapus<span class="text-primary ml-1">*</span></label>
+                            <textarea class="form-control" id="firstname" type="text" placeholder="Keterangan Hapus" required=""></textarea>
                         </div>
                         <div class="form-group col-lg-12"><br>
-                            <button class="btn btn-success" style="float: right; type=" button">
+                            <button class="btn btn-success" style="float: right;" type=" button">
                                 <i class="fa fa-save"></i>
                                 Save
                             </button>

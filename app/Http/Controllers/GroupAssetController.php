@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
 use App\Models\groupAsset;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GroupAssetController extends Controller
 {
@@ -16,6 +18,7 @@ class GroupAssetController extends Controller
     {
         $groupasset = groupAsset::paginate(10);
         return view('halaman.groupAsset',compact('groupasset'));
+
       
     }
 
@@ -38,6 +41,7 @@ class GroupAssetController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'id_grup' => 'required',
             'kode_grup' => 'required',
             'nama_grup_aset' => 'required',
            // 'tipe_depresiasi' => 'required',
@@ -55,7 +59,7 @@ class GroupAssetController extends Controller
             // 'depresiasi' => $request->depresiasi,
         ]);
 
-        return redirect('groupAsset')->with('toast_success', 'Data Berhasil Disimpan!');
+        return redirect('groupAsset')->with('success', 'Data Berhasil Disimpan!');
     }
 
     /**
@@ -77,7 +81,8 @@ class GroupAssetController extends Controller
      */
     public function edit($id)
     {
-        //
+        $groupasset = groupAsset::findorfail($id);
+        return view('halaman.groupAsset',compact('groupAsset'));
     }
 
     /**
@@ -87,9 +92,11 @@ class GroupAssetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_grup)
     {
-        //
+        $groupasset = groupAsset::findorfail($id_grup);
+        $groupasset->update($request->all());
+        return redirect('groupAsset')->with('success', 'Data Berhasil Diupdate!');
     }
 
     /**
@@ -98,8 +105,10 @@ class GroupAssetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_grup)
     {
-        //
+        $groupasset = groupAsset::findorfail($id_grup);
+        $groupasset->delete();
+        return redirect('groupAsset')->with('status', 'Data Berhasil Dihapus!');
     }
 }

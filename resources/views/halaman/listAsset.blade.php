@@ -26,12 +26,12 @@
 
                     <button type="button" style="float: right; " data-toggle="modal" data-target="#quoteForm" class="btn btn-primary">
                         <i class="fa fa-print"></i>
-                       
+
                     </button>
 
                     <button type="button" style="float: right; margin-right:10px;" data-toggle="modal" data-target="#quoteForm" class="btn btn-success">
                         <i class="fa fa-plus"></i>
-                      
+
                     </button>
 
 
@@ -61,321 +61,37 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                            @foreach ($listasset as $item)
                             <tr>
-                                <td>1</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
-                                <td>8</td>
-                                <td>9</td>
+
+                                <td>{{ $item->id_list_aset}}</td>
+                                <td>{{ $item->kode_aset}}</td>
+                                <td>{{ $item->satuan}}</td>
+                                <td>{{ $item->tgl_beli}}</td>
+                                <td>{{ $item->tgl_pakai}}</td>
+                                <td>{{ $item->nama_aset}}</td>
+                                <td>{{ $item->pic}}</td>
+                                <td>{{ $item->departement}}</td>
+                                <td>{{ $item->lokasi}}</td>
                                 <td>
-                                    <span class="badge bg-success">Active</span>
+                                    <span class="badge bg-success">Aktif</span>
                                 </td>
-                                <td>11</td>
-                                <td>12</td>
+                                <td>{{ $item->foto_aset}}</td>
                                 <td>
                                     <div class="col-group">
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormview" class="btn btn-secondary">
-                                            <i class="fa fa-area-chart"></i>
-                                        </button>
-
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning">
+                                        <button type="submit" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning">
                                             <i class="fa fa-edit"></i>
                                         </button>
 
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormTrash" class="btn btn-danger">
+                                        <button type="submit" data-toggle="modal" data-target="#quoteFormTrash" class="btn btn-danger">
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </div>
                                 </td>
                             </tr>
-                            </tr>
+                            @endforeach
 
-                            <tr>
-                                <td>1</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
-                                <td>8</td>
-                                <td>9</td>
-                                <td>
-                                    <span class="badge bg-success">Active</span>
-                                </td>
-                                <td>11</td>
-                                <td>12</td>
-                                <td>
-                                    <div class="col-group">
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormview" class="btn btn-secondary">
-                                            <i class="fa fa-area-chart"></i>
-                                        </button>
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
 
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormTrash" class="btn btn-danger">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tr>
-
-                            <tr>
-                                <td>1</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
-                                <td>8</td>
-                                <td>9</td>
-                                <td>
-                                    <span class="badge bg-success">Active</span>
-                                </td>
-                                <td>11</td>
-                                <td>12</td>
-                                <td>
-                                    <div class="col-group">
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormview" class="btn btn-secondary">
-                                            <i class="fa fa-area-chart"></i>
-                                        </button>
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormTrash" class="btn btn-danger">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tr>
-
-                            <tr>
-                                <td>1</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
-                                <td>8</td>
-                                <td>9</td>
-                                <td>
-                                    <span class="badge bg-success">Active</span>
-                                </td>
-                                <td>11</td>
-                                <td>12</td>
-                                <td>
-                                    <div class="col-group">
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormview" class="btn btn-secondary">
-                                            <i class="fa fa-area-chart"></i>
-                                        </button>
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormTrash" class="btn btn-danger">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
-                                <td>8</td>
-                                <td>9</td>
-                                <td>
-                                    <span class="badge bg-success">Active</span>
-                                </td>
-                                <td>11</td>
-                                <td>12</td>
-                                <td>
-                                    <div class="col-group">
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormview" class="btn btn-secondary">
-                                            <i class="fa fa-area-chart"></i>
-                                        </button>
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormTrash" class="btn btn-danger">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
-                                <td>8</td>
-                                <td>9</td>
-                                <td>
-                                    <span class="badge bg-success">Active</span>
-                                </td>
-                                <td>11</td>
-                                <td>12</td>
-                                <td>
-                                    <div class="col-group">
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormview" class="btn btn-secondary">
-                                            <i class="fa fa-area-chart"></i>
-                                        </button>
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormTrash" class="btn btn-danger">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
-                                <td>8</td>
-                                <td>9</td>
-                                <td>
-                                    <span class="badge bg-success">Active</span>
-                                </td>
-                                <td>11</td>
-                                <td>12</td>
-                                <td>
-                                    <div class="col-group">
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormview" class="btn btn-secondary">
-                                            <i class="fa fa-area-chart"></i>
-                                        </button>
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormTrash" class="btn btn-danger">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
-                                <td>8</td>
-                                <td>9</td>
-                                <td>
-                                    <span class="badge bg-success">Active</span>
-                                </td>
-                                <td>11</td>
-                                <td>12</td>
-                                <td>
-                                    <div class="col-group">
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormview" class="btn btn-secondary">
-                                            <i class="fa fa-area-chart"></i>
-                                        </button>
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormTrash" class="btn btn-danger">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
-                                <td>8</td>
-                                <td>9</td>
-                                <td>
-                                    <span class="badge bg-success">Active</span>
-                                </td>
-                                <td>11</td>
-                                <td>12</td>
-                                <td>
-                                    <div class="col-group">
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormview" class="btn btn-secondary">
-                                            <i class="fa fa-area-chart"></i>
-                                        </button>
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormTrash" class="btn btn-danger">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>7</td>
-                                <td>8</td>
-                                <td>9</td>
-                                <td>
-                                    <span class="badge bg-success">Active</span>
-                                </td>
-                                <td>11</td>
-                                <td>12</td>
-                                <td>
-                                    <div class="col-group">
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormview" class="btn btn-secondary">
-                                            <i class="fa fa-area-chart"></i>
-                                        </button>
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormTrash" class="btn btn-danger">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -404,16 +120,53 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form action="#">
+                <form action="{{route('simpanlistAsset')}}" method="post">
+                    {{ csrf_field() }}
+
+
                     <div class="row">
                         <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="tglbeli">Tgl Beli<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="firstname" type="date" placeholder="Tanggal Beli" required="" />
+                            <label class="font-weight-bold text-small" for="kode_aset">Kode Aset<span class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="kode_aset" name="kode_aset" type="text" placeholder="Kode Aset" required="" />
+                        </div>
+
+                        <div class="form-department col-lg-6">
+                            <label class="font-weight-bold text-small" for="Departement">Departement<span class="text-primary ml-1">*</span></label>
+                            <select name="department" id="department" class="form-select" data-live-search="true">
+                                <option>Lantai 1</option>
+                                <option>Lantai 2</option>
+                                <option>Lantai 3</option>
+
+                            </select>
                         </div>
 
                         <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="group">Supplier<span class="text-primary ml-1">*</span></label>
-                            <select name="ibukota" class="form-select" data-live-search="true">
+                            <label class="font-weight-bold text-small" for="nama_aset">Nama Aset<span class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="nama_aset" name="nama_aset" type="text" placeholder="Nama Aset" required="" />
+                        </div>
+
+                        <div class="form-pic col-lg-6">
+                            <label class="font-weight-bold text-small" for="pic">PIC<span class="text-primary ml-1">*</span></label>
+                            <select name="pic" id="pic" class="form-select" data-live-search="true">
+                                <option>Nanda</option>
+                                <option>VIVIN</option>
+                                <option>Aulia</option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            <label class="font-weight-bold text-small" for="group_aset">Group Aset<span class="text-primary ml-1">*</span></label>
+                            <select name="group_aset" id="group_aset" class="form-select" data-live-search="true">
+                                <option>groupasset</option>
+                                <option>groupasset</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            <label class="font-weight-bold text-small" for="supplier">Supplier<span class="text-primary ml-1">*</span></label>
+                            <select name="supplier" id="supplier" class="form-select" data-live-search="true">
                                 <option>Jakarta</option>
                                 <option>Banda Aceh</option>
                                 <option>Medan</option>
@@ -430,7 +183,62 @@
                             </select>
                         </div>
 
+                        <div class="form-group col-lg-6">
+                            <label class="font-weight-bold text-small" for="tgl_beli">Tgl Beli<span class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="tgl_beli" name="tgl_beli" type="date" placeholder="Tanggal Beli" required="" />
+                        </div>
 
+                        <div class="form-group col-lg-6">
+                            <label class="font-weight-bold text-small" for="no_faktur">No Faktur Beli<span class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="no_faktur" name="no_faktur" type="text" placeholder="No Faktur Beli" required="" />
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            <label class="font-weight-bold text-small" for="tgl_pakai">Tgl Pakai<span class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="tgl_pakai" name="tgl_pakai" type="date" placeholder="Tanggal Pakai" required="" />
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            <label class="font-weight-bold text-small" for="umur">Umur (bulan)<span class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="umur" name="umur" type="text" placeholder="Umur (bulan)" required="" />
+                        </div>
+
+                        <div class="form-lokasi col-lg-6">
+                            <label class="font-weight-bold text-small" for="lokasi">Lokasi<span class="text-primary ml-1">*</span></label>
+                            <select name="lokasi" id="lokasi" class="form-select" data-live-search="true">
+                                <option>Lantai 1</option>
+                                <option>Lantai 2</option>
+                                <option>Lantai 3</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            <label class="font-weight-bold text-small" for="tarif">Tarif<span class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="tarif" name="tarif" type="text" placeholder="Tarif" required="" disabled />
+                        </div>
+
+                        <div class="form-harga_perolehan col-lg-6">
+                            <label class="font-weight-bold text-small" for="harga_perolehan">Harga Perolehan<span class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="harga_perolehan" name="harga_perolehan" type="text" placeholder="Harga Perolehan" required="" />
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            <label class="font-weight-bold text-small" for="keterangan">Keterangan<span class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="keterangan" name="keterangan" type="text" placeholder="Keterangan" required="" />
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            <label class="font-weight-bold text-small" for="satuan">Satuan Asset<span class="text-primary ml-1">*</span></label>
+                            <select name="satuan" id="satuan" class="form-select" data-live-search="true">
+                                <option>Unit</option>
+                                <option>Set</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            <label class="font-weight-bold text-small" for="foto_aset">Foto Asset<span class="text-primary ml-1">*</span></label>
+                            <input type="file" id="foto_aset" class="form-control" name="foto_aset">
+                        </div>
 
                         <!-- <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="tipeAsset">Tipe Asset<span
@@ -447,88 +255,7 @@
                         </div> -->
 
                         <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="tglpakai">Tgl Pakai<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="firstname" type="date" placeholder="Tanggal Pakai" required="" />
-                        </div>
-
-                        <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="noFakturBeli">No Faktur Beli<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="firstname" type="text" placeholder="No Faktur Beli" required="" />
-                        </div>
-
-                        <div class="form-lokasi col-lg-6">
-                            <label class="font-weight-bold text-small" for="lokasi">Lokasi<span class="text-primary ml-1">*</span></label>
-                            <select name="Lantai" class="form-select" data-live-search="true">
-                                <option>Lantai 1</option>
-                                <option>Lantai 2</option>
-                                <option>Lantai 3</option>
-
-                            </select>
-
-
-                        </div>
-
-                        <div class="form-lokasi col-lg-6">
-                            <label class="font-weight-bold text-small" for="Departement">Departement<span class="text-primary ml-1">*</span></label>
-                            <select name="Lantai" class="form-select" data-live-search="true">
-                                <option>Lantai 1</option>
-                                <option>Lantai 2</option>
-                                <option>Lantai 3</option>
-
-                            </select>
-                        </div>
-
-
-
-
-                        <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="hargaPerolehan">Harga Perolehan<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="firstname" type="text" placeholder="Harga Perolehan" required="" />
-                        </div>
-
-                        <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="pic">PIC<span class="text-primary ml-1">*</span></label>
-                            <select name="Lantai" class="form-select" data-live-search="true">
-                                <option>Nanda</option>
-                                <option>VIVIN</option>
-                                <option>Aulia</option>
-
-                            </select>
-
-                        </div>
-
-                        <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="keterangan">Keterangan<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="firstname" type="text" placeholder="Keterangan" required="" />
-                        </div>
-
-
-
-
-                        <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="umurBulan">Umur (bulan)<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="firstname" type="text" placeholder="Umur (bulan)" required="" />
-                        </div>
-
-                        <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="group">Satuan Asset<span class="text-primary ml-1">*</span></label>
-                            <select name="satuan" class="form-select" data-live-search="true">
-                                <option>Unit</option>
-                                <option>Set</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="tarif">Tarif<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="firstname" type="text" placeholder="Tarif" required="" disabled />
-                        </div>
-
-                        <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="foto">Foto Asset<span class="text-primary ml-1">*</span></label>
-                            <input type="file" class="form-control" name="foto">
-                        </div>
-                        <div class="form-group col-lg-6">
-                            <button class="btn btn-success" type="button">
+                            <button class="btn btn-success" type="submit">
                                 <i class="fa fa-save"></i>
                                 Save
                             </button>

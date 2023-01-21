@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\satuan;
 use Illuminate\Http\Request;
 
 class satuanController extends Controller
@@ -13,7 +14,8 @@ class satuanController extends Controller
      */
     public function index()
     {
-        return view('halaman.satuan');
+        $satuan = satuan::paginate(10);
+        return view('halaman.satuan', compact('satuan'));
     }
 
     /**
@@ -23,7 +25,7 @@ class satuanController extends Controller
      */
     public function create()
     {
-        //
+        return view('halaman.satuan');
     }
 
     /**
@@ -34,8 +36,21 @@ class satuanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kode_satuan' => 'required',
+            'nama_satuan' => 'required',
+        ]);
+
+        // dd($request->all());
+
+        satuan::create([
+            'kode_satuan' => $request->kode_satuan,
+            'nama_satuan' => $request->nama_satuan,
+        ]);
+
+        return redirect('satuan')->with('success', 'Data Berhasil Disimpan!');
     }
+
 
     /**
      * Display the specified resource.
@@ -56,7 +71,8 @@ class satuanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $satuan = satuan::findorfail($id);
+        return view('halaman.satuan', compact('satuan'));
     }
 
     /**
@@ -68,7 +84,9 @@ class satuanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $satuan = satuan::findorfail($id);
+        $satuan->update($request->all());
+        return redirect('satuan')->with('success', 'Data Berhasil Diupdate!');
     }
 
     /**

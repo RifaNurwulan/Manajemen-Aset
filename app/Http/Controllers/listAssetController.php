@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\listAsset;
 use Illuminate\Http\Request;
+
 
 class listAssetController extends Controller
 {
@@ -13,7 +15,8 @@ class listAssetController extends Controller
      */
     public function index()
     {
-        return view('halaman.listAsset');
+        $listasset = listAsset::paginate(10);
+        return view('halaman.listAsset', compact('listasset'));
     }
 
     /**
@@ -23,7 +26,7 @@ class listAssetController extends Controller
      */
     public function create()
     {
-        //
+        return view('halaman.listAsset');
     }
 
     /**
@@ -34,7 +37,47 @@ class listAssetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_aset' => 'required',
+            'kode_aset' => 'required',
+            'group_aset' => 'required',
+            'tgl_beli' => 'required',
+            'tgl_pakai' => 'required',
+            //'lokasi' => 'required',
+            'harga_perolehan' => 'required',
+            'keterangan' => 'required',
+            //'satuan' => 'required',
+            //'foto_aset' => 'required',
+            //'suplier' => 'required',
+            'no_faktur' => 'required',
+            //'departement' => 'required',
+            //'pic' => 'required',
+            'umur' => 'required',
+            //'tarif' => 'required',    
+        ]);
+
+        //dd($request->all());
+
+        listAsset::create([
+            'nama_aset' => $request->nama_aset,
+            'kode_aset' => $request->kode_aset,
+            'group_aset' => $request->group_aset,
+            'tgl_beli' => $request->tgl_beli,
+            'tgl_pakai' => $request->tgl_pakai,
+            //'lokasi' => $request->lokasi,
+            'harga_perolehan' => $request->harga_perolehan,
+            'keterangan' => $request->keterangan,
+            //'satuan' => $request->satuan,
+            'foto_aset' => $request->foto_aset,
+            'suplier' => $request->suplier,
+            'no_faktur' => $request->no_faktur,
+            //'departement' => $request->departement,
+            //'pic' => $request->pic,
+            'umur' => $request->umur,
+            //'tarif' =>$request->tarif,
+        ]);
+
+        return redirect('listAsset')->with('success', 'Data Berhasil Disimpan!');
     }
 
     /**
@@ -56,7 +99,8 @@ class listAssetController extends Controller
      */
     public function edit($id)
     {
-        //
+        $listasset = listAsset::findorfail($id);
+        return view('halaman.listAsset', compact('listasset'));
     }
 
     /**
@@ -66,9 +110,11 @@ class listAssetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_list_aset)
     {
-        //
+        /**$listasset = listAsset::findorfail($id_list_aset);
+        $listasset->update($request->all());
+        return redirect('listAsset')->with('toast_success', 'Data Berhasil Diupdate!');*/
     }
 
     /**

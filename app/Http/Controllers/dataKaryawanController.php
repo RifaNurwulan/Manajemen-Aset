@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\dataKaryawan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class dataKaryawanController extends Controller
 {
@@ -13,7 +15,22 @@ class dataKaryawanController extends Controller
      */
     public function index()
     {
-        return view("halaman.dataKaryawan");
+        $datakaryawan = dataKaryawan::paginate(10);
+        return view('halaman.dataKaryawan', compact('datakaryawan'));
+    }
+
+    public function search(Request $request)
+    {
+        // menangkap data pencarian
+        $search = $request->search;
+
+        // mengambil data dari table dataKaryawan sesuai pencarian data
+        $datakaryawan = DB::table('data_karyawan')
+            ->where('nama_karyawan', 'like', "%" . $search . "%")
+            ->paginate();
+
+        // mengirim data pegawai ke view index
+        return view('halaman.dataKaryawan', ['dataKaryawan' =>  $datakaryawan]);
     }
 
     /**
@@ -23,7 +40,7 @@ class dataKaryawanController extends Controller
      */
     public function create()
     {
-        //
+        return view('halaman.dataKaryawan');
     }
 
     /**
@@ -34,7 +51,21 @@ class dataKaryawanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_karyawan' => 'required',
+            'nik' => 'required',
+            // 'jabatan' => 'required',
+        ]);
+
+        //dd($request->all());
+
+        dataKaryawan::create([
+            'nama_karyawan' => $request->nama_karyawan,
+            'nik' => $request->nik,
+            // 'jabatan' => $request->jabatan,
+        ]);
+
+        return redirect('dataKaryawan')->with('success', 'Data Berhasil Disimpan!');
     }
 
     /**
@@ -56,7 +87,8 @@ class dataKaryawanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $datakaryawan = dataKaryawan::findorfail($id);
+        return view('halaman.dataKaryawan', compact('datakaryawan'));
     }
 
     /**
@@ -68,7 +100,9 @@ class dataKaryawanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $datakaryawan = dataKaryawan::findorfail($id);
+        $datakaryawan->update($request->all());
+        return redirect('dataKaryawan')->with('success', 'Data Berhasil Disimpan!');
     }
 
     /**

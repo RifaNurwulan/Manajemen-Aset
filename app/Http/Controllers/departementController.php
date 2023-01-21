@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\departement;
 use Illuminate\Http\Request;
 
 class departementController extends Controller
@@ -13,7 +14,8 @@ class departementController extends Controller
      */
     public function index()
     {
-        return view("halaman.departement");
+        $departement = departement::paginate(10);
+        return view('halaman.departement', compact('departement'));
     }
 
     /**
@@ -23,7 +25,7 @@ class departementController extends Controller
      */
     public function create()
     {
-        //
+        return view('halaman.departement');
     }
 
     /**
@@ -34,7 +36,22 @@ class departementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            //'id_departement' => 'required',
+            'kode_departement' => 'required',
+            'nama_departement' => 'required',
+            'singkatan' => 'required',
+        ]);
+
+        //dd($request->all());
+
+        departement::create([
+            'kode_departement' => $request->kode_departement,
+            'nama_departement' => $request->nama_departement,
+            'singkatan' => $request->singkatan,
+        ]);
+
+        return redirect('departement')->with('success', 'Data Berhasil Disimpan!');
     }
 
     /**
