@@ -43,7 +43,7 @@ Route::post('/simpanJabatan', 'jabatanController@store')->name('simpanJabatan');
 
 // CRUD Data Karyawan
 Route::post('/simpandataKaryawan', 'dataKaryawanController@store')->name('simpandataKaryawan');
-//Route::get('/dataKaryawan/search', 'dataKaryawanController@search');
+Route::get('/dataKaryawan/search', 'dataKaryawanController@search');
 
 // CRUD Satuan
 Route::post('/simpanSatuan', 'satuanController@store')->name('simpanSatuan');
@@ -56,6 +56,7 @@ Route::get('/supplier/search', 'supplierController@search');
 //Route Modul Transaksi
 Route::get('/listAsset', 'listAssetController@index')->name('listAsset');
 Route::post('/simpanlistAsset', 'listAssetController@store')->name('simpanlistAsset');
+Route::get('/listAsset/search', 'listAssetController@search');
 
 //Route Modul Report
 Route::get('/reportDepresiasi', 'reportDepresiasiController@index')->name('reportDepresiasi');

@@ -10,7 +10,7 @@
                 <h5 class="m-0 font-weight-bold text-primary">Report Depresiasi</h5>
             </div>
             <div class="col card-header">
-                <div class="btn-group">
+                <!-- <div class="btn-group">
                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
                         data-toggle="dropdown">
                         Tahun
@@ -56,15 +56,13 @@
                         <a class="dropdown-item" href="#">11</a>
                         <a class="dropdown-item" href="#">12</a>
                     </div>
-                </div>
+                </div> -->
 
-                <button type="button" style="float: right; " data-toggle="modal" data-target="#quoteForm"
-                    class="btn btn-primary">
+                <button type="button" style="float: right; " data-toggle="modal" data-target="#quoteFormCetak" class="btn btn-primary">
                     <i class="fa fa-print"></i>
                     Cetak PDF
                 </button>
-                <button type="button" style="float: right; margin-right:10px; " data-toggle="modal"
-                    data-target="#quoteForm" class="btn btn-secondary">
+                <button type="button" style="float: right; margin-right:10px; " data-toggle="modal" data-target="#quoteForm" class="btn btn-secondary">
                     <i class="fa fa-file-archive-o"></i>
                     Preview
                 </button>
@@ -173,6 +171,32 @@
     </table> -->
 </section>
 
+<!--GET a QUOTE MODAL Cetak-->
+<div class="modal fade" id="quoteFormCetak" tabindex="-1" role="dialog" aria-labelledby="quoteForm" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content p-md-3">
+            <div class="modal-header">
+                <h4 class="modal-title">Cetak Data Depresiasi</span></h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="row justify-content-center align-self-center">
+                    <div class="input-group mb-3">
+                        <label for="label">Tanggal Awal</label>&emsp;
+                        <input type="date" name="tglawal" id="tglawal" class="form" />
+                    </div>
+                    <div class="input-group mb-3">
+                        <label for="label">Tanggal Akhir</label>&emsp;
+                        <input type="date" name="tglakhir" id="tglakhir" class="form" />
+                    </div>
 
+                    <div class="input-group mb-3">
+                        <a href="" onclick="this.href='/cetakpertanggal'+ '/' +document.getElementById('tglawal').value + '/' + document.getElementById('tglakhir').value" target="_blank" class="btn btn-success cold-md-12"> <i class="fa fa-print"> </i> Cetak </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection

@@ -15,7 +15,7 @@ class dataKaryawanController extends Controller
      */
     public function index()
     {
-        $datakaryawan = dataKaryawan::paginate(10);
+        $datakaryawan = DB::table('data_karyawan')->paginate(10);
         return view('halaman.dataKaryawan', compact('datakaryawan'));
     }
 

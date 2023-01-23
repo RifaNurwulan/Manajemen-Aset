@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\listAsset;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 
 class listAssetController extends Controller
 {
@@ -15,9 +15,24 @@ class listAssetController extends Controller
      */
     public function index()
     {
-        $listasset = listAsset::paginate(10);
-        return view('halaman.listAsset', compact('listasset'));
+        $listasset = DB::table('list_asset')->paginate(10);
+        return view('halaman.listAsset', compact('listAsset'));
     }
+
+    public function search(Request $request)
+    {
+        // menangkap data pencarian
+        $search = $request->search;
+
+        // mengambil data dari table listAsset sesuai pencarian data
+        $listasset = DB::table('list_asset')
+            ->where('kode_aset', 'like', "%" . $search . "%")
+            ->paginate();
+
+        // mengirim data pegawai ke view index
+        return view('halaman.listAsset', ['listAsset' =>  $listasset]);
+    }
+
 
     /**
      * Show the form for creating a new resource.

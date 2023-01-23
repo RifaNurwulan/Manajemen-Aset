@@ -12,101 +12,103 @@
             <div class="row">
                 <div class="col card-header">
                     <div class="input-group">
-                        <div class="input-group input-group-lg">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </div>
-                            <div class="col-4">
-                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="Search..." id="searchinput">
-                            </div>
-                        </div>
+                        <form action="/listAsset/search" method="GET">
+                            <div class="input-group input-group-lg">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit" value="SEARCH">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                                <div class="col-10">
+                                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="Search..." name="search" value="{{ old('search') }}">
+                                </div>
+                        </form>
                     </div>
-
-                    <button type="button" style="float: right; " data-toggle="modal" data-target="#quoteForm" class="btn btn-primary">
-                        <i class="fa fa-print"></i>
-
-                    </button>
-
-                    <button type="button" style="float: right; margin-right:10px;" data-toggle="modal" data-target="#quoteForm" class="btn btn-success">
-                        <i class="fa fa-plus"></i>
-
-                    </button>
-
-
                 </div>
+
+                <button type="button" style="float: right; " data-toggle="modal" data-target="#quoteForm" class="btn btn-primary">
+                    <i class="fa fa-print"></i>
+
+                </button>
+
+                <button type="button" style="float: right; margin-right:10px;" data-toggle="modal" data-target="#quoteForm" class="btn btn-success">
+                    <i class="fa fa-plus"></i>
+
+                </button>
+
+
             </div>
         </div>
-        <div class="card-body">
-            <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-                <div class="dataTable-container">
-                    <table class="table table-striped table-hover dataTable-table" id="table1">
-                        <thead>
-                            <tr>
+    </div>
+    <div class="card-body">
+        <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+            <div class="dataTable-container">
+                <table class="table table-striped table-hover dataTable-table" id="table1">
+                    <thead>
+                        <tr>
 
-                                <th>No</th>
-                                <th>Kode Asset</th>
-                                <th>Satuan</th>
-                                <th>Tanggal Beli</th>
-                                <th>Tanggal Pakai</th>
-                                <th>Nama Asset</th>
-                                <th>PIC</th>
-                                <th>Departement</th>
-                                <th>Lokasi</th>
-                                <th>Kondisi</th>
-                                <th>Foto Asset</th>
-                                <th>Action</th>
+                            <th>No</th>
+                            <th>Kode Asset</th>
+                            <th>Satuan</th>
+                            <th>Tanggal Beli</th>
+                            <th>Tanggal Pakai</th>
+                            <th>Nama Asset</th>
+                            <th>PIC</th>
+                            <th>Departement</th>
+                            <th>Lokasi</th>
+                            <th>Kondisi</th>
+                            <th>Foto Asset</th>
+                            <th>Action</th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($listasset as $item)
-                            <tr>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($listAsset as $item)
+                        <tr>
 
-                                <td>{{ $item->id_list_aset}}</td>
-                                <td>{{ $item->kode_aset}}</td>
-                                <td>{{ $item->satuan}}</td>
-                                <td>{{ $item->tgl_beli}}</td>
-                                <td>{{ $item->tgl_pakai}}</td>
-                                <td>{{ $item->nama_aset}}</td>
-                                <td>{{ $item->pic}}</td>
-                                <td>{{ $item->departement}}</td>
-                                <td>{{ $item->lokasi}}</td>
-                                <td>
-                                    <span class="badge bg-success">Aktif</span>
-                                </td>
-                                <td>{{ $item->foto_aset}}</td>
-                                <td>
-                                    <div class="col-group">
-                                        <button type="submit" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
+                            <td>{{ $item->id_list_aset}}</td>
+                            <td>{{ $item->kode_aset}}</td>
+                            <td>{{ $item->satuan}}</td>
+                            <td>{{ $item->tgl_beli}}</td>
+                            <td>{{ $item->tgl_pakai}}</td>
+                            <td>{{ $item->nama_aset}}</td>
+                            <td>{{ $item->pic}}</td>
+                            <td>{{ $item->departement}}</td>
+                            <td>{{ $item->lokasi}}</td>
+                            <td>
+                                <span class="badge bg-success">Aktif</span>
+                            </td>
+                            <td>{{ $item->foto_aset}}</td>
+                            <td>
+                                <div class="col-group">
+                                    <button type="submit" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
 
-                                        <button type="submit" data-toggle="modal" data-target="#quoteFormTrash" class="btn btn-danger">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            @endforeach
+                                    <button type="submit" data-toggle="modal" data-target="#quoteFormTrash" class="btn btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
 
 
-                        </tbody>
-                    </table>
-                </div>
-                <div class="dataTable-bottom">
-                    <div class="dataTable-info">Showing 1 to 10 of 26 entries</div>
-                    <ul class="pagination pagination-primary float-end dataTable-pagination">
-                        <li class="page-item pager"><a href="#" class="page-link" data-page="1">‹</a></li>
-                        <li class="page-item active"><a href="#" class="page-link" data-page="1">1</a></li>
-                        <li class="page-item"><a href="#" class="page-link" data-page="2">2</a></li>
-                        <li class="page-item"><a href="#" class="page-link" data-page="3">3</a></li>
-                        <li class="page-item pager"><a href="#" class="page-link" data-page="2">›</a></li>
-                    </ul>
-                </div>
+                    </tbody>
+                </table>
+            </div>
+            <div class="dataTable-bottom">
+                <div class="dataTable-info">Showing 1 to 10 of 26 entries</div>
+                <ul class="pagination pagination-primary float-end dataTable-pagination">
+                    <li class="page-item pager"><a href="#" class="page-link" data-page="1">‹</a></li>
+                    <li class="page-item active"><a href="#" class="page-link" data-page="1">1</a></li>
+                    <li class="page-item"><a href="#" class="page-link" data-page="2">2</a></li>
+                    <li class="page-item"><a href="#" class="page-link" data-page="3">3</a></li>
+                    <li class="page-item pager"><a href="#" class="page-link" data-page="2">›</a></li>
+                </ul>
             </div>
         </div>
+    </div>
     </div>
     </table>
 </section>

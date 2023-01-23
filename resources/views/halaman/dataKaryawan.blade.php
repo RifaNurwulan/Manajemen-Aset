@@ -59,7 +59,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($datakaryawan as $item)
+                        @foreach ($dataKaryawan as $item)
                         <tr>
                             <td>{{ $item->id_karyawan}}</td>
                             <td>{{ $item->nama_karyawan}}</td>

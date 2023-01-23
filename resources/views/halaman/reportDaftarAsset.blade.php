@@ -11,8 +11,7 @@
             </div>
             <div class="col card-header">
                 <div class="btn-group">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-                        data-toggle="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
                         Accounting
                     </button>
                     <div class="dropdown-menu">
@@ -23,8 +22,7 @@
                 </div>
                 &emsp;
                 <div class="btn-group">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-                        data-toggle="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
                         All
                     </button>
                     <div class="dropdown-menu">
@@ -34,13 +32,11 @@
                     </div>
                 </div>
 
-                <button type="button" style="float: right; " data-toggle="modal" data-target="#quoteForm"
-                    class="btn btn-primary">
+                <button type="button" style="float: right; " data-toggle="modal" data-target="#quoteForm" class="btn btn-primary">
                     <i class="fa fa-print"></i>
                     Cetak PDF
                 </button>
-                <button type="button" style="float: right; margin-right:10px; " data-toggle="modal"
-                    data-target="#quoteForm" class="btn btn-secondary">
+                <button type="button" style="float: right; margin-right:10px; " data-toggle="modal" data-target="#quoteForm" class="btn btn-secondary">
                     <i class="fa fa-file-archive-o"></i>
                     Preview
                 </button>
