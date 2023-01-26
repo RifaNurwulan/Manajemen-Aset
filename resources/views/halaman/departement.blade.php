@@ -48,7 +48,8 @@
                                 <td>{{ $item->updated_by}}</td>
                                 <td>
                                     <div class="col-group">
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning">
+                                        <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning"
+                                        data-id = "{{ $item->id_departement}}" data-kode="{{ $item->kode_departement}}" data-nama="{{ $item->nama_departement}}" data-singkatan="{{ $item->singkatan}}">
                                             <i class="fa fa-edit"></i>
                                         </button>
 
@@ -62,7 +63,7 @@
                         </tbody>
                     </table>
                 </div>
-
+                {{-- {{ $departement->links() }} --}}
                 <div class="dataTable-bottom">
                     <div class="dataTable-info">Showing 1 to 10 of 26 entries</div>
                     <ul class="pagination pagination-primary float-end dataTable-pagination">
@@ -129,28 +130,39 @@
 <!--GET a QUOTE MODAL Edit-->
 <div class="modal fade" id="quoteFormEdit" tabindex="-1" role="dialog" aria-labelledby="quoteForm" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content p-md-3">
+        <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Edit Departement</span></h4>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form action="#">
+                <form enctype="multipart/form-data" method="POST" action="{{ route ('updatedepartement') }}">
+                    {{ csrf_field() }}
                     <div class="row">
+                        <input class="form-control" id="id_departement" name="id_departement" type="text" placeholder="ID Departement" required="" hidden="true"/>
                         <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="kodedepartement">Kode Departement<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="firstname" type="text" placeholder="Kode Departement" required="" />
+                            <label class="font-weight-bold text-small" for="kode_departement">Kode Departement<span class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="kode_departement" name="kode_departement" type="text" placeholder="Kode Departement" required=""/>
+                            @error('kode_departement')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                         <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="namadepartement">Nama Departement<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="firstname" type="text" placeholder="Nama Departement" required="" />
+                            <label class="font-weight-bold text-small" for="nama_departement">Nama Departement<span class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="nama_departement" name="nama_departement" type="text" placeholder="Nama Departement" required="" />
+                            @error('nama_departement')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                         <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="singkatan">Singkatan<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="firstname" type="text" placeholder="Singkatan" required="" />
+                            <input class="form-control" id="firstname" name="singkatan" type="text" placeholder="Singkatan" required="" />
+                            @error('singkatan')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                         <div class="form-group col-lg-6"><br>
-                            <button class="btn btn-success" style="float: right;" type="button">
+                            <button class="btn btn-success" style="float: right;" type="submit">
                                 <i class="fa fa-save"></i>
                                 Save
                             </button>
@@ -207,3 +219,14 @@
 </div>
 
 @endsection
+@push('script')
+<script>
+    $("#quoteFormEdit").on('show.bs.modal', (e) => {
+        //$("#quoteFormEdit").attr("action", $(e.relatedTarget).data('url'));
+        $("#quoteFormEdit").find('input[name="id_departement"]').val($(e.relatedTarget).data('id'));
+        $("#quoteFormEdit").find('input[name="kode_departement"]').val($(e.relatedTarget).data('kode'));
+        $("#quoteFormEdit").find('input[name="nama_departement"]').val($(e.relatedTarget).data('nama'));
+        $("#quoteFormEdit").find('input[name="singkatan"]').val($(e.relatedTarget).data('singkatan'));
+    })
+</script>
+@endpush('')

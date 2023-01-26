@@ -15,7 +15,8 @@ class dataKaryawanController extends Controller
      */
     public function index()
     {
-        $datakaryawan = DB::table('data_karyawan')->paginate(10);
+        $datakaryawan = DB::table('data_karyawan')->get();
+        //dd($datakaryawan);
         return view('halaman.dataKaryawan', compact('datakaryawan'));
     }
 
@@ -98,11 +99,11 @@ class dataKaryawanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $datakaryawan = dataKaryawan::findorfail($id);
+        $datakaryawan = dataKaryawan::findorfail($request->id_karyawan);
         $datakaryawan->update($request->all());
-        return redirect('dataKaryawan')->with('success', 'Data Berhasil Disimpan!');
+        return redirect('dataKaryawan')->with('success', 'Data Berhasil Diupdate!');
     }
 
     /**
@@ -111,8 +112,10 @@ class dataKaryawanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_karyawan)
     {
-        //
+        $datakaryawan = dataKaryawan::findorfail($id_karyawan);
+        $datakaryawan->delete();
+        return redirect('dataKaryawan')->with('status', 'Data Berhasil Dihapus!');
     }
 }

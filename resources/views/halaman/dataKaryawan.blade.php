@@ -59,7 +59,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($dataKaryawan as $item)
+                        @foreach ($datakaryawan as $item)
                         <tr>
                             <td>{{ $item->id_karyawan}}</td>
                             <td>{{ $item->nama_karyawan}}</td>
@@ -72,7 +72,8 @@
                             <td>{{ $item->updated_by}}</td>
                             <td>
                                 <div class="col-group">
-                                    <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning">
+                                    <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning"
+                                    data-id = "{{ $item->id_karyawan }}" data-nama = "{{ $item->nama_karyawan }}" data-nik = "{{ $item->nik }}" data-jabatan = "{{ $item->jabatan }}">
                                         <i class="fa fa-edit"></i>
                                     </button>
 
@@ -86,6 +87,8 @@
                     </tbody>
                 </table>
             </div>
+            {{-- {{ $datakaryawan->links() }} --}}
+
             <div class="dataTable-bottom">
                 <div class="dataTable-info">Showing 1 to 10 of 26 entries</div>
                 <ul class="pagination pagination-primary float-end dataTable-pagination">
@@ -138,7 +141,7 @@
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                        <div class="form-group col-lg-6"><br>
+                        <div class="form-group col-lg-12"><br>
                             <button class="btn btn-success" style="float: right;" type="submit">
                                 <i class="fa fa-save"></i>
                                 Save
@@ -160,25 +163,36 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form action="#">
+                <form enctype="multipart/form-data" method="POST" action="{{ route ('updatedatakaryawan') }}">
+                    {{ csrf_field() }}
                     <div class="row">
+                        <input class="form-control" id="id_karyawan" name="id_karyawan" type="text" placeholder="ID Karyawan" required="" hidden="true"/>
                         <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="groupasset">Nama Karyawan<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="firstname" type="text" placeholder="Nama Karyawan" required="" />
+                            <label class="font-weight-bold text-small" for="nama_karyawan">Nama Karyawan<span class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="nama_karyawan" name="nama_karyawan" type="text" placeholder="Nama Karyawan" required="" />
+                            @error('nama_karyawan')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                         <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="namagroupasset">NIK<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="firstname" type="text" placeholder="NIK" required="" />
+                            <label class="font-weight-bold text-small" for="nik">NIK<span class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="nik" name="nik" type="text" placeholder="NIK" required="" />
+                            @error('nik')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
-                        <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="namagroupasset">Nama Jabatan<span class="text-primary ml-1">*</span></label>
+                        <!-- <div class="form-group col-lg-6">
+                            <label class="font-weight-bold text-small" for="jabatan">Nama Jabatan<span class="text-primary ml-1">*</span></label>
                             <select name="jabatan" class="form-select" data-live-search="true">
                                 <option>Direktur</option>
                                 <option>Sekretaris</option>
                             </select>
-                        </div>
-                        <div class="form-group col-lg-6"><br>
-                            <button class="btn btn-success" style="float: right;" type="button">
+                            @error('jabatan')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div> -->
+                        <div class="form-group col-lg-12"><br>
+                            <button class="btn btn-success" style="float: right;" type="submit">
                                 <i class="fa fa-save"></i>
                                 Save
                             </button>
@@ -226,3 +240,13 @@
 </div>
 
 @endsection
+@push('script')
+<script>
+    $("#quoteFormEdit").on('show.bs.modal', (e) => {
+        $("#quoteFormEdit").find('input[name="id_karyawan"]').val($(e.relatedTarget).data('id'));
+        $("#quoteFormEdit").find('input[name="nama_karyawan"]').val($(e.relatedTarget).data('nama'));
+        $("#quoteFormEdit").find('input[name="nik"]').val($(e.relatedTarget).data('nik'));
+        $("#quoteFormEdit").find('input[name="jabatan"]').val($(e.relatedTarget).data('jabatan'));
+    })
+</script>
+@endpush('')

@@ -15,8 +15,8 @@ class listAssetController extends Controller
      */
     public function index()
     {
-        $listasset = DB::table('list_asset')->paginate(10);
-        return view('halaman.listAsset', compact('listAsset'));
+        $listasset = DB::table('list_asset')->get();
+        return view('halaman.listAsset', compact('listasset'));
     }
 
     public function search(Request $request)
@@ -125,11 +125,11 @@ class listAssetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_list_aset)
+    public function update(Request $request)
     {
-        /**$listasset = listAsset::findorfail($id_list_aset);
+        $listasset = listAsset::findorfail($request->id_list_aset);
         $listasset->update($request->all());
-        return redirect('listAsset')->with('toast_success', 'Data Berhasil Diupdate!');*/
+        return redirect('listAsset')->with('success', 'Data Berhasil Diupdate!');
     }
 
     /**

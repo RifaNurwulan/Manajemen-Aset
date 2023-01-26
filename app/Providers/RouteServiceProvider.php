@@ -39,6 +39,8 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
+        // Paginator::useBootstrapFour();
+        // Paginator::useBootstrapFive();
         $this->configureRateLimiting();
 
         $this->routes(function () {

@@ -10,8 +10,8 @@ class supplierController extends Controller
 {
     public function index()
     {
-
-        $supplier = DB::table('supplier')->paginate(10);
+        $supplier = DB::table('supplier')->get();
+        // dd($supplier);
         return view('halaman.supplier', compact('supplier'));
     }
 
@@ -93,11 +93,11 @@ class supplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id)
+    public function edit($id)
     {
         $supplier = supplier::findorfail($id);
-        $supplier->update($request->all());
-        return redirect('supplier')->with('success', 'Data Berhasil Diupdate!');
+        return view('halaman.supplier',compact('supplier'));
+        // return redirect('supplier')->with('success', 'Data Berhasil Diupdate!');
     }
 
     /**
@@ -107,12 +107,13 @@ class supplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $supplier = supplier::findorfail($id);
+        $supplier = supplier::findorfail($request->id_supplier);
         $supplier->update($request->all());
         return redirect('supplier')->with('success', 'Data Berhasil Diupdate!');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -120,8 +121,10 @@ class supplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_supplier)
     {
-        //
+        $supplier = supplier::findorfail($id_supplier);
+        $supplier->delete();
+        return redirect('supplier')->with('status', 'Data Berhasil Dihapus!');
     }
 }

@@ -38,20 +38,24 @@
                         <tbody>
                             @foreach ($groupasset as $item)
                             <tr>
+                                @if ($item->status == 1)   
+                                <a href="" class ="btn btn-sm btn danger">Non Aktif</a>
+                                @else
+                                <a href="" class ="btn btn-sm btn success">Aktif</a>
+                                @endif
                                 <td>{{ $item->id_grup}}</td>
                                 <td>{{ $item->kode_grup}}</td>
                                 <td>{{ $item->nama_grup_aset}}</td>
                                 <td>{{ $item->tipe_depresiasi}}</td>
                                 <td>{{ $item->tahun}}</td>
                                 <td>{{ $item->depresiasi}}</td>
-                                <td>
-                                    <span class="badge bg-success">Aktif</span>
-                                </td>
+                                <td><label class="lable lable-success">{{ ($item->status == 1) ? 'Aktif' : 'Non Aktif'}}</label></td>
                                 <td>{{ $item->created_by}}</td>
                                 <td>{{ $item->updated_by}}</td>
                                 <td>
                                     <div class="col-group">
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning">
+                                        <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning"
+                                         data-id = "{{ $item->id_grup}}" data-kode="{{ $item->kode_grup}}" data-nama="{{ $item->nama_grup_aset}}" data-tipe="" data-tahun="" data-depresiasi="">
                                             <i class="fa fa-edit"></i>
                                         </button>
 
@@ -66,7 +70,6 @@
                     </table>
                 </div>
                 {{ $groupasset->links() }}
-
             </div>
         </div>
         </table>
@@ -152,28 +155,29 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form action="{{ url ('updategroupasset',$groupasset->id_grup) }}" method="post">
+                <form enctype="multipart/form-data" method="POST" action="{{ route ('updategroupasset') }}">
                     {{ csrf_field() }}
                     <div class="row">
+                        <input class="form-control" id="id_grup" name="id_grup" type="text" placeholder="Kode Group Asset" required="" hidden="true"/>
                         <div class="form-group col-4">
                             <label class="font-weight-bold text-small" for="kode_grup">Kode Group Asset<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="kode_grup" name="kode_grup" type="text" placeholder="Kode Group Asset" required="" value="{{$groupasset->kode_grup}}" />
+                            <input class="form-control" id="kode_grup" name="kode_grup" type="text" placeholder="Kode Group Asset" required="" />
                             @error('kode_grup')
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group col-8">
                             <label class="font-weight-bold text-small" for="nama_grup_aset">Nama Group Asset<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="nama_grup_aset" name="nama_grup_aset" type="text" placeholder="Nama Group Asset" required="" value="{{$groupasset->nama_grup_aset}}" />
+                            <input class="form-control" id="nama_grup_aset" name="nama_grup_aset" type="text" placeholder="Nama Group Asset" required="" />
                             @error('nama_grup_aset')
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                        <div class="form-group col-4">
+                        <!-- <div class="form-group col-4">
                             <label class="font-weight-bold text-small" for="tipe_depresiasi">Tipe Depresiasi<span class="text-primary ml-1">*</span></label>
                             <div class="btn-group mb-2 col-8">
                                 <div class="dropdown">
-                                    <button class="btn btn-primary dropdown-toggle me-1" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="{{$groupasset->tipe_depresiasi}}">
+                                    <button class="btn btn-primary dropdown-toggle me-1" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                                         Pilih Tipe
                                         Depresiasi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     </button>
@@ -189,7 +193,7 @@
                         </div>
                         <div class="form-group col-4">
                             <label class="font-weight-bold text-small" for="tahun">Tahun<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="tahun" name="tahun" type="text" placeholder="0" required="" value="{{$groupasset->tahun}}" />
+                            <input class="form-control" id="tahun" name="tahun" type="text" placeholder="0" required="" />
                             @error('tahun')
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -200,7 +204,7 @@
                             @error('depresiasi')
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
-                        </div>
+                        </div> -->
                         <div class="form-group col-lg-12"><br>
                             <button class="btn btn-success" style="float: right;" type="submit">
                                 <i class="fa fa-save"></i>
@@ -226,18 +230,12 @@
                 <form action="#">
                     <div class="row">
                         <div class="form-group col-3">
-                            <label class="font-weight-bold text-small" for="kodegroupasset">Status Group Asset<span class="text-primary ml-1">*</span></label>
-                            <div class="btn-group mb-2">
-                                <div class="dropdown">
-                                    <button class="btn btn-primary dropdown-toggle me-1" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Pilih Status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Aktif</a>
-                                        <a class="dropdown-item" href="#">Non-Aktif</a>
-                                    </div>
-                                </div>
-                            </div>
+                            <label class="font-weight-bold text-small" for="kodegroupasset">Status Group Asset<span
+                                    class="text-primary ml-1">*</span></label>
+                            <select name="department" id="department" class="form-select" data-live-search="true">
+                                <option>Aktif</option>
+                                <option>Non-Aktif</option>
+                            </select>
                         </div>
                         <div class="form-group col-9">
                             <label class="font-weight-bold text-small" for="namagroupasset">Keterangan Hapus<span class="text-primary ml-1">*</span></label>
@@ -258,3 +256,13 @@
 
 
 @endsection
+@push('script')
+<script>
+    $("#quoteFormEdit").on('show.bs.modal', (e) => {
+        //$("#quoteFormEdit").attr("action", $(e.relatedTarget).data('url'));
+        $("#quoteFormEdit").find('input[name="id_grup"]').val($(e.relatedTarget).data('id'));
+        $("#quoteFormEdit").find('input[name="kode_grup"]').val($(e.relatedTarget).data('kode'));
+        $("#quoteFormEdit").find('input[name="nama_grup_aset"]').val($(e.relatedTarget).data('nama'));
+    })
+</script>
+@endpush('')

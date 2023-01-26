@@ -71,7 +71,8 @@
                             <td>{{ $item->updated_by}}</td>
                             <td>
                                 <div class="col-group">
-                                    <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning">
+                                    <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning" 
+                                    data-id ="{{ $item->id_supplier}}" data-nama ="{{ $item->nama_supplier}}" data-alamat ="{{ $item->alamat}}" data-kota ="{{ $item->kota}}" data-pic ="{{ $item->pic}}" data-telp ="{{ $item->telp}}" data-mobile ="{{ $item->mobile_phone}}" data-fax ="{{ $item->fax}}" data-email ="{{ $item->email}}" data-keterangan ="{{ $item->keterangan}}" >
                                         <i class="fa fa-edit"></i>
                                     </button>
                                     <!-- 
@@ -86,15 +87,10 @@
                     </tbody>
                 </table>
             </div>
+            
             <div class="dataTable-bottom">
-                <div class="dataTable-info">Showing 1 to 10 of 26 entries</div>
-                <ul class="pagination pagination-primary float-end dataTable-pagination">
-                    <li class="page-item pager"><a href="#" class="page-link" data-page="1">‹</a></li>
-                    <li class="page-item active"><a href="#" class="page-link" data-page="1">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link" data-page="2">2</a></li>
-                    <li class="page-item"><a href="#" class="page-link" data-page="3">3</a></li>
-                    <li class="page-item pager"><a href="#" class="page-link" data-page="2">›</a></li>
-                </ul>
+                <div class="dataTable-info">
+                    
             </div>
         </div>
     </div>
@@ -193,50 +189,51 @@
 <!--GET a QUOTE MODAL Edit-->
 <div class="modal fade" id="quoteFormEdit" tabindex="-1" role="dialog" aria-labelledby="quoteForm" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-        <div class="modal-content p-md-3">
+        <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Edit Supplier</span></h4>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                @foreach ($supplier as $item)
-                <form action="#">
+             <form enctype="multipart/form-data" method="POST" action="{{route('updateSupplier')}}">
+                {{ csrf_field() }}
                     <div class="row">
+                    <input class="form-control" id="id_supplier" name="id_supplier" type="text" placeholder="ID" required="" hidden="true"/>
                         <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="nama_supplier">Nama Supplier<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="nama_supplier" name="nama_supplier" type="text" required="" value="{{ $item->nama_supplier}}" />
+                            <input class="form-control" id="nama_supplier" name="nama_supplier" type="text" placeholder="Nama Supplier" required="" />
                         </div>
                         <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="alamat">Alamat<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="alamat" name="alamat" type="text" value="{{ $item->alamat}}" required="" />
+                            <input class="form-control" id="alamat" name="alamat" type="text" placeholder="Alamat" required="" />
                         </div>
                         <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="kota">Kota<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="kota" name="kota" type="text" value="{{ $item->kota}}" required="" />
+                            <input class="form-control" id="kota" name="kota" type="text" placeholder="Kota" required="" />
                         </div>
                         <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="pic">PIC<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="pic" name="pic" type="text" value="{{ $item->pic}}" required="" />
+                            <input class="form-control" id="pic" name="pic" type="text" placeholder="PIC" required="" />
                         </div>
                         <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="telp">Telephone<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="telp" name="telp" type="text" value="{{ $item->telp}}" required="" />
+                            <input class="form-control" id="telp" name="telp" type="text" placeholder="Telephone" required="" />
                         </div>
                         <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="mobile_phone">Mobile Phone<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="mobile_phone" name="mobile_phone" type="text" value="{{ $item->mobile_phone}}" required="" />
+                            <input class="form-control" id="mobile_phone" name="mobile_phone" type="text" placeholder="Mobile Phone" required="" />
                         </div>
                         <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="fax">Fax<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="fax" name="fax" type="text" value="{{ $item->fax}}" required="" />
+                            <input class="form-control" id="fax" name="fax" type="text" placeholder="Fax" required="" />
                         </div>
                         <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="email">Email<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="email" name="email" type="text" value="{{ $item->email}}" required="" />
+                            <input class="form-control" id="email" name="email" type="text" placeholder="Email" required="" />
                         </div>
                         <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="keterangan">Notes<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="keterangan" name="keterangan" type="text" value="{{ $item->keterangan}}" required="" />
+                            <input class="form-control" id="keterangan" name="keterangan" type="text" placeholder="Notes" required="" />
                         </div>
                         <div class="form-group col-lg-6"><br>
                             <button class="btn btn-success" style="float: right;" type="submit">
@@ -246,9 +243,26 @@
                         </div>
                     </div>
                 </form>
-                @endforeach
             </div>
         </div>
     </div>
 </div>
 @endsection
+@push('script')
+<script>
+    $("#quoteFormEdit").on('show.bs.modal', (e) => {
+        // $("#quoteFormEdit").attr("action", $(e.relatedTarget).data('url'));
+        $("#quoteFormEdit").find('input[name="id_supplier"]').val($(e.relatedTarget).data('id'));
+        $("#quoteFormEdit").find('input[name="nama_supplier"]').val($(e.relatedTarget).data('nama'));
+        $("#quoteFormEdit").find('input[name="alamat"]').val($(e.relatedTarget).data('alamat'));
+        $("#quoteFormEdit").find('input[name="kota"]').val($(e.relatedTarget).data('kota'));
+        $("#quoteFormEdit").find('input[name="pic"]').val($(e.relatedTarget).data('pic'));
+        $("#quoteFormEdit").find('input[name="telp"]').val($(e.relatedTarget).data('telp'));
+        $("#quoteFormEdit").find('input[name="mobile_phone"]').val($(e.relatedTarget).data('mobile'));
+        $("#quoteFormEdit").find('input[name="fax"]').val($(e.relatedTarget).data('fax'));
+        $("#quoteFormEdit").find('input[name="email"]').val($(e.relatedTarget).data('email'));
+        $("#quoteFormEdit").find('input[name="keterangan"]').val($(e.relatedTarget).data('keterangan'));
+    })
+        $('#table1').DataTable();
+</script>
+@endpush('')

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-namespace App\Http\Controllers;
 
 use App\Models\groupAsset;
 use Illuminate\Http\Request;
@@ -16,10 +15,9 @@ class GroupAssetController extends Controller
      */
     public function index()
     {
-        $groupasset = groupAsset::paginate(10);
-        return view('halaman.groupAsset',compact('groupasset'));
-
-      
+        $groupasset = DB::table('group_asset')->get();
+        //dd($groupasset);
+        return view('halaman.groupAsset', compact('groupasset'));
     }
 
     /**
@@ -44,7 +42,7 @@ class GroupAssetController extends Controller
             'id_grup' => 'required',
             'kode_grup' => 'required',
             'nama_grup_aset' => 'required',
-           // 'tipe_depresiasi' => 'required',
+            // 'tipe_depresiasi' => 'required',
             'tahun' => 'required',
             //'depresiasi' => 'required',
         ]);
@@ -82,7 +80,7 @@ class GroupAssetController extends Controller
     public function edit($id)
     {
         $groupasset = groupAsset::findorfail($id);
-        return view('halaman.groupAsset',compact('groupAsset'));
+        return view('halaman.groupAsset', compact('groupasset'));
     }
 
     /**
@@ -92,9 +90,9 @@ class GroupAssetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_grup)
+    public function update(Request $request)
     {
-        $groupasset = groupAsset::findorfail($id_grup);
+        $groupasset = groupAsset::findorfail($request->id_grup);
         $groupasset->update($request->all());
         return redirect('groupAsset')->with('success', 'Data Berhasil Diupdate!');
     }

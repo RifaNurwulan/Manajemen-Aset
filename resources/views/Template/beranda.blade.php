@@ -58,7 +58,7 @@
             @include('Template.footer')
         </div>
     </div>
-    @include('Template.script') @include('sweetalert::alert')php artisan sweetalert:publish
+    @include('Template.script') @include('sweetalert::alert')
 </body>
 
 </html>

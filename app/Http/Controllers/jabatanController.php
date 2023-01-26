@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\jabatan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class jabatanController extends Controller
 {
@@ -14,7 +15,8 @@ class jabatanController extends Controller
      */
     public function index()
     {
-        $jabatan = jabatan::paginate(10);
+        $jabatan = DB::table('jabatan')->get();
+        //dd($departement);
         return view('halaman.jabatan', compact('jabatan'));
     }
 
@@ -81,11 +83,11 @@ class jabatanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $jabatan = jabatan::findorfail($id);
+        $jabatan = jabatan::findorfail($request->id_jabatan);
         $jabatan->update($request->all());
-        return redirect('jabatan')->with('success', 'Data Berhasil Disimpan!');
+        return redirect('jabatan')->with('success', 'Data Berhasil Diupdate!');
     }
 
     /**
@@ -94,8 +96,10 @@ class jabatanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_jabatan)
     {
-        //
+        $jabatan = jabatan::findorfail($id_jabatan);
+        $jabatan->delete();
+        return redirect('jabatan')->with('status', 'Data Berhasil Dihapus!');
     }
 }

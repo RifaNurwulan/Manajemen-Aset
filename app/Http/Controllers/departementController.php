@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\departement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class departementController extends Controller
 {
@@ -14,7 +15,8 @@ class departementController extends Controller
      */
     public function index()
     {
-        $departement = departement::paginate(10);
+        $departement = DB::table('departement')->get();
+        //dd($departement);
         return view('halaman.departement', compact('departement'));
     }
 
@@ -73,7 +75,8 @@ class departementController extends Controller
      */
     public function edit($id)
     {
-        //
+        $departement = departement::findorfail($id);
+        return view('halaman.departement',compact('departement'));
     }
 
     /**
@@ -83,9 +86,11 @@ class departementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $departement = departement::findorfail($request->id_departement);
+        $departement->update($request->all());
+        return redirect('departement')->with('success', 'Data Berhasil Diupdate!');
     }
 
     /**
@@ -94,8 +99,10 @@ class departementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $departement = departement::findorfail($request->id_departement);
+        $departement->update($request->all());
+        return redirect('departement')->with('success', 'Data Berhasil Dihapus!');
     }
 }
