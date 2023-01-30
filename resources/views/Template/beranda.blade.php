@@ -6,6 +6,9 @@
 @include('Template.head')
 </head>
 
+
+@include('Template.navbar')
+
 <body>
     <div id="app">
         <div id="sidebar" class="active">

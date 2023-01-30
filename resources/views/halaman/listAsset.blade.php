@@ -4,28 +4,13 @@
 @section('content')
 
 <section class="section">
-    <div class="card">
+<div class="card">
         <div class="card-header">
             <div class="col py-6">
                 <h5 class="m-0 font-weight-bold text-primary">List Asset</h5>
             </div>
             <div class="row">
                 <div class="col card-header">
-                    <div class="input-group">
-                        <form action="/listAsset/search" method="GET">
-                            <div class="input-group input-group-lg">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="submit" value="SEARCH">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </div>
-                                <div class="col-10">
-                                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="Search..." name="search" value="{{ old('search') }}">
-                                </div>
-                        </form>
-                    </div>
-                </div>
-
                 <button type="button" style="float: right; " data-toggle="modal" data-target="#quoteForm" class="btn btn-primary">
                     <i class="fa fa-print"></i>
 
@@ -35,11 +20,10 @@
                     <i class="fa fa-plus"></i>
 
                 </button>
-
-
+                </div>
             </div>
         </div>
-    </div>
+                
     <div class="card-body">
         <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
             <div class="dataTable-container">
@@ -56,7 +40,7 @@
                             <th>PIC</th>
                             <th>Departement</th>
                             <th>Lokasi</th>
-                            <th>Kondisi</th>
+                            <th>Status</th>
                             <th>Foto Asset</th>
                             <th>Action</th>
 
@@ -65,6 +49,11 @@
                     <tbody>
                         @foreach ($listasset as $item)
                         <tr>
+                        @if ($item->status_list_aset == 1)   
+                                <a href="" class ="btn btn-sm btn danger"></a>
+                                @else
+                                <a href="" class ="btn btn-sm btn success"></a>
+                                @endif
 
                             <td>{{ $item->id_list_aset}}</td>
                             <td>{{ $item->kode_aset}}</td>
@@ -75,9 +64,7 @@
                             <td>{{ $item->pic}}</td>
                             <td>{{ $item->departement}}</td>
                             <td>{{ $item->lokasi}}</td>
-                            <td>
-                                <span class="badge bg-success">Aktif</span>
-                            </td>
+                            <td><span class="badge-bg-success {{ ($item->status_list_aset == 1) ? 'badge bg-success' : 'badge bg-danger' }}">{{ ($item->status_list_aset == 1) ? 'Aktif' : 'Non Aktif'}}</span></td>
                             <td>{{ $item->foto_aset}}</td>
                             <td>
                                 <div class="col-group">
@@ -86,9 +73,9 @@
                                         <i class="fa fa-edit"></i>
                                     </button>
 
-                                    <button type="submit" data-toggle="modal" data-target="#quoteFormTrash" class="btn btn-danger">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
+                                    <button type="button" data-toggle="modal" data-id = "{{ $item->id_list_aset}}" data-target="#quoteFormTrash" class="btn btn-danger">
+                                            <i class="fa fa-remove"></i>
+                                        </button>
                                 </div>
                             </td>
                         </tr>
@@ -98,18 +85,6 @@
                     </tbody>
                 </table>
                 
-            </div>
-            {{-- {{ $listasset->links() }} --}}
-
-            <div class="dataTable-bottom">
-                <div class="dataTable-info">Showing 1 to 10 of 26 entries</div>
-                <ul class="pagination pagination-primary float-end dataTable-pagination">
-                    <li class="page-item pager"><a href="#" class="page-link" data-page="1">‹</a></li>
-                    <li class="page-item active"><a href="#" class="page-link" data-page="1">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link" data-page="2">2</a></li>
-                    <li class="page-item"><a href="#" class="page-link" data-page="3">3</a></li>
-                    <li class="page-item pager"><a href="#" class="page-link" data-page="2">›</a></li>
-                </ul>
             </div>
         </div>
     </div>
@@ -128,8 +103,6 @@
             <div class="modal-body">
                 <form action="{{route('simpanlistAsset')}}" method="post">
                     {{ csrf_field() }}
-
-
                     <div class="row">
                         <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="kode_aset">Kode Aset<span class="text-primary ml-1">*</span></label>
@@ -137,12 +110,11 @@
                         </div>
 
                         <div class="form-department col-lg-6">
-                            <label class="font-weight-bold text-small" for="Departement">Departement<span class="text-primary ml-1">*</span></label>
+                            <label class="font-weight-bold text-small" for="departement">Departement<span class="text-primary ml-1">*</span></label>
                             <select name="department" id="department" class="form-select" data-live-search="true">
-                                <option>Lantai 1</option>
-                                <option>Lantai 2</option>
-                                <option>Lantai 3</option>
-
+                            @foreach($departement as $row)    
+                                <option value="{{$row->id_departement}}">{{$row->nama_departement}}</option>
+                            @endforeach
                             </select>
                         </div>
 
@@ -154,10 +126,9 @@
                         <div class="form-pic col-lg-6">
                             <label class="font-weight-bold text-small" for="pic">PIC<span class="text-primary ml-1">*</span></label>
                             <select name="pic" id="pic" class="form-select" data-live-search="true">
-                                <option>Nanda</option>
-                                <option>VIVIN</option>
-                                <option>Aulia</option>
-
+                            @foreach($datakaryawan as $row)
+                            <option value="{{$row->id_karyawan}}">{{$row->nama_karyawan}}</option>
+                            @endforeach
                             </select>
 
                         </div>
@@ -165,27 +136,18 @@
                         <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="group_aset">Group Aset<span class="text-primary ml-1">*</span></label>
                             <select name="group_aset" id="group_aset" class="form-select" data-live-search="true">
-                                <option>groupasset</option>
-                                <option>groupasset</option>
+                            @foreach($groupasset as $row)    
+                            <option value="{{$row->id_grup}}">{{$row->nama_grup_aset}}</option>
+                                @endforeach
                             </select>
                         </div>
 
                         <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="supplier">Supplier<span class="text-primary ml-1">*</span></label>
                             <select name="supplier" id="supplier" class="form-select" data-live-search="true">
-                                <option>Jakarta</option>
-                                <option>Banda Aceh</option>
-                                <option>Medan</option>
-                                <option>Padang</option>
-                                <option>Pekanbaru</option>
-                                <option>Jambi</option>
-                                <option>Pelembang</option>
-                                <option>Bengkulu</option>
-                                <option>Bandar Lampung</option>
-                                <option>Pangkalpinang</option>
-                                <option>Tanjungpinang</option>
-                                <option>Bandung</option>
-                                <option>Semarang</option>
+                            @foreach($supplier as $row)     
+                            <option value="{{$row->id_supplier}}">{{$row->nama_supplier}}</option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -236,8 +198,9 @@
                         <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="satuan">Satuan Asset<span class="text-primary ml-1">*</span></label>
                             <select name="satuan" id="satuan" class="form-select" data-live-search="true">
-                                <option>Unit</option>
-                                <option>Set</option>
+                            @foreach($satuan as $row)    
+                            <option value="{{$row->id_satuan}}">{{$row->nama_satuan}}</option>
+                            @endforeach
                             </select>
                         </div>
 
@@ -264,11 +227,7 @@
                             <button class="btn btn-success" type="submit">
                                 <i class="fa fa-save"></i>
                                 Save
-                            </button>
-                            <button class="btn btn-primary" type="submit">
-                                <i class="fa fa-refresh"></i>
-                                Reset
-                            </button>
+                            </button> 
                         </div>
                     </div>
                 </form>
@@ -298,15 +257,14 @@
                             @enderror
                         </div>
 
-                        <!-- <div class="form-department col-lg-6">
-                            <label class="font-weight-bold text-small" for="Departement">Departement<span class="text-primary ml-1">*</span></label>
+                        <div class="form-department col-lg-6">
+                            <label class="font-weight-bold text-small" for="departement">Departement<span class="text-primary ml-1">*</span></label>
                             <select name="department" id="department" class="form-select" data-live-search="true">
-                                <option>Lantai 1</option>
-                                <option>Lantai 2</option>
-                                <option>Lantai 3</option>
-
+                            @foreach($departement as $row)    
+                                <option value="{{$row->id_departement}}">{{$row->nama_departement}}</option>
+                            @endforeach
                             </select>
-                        </div> -->
+                        </div>
 
                         <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="nama_aset">Nama Aset<span class="text-primary ml-1">*</span></label>
@@ -316,44 +274,32 @@
                             @enderror
                         </div>
 
-                        <!-- <div class="form-pic col-lg-6">
+                        <div class="form-pic col-lg-6">
                             <label class="font-weight-bold text-small" for="pic">PIC<span class="text-primary ml-1">*</span></label>
                             <select name="pic" id="pic" class="form-select" data-live-search="true">
-                                <option>Nanda</option>
-                                <option>VIVIN</option>
-                                <option>Aulia</option>
-
+                            @foreach($datakaryawan as $row)
+                            <option value="{{$row->id_karyawan}}">{{$row->nama_karyawan}}</option>
+                            @endforeach
                             </select>
 
-                        </div> -->
+                        </div>
 
-                        <!-- <div class="form-group col-lg-6"> 
+                        <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="group_aset">Group Aset<span class="text-primary ml-1">*</span></label>
                             <select name="group_aset" id="group_aset" class="form-select" data-live-search="true">
-                                <option>groupasset</option>
-                                <option>groupasset</option>
+                            @foreach($groupasset as $row)    
+                            <option value="{{$row->id_grup}}">{{$row->nama_grup_aset}}</option>
+                                @endforeach
                             </select>
-                        </div> -->
-
-                        <!-- <div class="form-group col-lg-6">
+                        </div>
+                        <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="supplier">Supplier<span class="text-primary ml-1">*</span></label>
                             <select name="supplier" id="supplier" class="form-select" data-live-search="true">
-                                <option>Jakarta</option>
-                                <option>Banda Aceh</option>
-                                <option>Medan</option>
-                                <option>Padang</option>
-                                <option>Pekanbaru</option>
-                                <option>Jambi</option>
-                                <option>Pelembang</option>
-                                <option>Bengkulu</option>
-                                <option>Bandar Lampung</option>
-                                <option>Pangkalpinang</option>
-                                <option>Tanjungpinang</option>
-                                <option>Bandung</option>
-                                <option>Semarang</option>
+                            @foreach($supplier as $row)     
+                            <option value="{{$row->id_supplier}}">{{$row->nama_supplier}}</option>
+                                @endforeach
                             </select>
-                        </div> -->
-
+                        </div>
                         <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="tgl_beli">Tgl Beli<span class="text-primary ml-1">*</span></label>
                             <input class="form-control" id="tgl_beli" name="tgl_beli" type="date" placeholder="Tanggal Beli" required="" />
@@ -362,10 +308,10 @@
                             @enderror
                         </div>
 
-                        <!-- <div class="form-group col-lg-6">
+                        <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="no_faktur">No Faktur Beli<span class="text-primary ml-1">*</span></label>
                             <input class="form-control" id="no_faktur" name="no_faktur" type="text" placeholder="No Faktur Beli" required="" />
-                        </div> -->
+                        </div>
 
                         <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="tgl_pakai">Tgl Pakai<span class="text-primary ml-1">*</span></label>
@@ -380,14 +326,15 @@
                             <input class="form-control" id="umur" name="umur" type="text" placeholder="Umur (bulan)" required="" />
                         </div> -->
 
-                        <!-- <div class="form-lokasi col-lg-6">
+                        <div class="form-lokasi col-lg-6">
                             <label class="font-weight-bold text-small" for="lokasi">Lokasi<span class="text-primary ml-1">*</span></label>
                             <select name="lokasi" id="lokasi" class="form-select" data-live-search="true">
                                 <option>Lantai 1</option>
                                 <option>Lantai 2</option>
                                 <option>Lantai 3</option>
                             </select>
-                        </div> -->
+                        </div>
+
 
                         <!-- <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="tarif">Tarif<span class="text-primary ml-1">*</span></label>
@@ -404,13 +351,14 @@
                             <input class="form-control" id="keterangan" name="keterangan" type="text" placeholder="Keterangan" required="" />
                         </div> -->
 
-                        <!-- <div class="form-group col-lg-6">
+                        <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="satuan">Satuan Asset<span class="text-primary ml-1">*</span></label>
                             <select name="satuan" id="satuan" class="form-select" data-live-search="true">
-                                <option>Unit</option>
-                                <option>Set</option>
+                            @foreach($satuan as $row)    
+                            <option value="{{$row->id_satuan}}">{{$row->nama_satuan}}</option>
+                            @endforeach
                             </select>
-                        </div> -->
+                        </div>
 
                         <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="foto_aset">Foto Asset<span class="text-primary ml-1">*</span></label>
@@ -433,7 +381,6 @@
         </div>
     </div>
 </div>
-
 
 <!--GET a QUOTE MODAL Kondisi -->
 <div class="modal fade" id="quoteFormKondisi" tabindex="-1" role="dialog" aria-labelledby="quoteForm" aria-hidden="true">
@@ -487,37 +434,34 @@
         </div>
     </div>
 </div>
+
 <!--GET a QUOTE MODAL Trash -->
 <div class="modal fade" id="quoteFormTrash" tabindex="-1" role="dialog" aria-labelledby="quoteForm" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Hapus Asset</span></h4>
+                <h4 class="modal-title">Hapus List Asset</span></h4>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form action="#">
+            <form enctype="multipart/form-data" method="POST" action="{{ route ('deletelistasset') }}">
+                    {{ csrf_field() }}
                     <div class="row">
                         <div class="form-group col-3">
-                            <label class="font-weight-bold text-small" for="kodegroupasset">Status Asset<span class="text-primary ml-1">*</span></label>
-                            <div class="btn-group mb-2">
-                                <div class="dropdown">
-                                    <button class="btn btn-primary dropdown-toggle me-1" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Pilih Status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Aktif</a>
-                                        <a class="dropdown-item" href="#">Non-Aktif</a>
-                                    </div>
-                                </div>
-                            </div>
+                        <input class="form-control" id="id_list_aset" name="id_list_aset" type="text" placeholder="ID" required="" hidden="true"/>
+                            <label class="font-weight-bold text-small" for="kode_aset">Status List Asset<span
+                                    class="text-primary ml-1">*</span></label>
+                            <select name="status_list_aset" id="status_list_aset" class="form-select" data-live-search="true">
+                            <option value="1">Aktif</option>
+                                <option value="0">Non-Aktif</option>
+                            </select>
                         </div>
                         <div class="form-group col-9">
                             <label class="font-weight-bold text-small" for="namagroupasset">Keterangan Hapus<span class="text-primary ml-1">*</span></label>
                             <textarea class="form-control" id="firstname" type="text" placeholder="Keterangan Hapus" required=""></textarea>
                         </div>
                         <div class="form-group col-lg-12"><br>
-                            <button class="btn btn-success" style="float: right;" type="button">
+                            <button class="btn btn-success" style="float: right;" type="submit">
                                 <i class="fa fa-save"></i>
                                 Save
                             </button>
@@ -526,10 +470,10 @@
                 </form>
             </div>
         </div>
+    </div>
+</div>       
 
-
-
-        <!--GET a QUOTE MODAL VIEW -->
+ <!--GET a QUOTE MODAL VIEW -->
         <div class="modal fade" id="quoteFormview" tabindex="-1" role="dialog" aria-labelledby="quoteForm" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                 <div class="modal-content p-md-3">
@@ -558,12 +502,17 @@
         $("#quoteFormEdit").find('input[name="id_list_aset"]').val($(e.relatedTarget).data('id'));
         $("#quoteFormEdit").find('input[name="kode_aset"]').val($(e.relatedTarget).data('kode'));
         $("#quoteFormEdit").find('input[name="nama_aset"]').val($(e.relatedTarget).data('nama'));
-        // $("#quoteFormEdit").find('input[name="satuan"]').val($(e.relatedTarget).data('satuan'));
+        $("#quoteFormEdit").find('input[name="satuan"]').val($(e.relatedTarget).data('satuan'));
         $("#quoteFormEdit").find('input[name="tgl_beli"]').val($(e.relatedTarget).data('beli'));
         $("#quoteFormEdit").find('input[name="tgl_pakai"]').val($(e.relatedTarget).data('pakai'));
-        // $("#quoteFormEdit").find('input[name="pic"]').val($(e.relatedTarget).data('pic'));
-        // $("#quoteFormEdit").find('input[name="department"]').val($(e.relatedTarget).data('department'));
-        // $("#quoteFormEdit").find('input[name="lokasi"]').val($(e.relatedTarget).data('lokasi'));
+        $("#quoteFormEdit").find('input[name="pic"]').val($(e.relatedTarget).data('pic'));
+        $("#quoteFormEdit").find('input[name="department"]').val($(e.relatedTarget).data('department'));
+        $("#quoteFormEdit").find('input[name="lokasi"]').val($(e.relatedTarget).data('lokasi'));
+    })
+
+    $("#quoteFormTrash").on('show.bs.modal', (e) => {
+        //$("#quoteFormEdit").attr("action", $(e.relatedTarget).data('url'));
+        $("#quoteFormTrash").find('input[name="id_list_aset"]').val($(e.relatedTarget).data('id'));
     })
 </script>
 @endpush('')

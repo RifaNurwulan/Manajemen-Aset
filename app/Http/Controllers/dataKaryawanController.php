@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\jabatan;
 use App\Models\dataKaryawan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,8 +17,9 @@ class dataKaryawanController extends Controller
     public function index()
     {
         $datakaryawan = DB::table('data_karyawan')->get();
+        $jabatan = DB::table('jabatan')->where('status_jabatan','=','1')->get();
         //dd($datakaryawan);
-        return view('halaman.dataKaryawan', compact('datakaryawan'));
+        return view('halaman.dataKaryawan', compact('datakaryawan', 'jabatan'));
     }
 
     public function search(Request $request)
@@ -41,7 +43,9 @@ class dataKaryawanController extends Controller
      */
     public function create()
     {
-        return view('halaman.dataKaryawan');
+        $jabatan = DB::table('jabatan')->where('status_jabatan','=','1');
+        //dd($jabatan);
+        return view('halaman.dataKaryawan', compact('jabatan'));
     }
 
     /**
@@ -112,10 +116,12 @@ class dataKaryawanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_karyawan)
+    public function destroy(Request $request)
     {
-        $datakaryawan = dataKaryawan::findorfail($id_karyawan);
-        $datakaryawan->delete();
-        return redirect('dataKaryawan')->with('status', 'Data Berhasil Dihapus!');
+        // $datakaryawan = dataKaryawan::findorfail($id_karyawan);
+        // $datakaryawan->delete();
+        $datakaryawan = dataKaryawan::findorfail($request->id_karyawan);
+        $datakaryawan->update($request->all());
+        return redirect('dataKaryawan')->with('status', 'Data Berhasil Diupdate!');
     }
 }

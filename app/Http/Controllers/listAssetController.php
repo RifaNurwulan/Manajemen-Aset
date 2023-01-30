@@ -15,8 +15,13 @@ class listAssetController extends Controller
      */
     public function index()
     {
+        $satuan = DB::table('satuan')->get();
+        $supplier = DB::table('supplier')->get();
+        $groupasset = DB::table('group_asset')->where('status_grup_asset','=','1')->get();
+        $datakaryawan = DB::table('data_karyawan')->where('status_data_karyawan','=','1')->get();
+        $departement = DB::table('departement')->where('status','=','1')->get();
         $listasset = DB::table('list_asset')->get();
-        return view('halaman.listAsset', compact('listasset'));
+        return view('halaman.listAsset', compact('listasset', 'departement', 'datakaryawan', 'supplier', 'groupasset', 'satuan'));
     }
 
     public function search(Request $request)
@@ -41,6 +46,11 @@ class listAssetController extends Controller
      */
     public function create()
     {
+        $satuan = DB::table('satuan')->get();
+        $supplier = DB::table('supplier')->get();
+        $groupasset = DB::table('group_asset')->where('status_grup_asset','=','1');
+        $datakaryawan = DB::table('data_karyawan')->where('status_data_karyawan','=','1');
+        $departement = DB::table('departement')->where('status','=','1');
         return view('halaman.listAsset');
     }
 
@@ -58,15 +68,15 @@ class listAssetController extends Controller
             'group_aset' => 'required',
             'tgl_beli' => 'required',
             'tgl_pakai' => 'required',
-            //'lokasi' => 'required',
+            'lokasi' => 'required',
             'harga_perolehan' => 'required',
             'keterangan' => 'required',
-            //'satuan' => 'required',
+            'satuan' => 'required',
             //'foto_aset' => 'required',
-            //'suplier' => 'required',
+            'suplier' => 'required',
             'no_faktur' => 'required',
-            //'departement' => 'required',
-            //'pic' => 'required',
+            'departement' => 'required',
+            'pic' => 'required',
             'umur' => 'required',
             //'tarif' => 'required',    
         ]);
@@ -82,14 +92,14 @@ class listAssetController extends Controller
             //'lokasi' => $request->lokasi,
             'harga_perolehan' => $request->harga_perolehan,
             'keterangan' => $request->keterangan,
-            //'satuan' => $request->satuan,
+            'satuan' => $request->satuan,
             'foto_aset' => $request->foto_aset,
             'suplier' => $request->suplier,
             'no_faktur' => $request->no_faktur,
-            //'departement' => $request->departement,
-            //'pic' => $request->pic,
+            'departement' => $request->departement,
+            'pic' => $request->pic,
             'umur' => $request->umur,
-            //'tarif' =>$request->tarif,
+            'tarif' =>$request->tarif,
         ]);
 
         return redirect('listAsset')->with('success', 'Data Berhasil Disimpan!');
@@ -138,8 +148,10 @@ class listAssetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $listasset = listAsset::findorfail($request->id_list_aset);
+        $listasset->update($request->all());
+        return redirect('listAsset')->with('status', 'Data Berhasil Diupdate!');
     }
 }

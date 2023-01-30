@@ -99,10 +99,10 @@ class departementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request)
     {
         $departement = departement::findorfail($request->id_departement);
         $departement->update($request->all());
-        return redirect('departement')->with('success', 'Data Berhasil Dihapus!');
+        return redirect('departement')->with('status', 'Data Berhasil Dihapus!');
     }
 }

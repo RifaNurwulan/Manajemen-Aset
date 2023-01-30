@@ -9,8 +9,9 @@
                 <img src="{{ asset('assets') }}/images/bg.svg">
             </div>
             <div class="login-content">
-                <form action="index.html">
-                    <!-- <img src="img/avatar.svg"> -->
+                <form action="{{ route ('register.post') }}" method="POST">
+                    @csrf    
+                <!-- <img src="img/avatar.svg"> -->
                     <h2 class="title">Welcome</h2>
                     <div class="input-div one">
                     <div class="i">
@@ -18,7 +19,10 @@
                     </div>
                     <div class="div">
                             <h5>Username</h5>
-                            <input type="text" class="input">
+                            <input type="text" class="input" id="username" name="username">
+                            @if ($errors->has('username'))
+                            <span class="text-danger">{{ $errors->first('username') }}</span>
+                            @endif
                     </div>
                     </div>
                     <div class="input-div one">
@@ -27,7 +31,10 @@
                     </div>
                     <div class="div">
                             <h5>Email</h5>
-                            <input type="text" class="input">
+                            <input type="text" class="input" id="email" name="email">
+                            @if ($errors->has('email'))
+                            <span class="text-danger">{{ $errors->first('email') }}</span>
+                            @endif
                     </div>
                     </div>
                     <div class="input-div pass">
@@ -36,7 +43,10 @@
                     </div>
                     <div class="div">
                             <h5>Password</h5>
-                            <input type="password" class="input">
+                            <input type="password" class="input" id="password" name="password">
+                            @if ($errors->has('password'))
+                            <span class="text-danger">{{ $errors->first('password') }}</span>
+                            @endif
                     </div>
                     </div>
                     <div class="input-div pass">
@@ -45,7 +55,10 @@
                     </div>
                     <div class="div">
                             <h5>Re-Password</h5>
-                            <input type="password" class="input">
+                            <input type="password" class="input" id="password" name="password">
+                            @if ($errors->has('password'))
+                            <span class="text-danger">{{ $errors->first('password') }}</span>
+                            @endif
                     </div>
                     </div>
                     <input type="submit" class="btn" value="Sign Up">

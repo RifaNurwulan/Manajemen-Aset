@@ -39,7 +39,7 @@ class GroupAssetController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_grup' => 'required',
+            // 'id_grup' => 'required',
             'kode_grup' => 'required',
             'nama_grup_aset' => 'required',
             // 'tipe_depresiasi' => 'required',
@@ -103,10 +103,12 @@ class GroupAssetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_grup)
+    public function destroy(Request $request)
     {
-        $groupasset = groupAsset::findorfail($id_grup);
-        $groupasset->delete();
+        // $groupasset = groupAsset::findorfail($id_grup);
+        //$groupasset->delete();
+        $groupasset = groupAsset::findorfail($request->id_grup);
+        $groupasset->update($request->all());
         return redirect('groupAsset')->with('status', 'Data Berhasil Dihapus!');
     }
 }

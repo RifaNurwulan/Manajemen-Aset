@@ -15,8 +15,7 @@
         <img class="layer-2" src="{{ asset('assets') }}/images/meteor.png">
 
         <div class="layer-3">
-            <h1>Hello &amp; Welcome</h1>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem quam placeat sed similique aspernatur, provident, ea aperiam hic quae natus animi quod, dolor debitis optio deleniti fuga vitae laboriosam sunt.</p>
+            <h1> Welcome to Asset Management</h1>
             <a href="#text">Get Started</a>
         </div>
 

@@ -52,7 +52,7 @@
 
         <li class="sidebar-item  has-sub">
             <a href="#" class='sidebar-link'>
-                <i class="bi bi-collection-fill"></i>
+                <i class="fa fa-database"></i>
                 <span>Report</span>
             </a>
             <ul class="submenu ">

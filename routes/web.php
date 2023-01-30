@@ -14,6 +14,13 @@ use App\Http\Controllers\GroupAssetController;
 |
 */
 
+Route::get('/login', 'AuthController@index')->name('login');
+Route::post('post-login', 'AuthController@postLogin')->name('login.post'); 
+Route::get('registration', 'AuthController@registration')->name('register');
+Route::post('post-registration', 'AuthController@postRegistration')->name('register.post'); 
+Route::get('dashboard', 'AuthController@dashboard'); 
+Route::get('logout', 'AuthController@logout')->name('logout');
+
 
 Route::get('/home', function () {
     return view('Template.beranda');
@@ -33,24 +40,25 @@ Route::get('/supplier', 'supplierController@index')->name('supplier');
 Route::post('/simpangroupAsset', 'groupAssetController@store')->name('simpangroupAsset');
 Route::get('/editgroupasset/{id}', 'groupAssetController@edit')->name('editgroupasset');
 Route::post('/updategroupasset', 'groupAssetController@update')->name('updategroupasset');
-Route::get('/deletegroupasset', 'groupAssetController@destroy')->name('deletegroupasset');
+Route::post('/deletegroupasset', 'groupAssetController@destroy')->name('deletegroupasset');
 
 // CRUD departement
 Route::post('/simpandepartement', 'departementController@store')->name('simpandepartement');
 Route::get('/editdepartement/{id}', 'departementController@edit')->name('editdepartement');
 Route::post('/updatedepartement', 'departementController@update')->name('updatedepartement');
+Route::post('/deletedepartement', 'departementController@destroy')->name('deletedepartement');
 
 // CRUD jabatan
 Route::post('/simpanJabatan', 'jabatanController@store')->name('simpanJabatan');
 Route::get('/editjabatan/{id}', 'jabatanController@edit')->name('editjabatan');
 Route::post('/updatejabatan', 'jabatanController@update')->name('updatejabatan');
-Route::get('/deletejabatan/{id}', 'jabatanController@destroy')->name('deletejabatan');
+Route::post('/deletejabatan', 'jabatanController@destroy')->name('deletejabatan');
 
 // CRUD Data Karyawan
 Route::post('/simpandataKaryawan', 'dataKaryawanController@store')->name('simpandataKaryawan');
 Route::get('/editdatakaryawan/{id}', 'dataKaryawanController@edit')->name('editdatakaryawan');
 Route::post('/updatedatakaryawan', 'dataKaryawanController@update')->name('updatedatakaryawan');
-Route::get('/deletedatakaryawan/{id}', 'dataKaryawanController@destroy')->name('deletedatakaryawan');
+Route::post('/deletedatakaryawan', 'dataKaryawanController@destroy')->name('deletedatakaryawan');
 Route::get('/dataKaryawan/search', 'dataKaryawanController@search');
 
 // CRUD Satuan
@@ -67,6 +75,10 @@ Route::get('/listAsset', 'listAssetController@index')->name('listAsset');
 Route::post('/simpanlistAsset', 'listAssetController@store')->name('simpanlistAsset');
 Route::get('/editlistAsset/{id}', 'listAssetController@edit')->name('editlistasset');
 Route::post('/updatelistAsset', 'listAssetController@update')->name('updatelistasset');
+Route::post('/deletelistAsset', 'listAssetController@destroy')->name('deletelistasset');
+Route::get('/upload', 'UploadlistassetController@upload');
+Route::post('/upload/proses', 'UploadlistassetController@proses_upload');
+Route::post('/detaillistAsset', 'listAssetController@update')->name('detaillistasset');
 Route::get('/listAsset/search', 'listAssetController@search');
 
 //Route Modul Report
@@ -81,3 +93,4 @@ Route::get('/reportPenghapusanAsset', 'reportPenghapusanAssetController@index')-
 Route::get('/signIn', 'signInController@index')->name('signIn');
 Route::get('/signUp', 'signUpController@index')->name('signUp');
 Route::get('/resetPass', 'resetPassController@index')->name('resetPass');
+
