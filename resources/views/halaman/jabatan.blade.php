@@ -26,6 +26,7 @@
                                 <th>No</th>
                                 <th>Kode Jabatan</th>
                                 <th>Nama Jabatan</th>
+                                <th>Status</th>
                                 <th>Created By</th>
                                 <th>Created At</th>
                                 <th>Updated By</th>
@@ -35,9 +36,17 @@
                         <tbody>
                             @foreach ($jabatan as $item)
                             <tr>
+                                @if ($item->status_jabatan == 1)   
+                                <a href="" class ="btn btn-sm btn danger"></a>
+                                @else
+                                <a href="" class ="btn btn-sm btn success"></a>
+                                @endif
                                 <td>{{ $item->id_jabatan}}</td>
                                 <td>{{ $item->kode_jabatan}}</td>
                                 <td>{{ $item->jabatan}}</td>
+                                <td>
+                                    <span class="badge-bg-success {{ ($item->status_jabatan == 1) ? 'badge bg-success' : 'badge bg-danger' }}">{{ ($item->status_jabatan == 1) ? 'Aktif' : 'Non Aktif'}}</span>
+                                </td>
                                 <td>{{ $item->created_by}}</td>
                                 <td>{{ $item->created_at}}</td>
                                 <td>{{ $item->updated_by}}</td>
@@ -50,8 +59,8 @@
                                             <i class="fa fa-edit"></i>
                                         </button>
 
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormTrash" class="btn btn-danger">
-                                            <i class="fa fa-trash"></i>
+                                        <button type="button" data-toggle="modal" data-id = "{{ $item->id_jabatan }}" data-target="#quoteFormTrash" class="btn btn-danger">
+                                            <i class="fa fa-remove"></i>
                                         </button>
                                     </div>
                                 </td>
@@ -62,16 +71,6 @@
                 </div>
                 {{-- {{ $jabatan->links() }} --}}
 
-                <div class="dataTable-bottom">
-                    <div class="dataTable-info">Showing 1 to 10 of 26 entries</div>
-                    <ul class="pagination pagination-primary float-end dataTable-pagination">
-                        <li class="page-item pager"><a href="#" class="page-link" data-page="1">‹</a></li>
-                        <li class="page-item active"><a href="#" class="page-link" data-page="1">1</a></li>
-                        <li class="page-item"><a href="#" class="page-link" data-page="2">2</a></li>
-                        <li class="page-item"><a href="#" class="page-link" data-page="3">3</a></li>
-                        <li class="page-item pager"><a href="#" class="page-link" data-page="2">›</a></li>
-                    </ul>
-                </div>
             </div>
         </div>
     </div>
@@ -162,25 +161,27 @@
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Hapus Karyawan</span></h4>
+                <h4 class="modal-title">Hapus Jabatan</span></h4>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form action="#">
+                <form enctype="multipart/form-data" method="POST" action="{{ route ('deletejabatan') }}">
+                    {{ csrf_field() }}
+                    <input class="form-control" id="id_jabatan" name="id_jabatan" type="text" placeholder="ID" required="" hidden="true"/>
                     <div class="row">
                         <div class="form-group col-3">
-                            <label class="font-weight-bold text-small" for="kodegroupasset">Status Data Karyawan<span class="text-primary ml-1">*</span></label>
-                            <select name="status" class="form-select" data-live-search="true">
-                                <option>Aktif</option>
-                                <option>Non-Aktif</option>
+                            <label class="font-weight-bold text-small" for="status_jabatan">Status Data Jabatan<span class="text-primary ml-1">*</span></label>
+                            <select name="status_jabatan" id="status_jabatan" class="form-select" data-live-search="true">
+                                <option value="1">Aktif</option>
+                                <option value="0">Non-Aktif</option>
                             </select>
                         </div>
                         <div class="form-group col-9">
-                            <label class="font-weight-bold text-small" for="namagroupasset">Keterangan Hapus<span class="text-primary ml-1">*</span></label>
-                            <textarea class="form-control" id="firstname" type="text" placeholder="Keterangan Hapus" required=""></textarea>
+                            <label class="font-weight-bold text-small" for="ket">Keterangan Hapus<span class="text-primary ml-1">*</span></label>
+                            <textarea class="form-control" id="ket" type="text" placeholder="Keterangan Hapus" required=""></textarea>
                         </div>
                         <div class="form-group col-lg-12"><br>
-                            <button class="btn btn-success" style="float: right;" type="button">
+                            <button class="btn btn-success" style="float: right;" type="submit">
                                 <i class="fa fa-save"></i>
                                 Save
                             </button>
@@ -199,6 +200,9 @@
         $("#quoteFormEdit").find('input[name="id_jabatan"]').val($(e.relatedTarget).data('id'));
         $("#quoteFormEdit").find('input[name="kode_jabatan"]').val($(e.relatedTarget).data('kode'));
         $("#quoteFormEdit").find('input[name="jabatan"]').val($(e.relatedTarget).data('jabatan'));
+    })
+    $("#quoteFormTrash").on('show.bs.modal', (e) => {
+        $("#quoteFormTrash").find('input[name="id_jabatan"]').val($(e.relatedTarget).data('id'));
     })
 </script>
 @endpush('')

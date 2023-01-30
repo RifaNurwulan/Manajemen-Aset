@@ -37,13 +37,16 @@
                         <tbody>
                             @foreach ($departement as $item)
                             <tr>
+                                @if ($item->status == 1)   
+                                <a href="" class ="btn btn-sm btn danger"></a>
+                                @else
+                                <a href="" class ="btn btn-sm btn success"></a>
+                                @endif
                                 <td>{{ $item->id_departement}}</td>
                                 <td>{{ $item->kode_departement}}</td>
                                 <td>{{ $item->nama_departement}}</td>
                                 <td>{{ $item->singkatan}}</td>
-                                <td>
-                                    <span class="badge bg-success">Aktif</span>
-                                </td>
+                                <td><span class="badge-bg-success {{ ($item->status == 1) ? 'badge bg-success' : 'badge bg-danger' }}">{{ ($item->status == 1) ? 'Aktif' : 'Non Aktif'}}</span></td>
                                 <td>{{ $item->created_by}}</td>
                                 <td>{{ $item->updated_by}}</td>
                                 <td>
@@ -53,8 +56,8 @@
                                             <i class="fa fa-edit"></i>
                                         </button>
 
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormTrash" class="btn btn-danger">
-                                            <i class="fa fa-trash"></i>
+                                        <button type="button" data-toggle="modal" data-id = "{{ $item->id_departement}}" data-target="#quoteFormTrash" class="btn btn-danger">
+                                            <i class="fa fa-remove"></i>
                                         </button>
                                     </div>
                                 </td>
@@ -185,28 +188,24 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form action="#">
+                <form enctype="multipart/form-data" method="POST" action="{{ route ('deletedepartement') }}">
+                    {{ csrf_field() }}
+                    <input class="form-control" id="id_departement" name="id_departement" type="text" placeholder="Id Departement" required="" hidden="true"/>
                     <div class="row">
                         <div class="form-group col-3">
-                            <label class="font-weight-bold text-small" for="kodegroupasset">Status Departement<span class="text-primary ml-1">*</span></label>
-                            <div class="btn-group mb-2">
-                                <div class="dropdown">
-                                    <button class="btn btn-primary dropdown-toggle me-1" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Pilih Status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Aktif</a>
-                                        <a class="dropdown-item" href="#">Non-Aktif</a>
-                                    </div>
-                                </div>
-                            </div>
+                            <label class="font-weight-bold text-small" for="status">Status Departement<span
+                                    class="text-primary ml-1">*</span></label>
+                            <select name="status" id="status" class="form-select" data-live-search="true">
+                                <option value="1">Aktif</option>
+                                <option value="0">Non-Aktif</option>
+                            </select>
                         </div>
                         <div class="form-group col-9">
                             <label class="font-weight-bold text-small" for="namagroupasset">Keterangan Hapus<span class="text-primary ml-1">*</span></label>
                             <textarea class="form-control" id="firstname" type="text" placeholder="Keterangan Hapus" required=""></textarea>
                         </div>
                         <div class="form-group col-lg-12"><br>
-                            <button class="btn btn-success" style="float: right;" type=" button">
+                            <button class="btn btn-success" style="float: right;" type=" submit">
                                 <i class="fa fa-save"></i>
                                 Save
                             </button>
@@ -227,6 +226,10 @@
         $("#quoteFormEdit").find('input[name="kode_departement"]').val($(e.relatedTarget).data('kode'));
         $("#quoteFormEdit").find('input[name="nama_departement"]').val($(e.relatedTarget).data('nama'));
         $("#quoteFormEdit").find('input[name="singkatan"]').val($(e.relatedTarget).data('singkatan'));
+    })
+    $("#quoteFormTrash").on('show.bs.modal', (e) => {
+        //$("#quoteFormEdit").attr("action", $(e.relatedTarget).data('url'));
+        $("#quoteFormTrash").find('input[name="id_departement"]').val($(e.relatedTarget).data('id'));
     })
 </script>
 @endpush('')

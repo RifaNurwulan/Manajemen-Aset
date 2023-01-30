@@ -53,6 +53,7 @@ class listAssetController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+
             'nama_aset' => 'required',
             'kode_aset' => 'required',
             'group_aset' => 'required',
@@ -73,12 +74,13 @@ class listAssetController extends Controller
 
         //dd($request->all());
 
-        listAsset::create([
+        listAsset::create([                                                                                                       
             'nama_aset' => $request->nama_aset,
             'kode_aset' => $request->kode_aset,
             'group_aset' => $request->group_aset,
             'tgl_beli' => $request->tgl_beli,
             'tgl_pakai' => $request->tgl_pakai,
+            'status_list_aset' => $request->status_list_aset,
             //'lokasi' => $request->lokasi,
             'harga_perolehan' => $request->harga_perolehan,
             'keterangan' => $request->keterangan,
@@ -138,8 +140,10 @@ class listAssetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $listasset = listAsset::findorfail($request->id_list_aset);
+        $listasset->update($request->all());
+        return redirect('listAsset')->with('success', 'Data Berhasil Diupdate!');
     }
 }

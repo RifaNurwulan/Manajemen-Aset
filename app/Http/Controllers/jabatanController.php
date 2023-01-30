@@ -96,10 +96,12 @@ class jabatanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_jabatan)
+    public function destroy(Request $request)
     {
-        $jabatan = jabatan::findorfail($id_jabatan);
-        $jabatan->delete();
-        return redirect('jabatan')->with('status', 'Data Berhasil Dihapus!');
+        // $jabatan = jabatan::findorfail($id_jabatan);
+        // $jabatan->delete();
+        $jabatan = jabatan::findorfail($request->id_jabatan);
+        $jabatan->update($request->all());
+        return redirect('jabatan')->with('status', 'Data Berhasil Diupdate!');
     }
 }

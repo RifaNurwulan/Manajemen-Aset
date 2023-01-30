@@ -112,10 +112,12 @@ class dataKaryawanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_karyawan)
+    public function destroy(Request $request)
     {
-        $datakaryawan = dataKaryawan::findorfail($id_karyawan);
-        $datakaryawan->delete();
-        return redirect('dataKaryawan')->with('status', 'Data Berhasil Dihapus!');
+        // $datakaryawan = dataKaryawan::findorfail($id_karyawan);
+        // $datakaryawan->delete();
+        $datakaryawan = dataKaryawan::findorfail($request->id_karyawan);
+        $datakaryawan->update($request->all());
+        return redirect('dataKaryawan')->with('status', 'Data Berhasil Diupdate!');
     }
 }

@@ -61,12 +61,17 @@
                     <tbody>
                         @foreach ($datakaryawan as $item)
                         <tr>
+                            @if ($item->status_data_karyawan == 1)   
+                            <a href="" class ="btn btn-sm btn danger"></a>
+                            @else
+                            <a href="" class ="btn btn-sm btn success"></a>
+                            @endif
                             <td>{{ $item->id_karyawan}}</td>
                             <td>{{ $item->nama_karyawan}}</td>
                             <td>{{ $item->nik}}</td>
                             <td>{{ $item->jabatan}}</td>
                             <td>
-                                <span class="badge bg-success">Aktif</span>
+                                <span class="badge-bg-success {{ ($item->status_data_karyawan == 1) ? 'badge bg-success' : 'badge bg-danger' }}">{{ ($item->status_data_karyawan == 1) ? 'Aktif' : 'Non Aktif'}}</span>
                             </td>
                             <td>{{ $item->created_by}}</td>
                             <td>{{ $item->updated_by}}</td>
@@ -77,8 +82,8 @@
                                         <i class="fa fa-edit"></i>
                                     </button>
 
-                                    <button type="button" data-toggle="modal" data-target="#quoteFormTrash" class="btn btn-danger">
-                                        <i class="fa fa-trash"></i>
+                                    <button type="button" data-toggle="modal" data-id = "{{ $item->id_karyawan }}" data-target="#quoteFormTrash" class="btn btn-danger">
+                                        <i class="fa fa-remove"></i>
                                     </button>
                                 </div>
                             </td>
@@ -89,16 +94,7 @@
             </div>
             {{-- {{ $datakaryawan->links() }} --}}
 
-            <div class="dataTable-bottom">
-                <div class="dataTable-info">Showing 1 to 10 of 26 entries</div>
-                <ul class="pagination pagination-primary float-end dataTable-pagination">
-                    <li class="page-item pager"><a href="#" class="page-link" data-page="1">‹</a></li>
-                    <li class="page-item active"><a href="#" class="page-link" data-page="1">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link" data-page="2">2</a></li>
-                    <li class="page-item"><a href="#" class="page-link" data-page="3">3</a></li>
-                    <li class="page-item pager"><a href="#" class="page-link" data-page="2">›</a></li>
-                </ul>
-            </div>
+            
         </div>
     </div>
     </div>
@@ -213,21 +209,23 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form action="#">
+                <form enctype="multipart/form-data" method="POST" action="{{ route ('deletedatakaryawan') }}">
+                    {{ csrf_field() }}
+                    <input class="form-control" id="id_karyawan" name="id_karyawan" type="text" placeholder="ID" required="" hidden="true"/>
                     <div class="row">
                         <div class="form-group col-3">
-                            <label class="font-weight-bold text-small" for="kodegroupasset">Status Data Karyawan<span class="text-primary ml-1">*</span></label>
-                            <select name="status" class="form-select" data-live-search="true">
-                                <option>Aktif</option>
-                                <option>Non-Aktif</option>
+                            <label class="font-weight-bold text-small" for="status_data_karyawan">Status Data Karyawan<span class="text-primary ml-1">*</span></label>
+                            <select name="status_data_karyawan" id="status_data_karyawan" class="form-select" data-live-search="true">
+                                <option value="1">Aktif</option>
+                                <option value="0">Non-Aktif</option>
                             </select>
                         </div>
                         <div class="form-group col-9">
-                            <label class="font-weight-bold text-small" for="namagroupasset">Keterangan Hapus<span class="text-primary ml-1">*</span></label>
-                            <textarea class="form-control" id="firstname" type="text" placeholder="Keterangan Hapus" required=""></textarea>
+                            <label class="font-weight-bold text-small" for="ket">Keterangan Hapus<span class="text-primary ml-1">*</span></label>
+                            <textarea class="form-control" id="ket" type="text" placeholder="Keterangan Hapus" required=""></textarea>
                         </div>
                         <div class="form-group col-lg-12"><br>
-                            <button class="btn btn-success" style="float: right;" type="button">
+                            <button class="btn btn-success" style="float: right;" type="submit">
                                 <i class="fa fa-save"></i>
                                 Save
                             </button>
@@ -247,6 +245,9 @@
         $("#quoteFormEdit").find('input[name="nama_karyawan"]').val($(e.relatedTarget).data('nama'));
         $("#quoteFormEdit").find('input[name="nik"]').val($(e.relatedTarget).data('nik'));
         $("#quoteFormEdit").find('input[name="jabatan"]').val($(e.relatedTarget).data('jabatan'));
+    })
+    $("#quoteFormTrash").on('show.bs.modal', (e) => {
+        $("#quoteFormTrash").find('input[name="id_karyawan"]').val($(e.relatedTarget).data('id'));
     })
 </script>
 @endpush('')

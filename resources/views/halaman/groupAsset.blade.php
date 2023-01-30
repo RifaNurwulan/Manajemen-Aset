@@ -38,10 +38,10 @@
                         <tbody>
                             @foreach ($groupasset as $item)
                             <tr>
-                                @if ($item->status == 1)   
-                                <a href="" class ="btn btn-sm btn danger">Non Aktif</a>
+                                @if ($item->status_grup_asset == 1)   
+                                <a href="" class ="btn btn-sm btn danger"></a>
                                 @else
-                                <a href="" class ="btn btn-sm btn success">Aktif</a>
+                                <a href="" class ="btn btn-sm btn success"></a>
                                 @endif
                                 <td>{{ $item->id_grup}}</td>
                                 <td>{{ $item->kode_grup}}</td>
@@ -49,7 +49,7 @@
                                 <td>{{ $item->tipe_depresiasi}}</td>
                                 <td>{{ $item->tahun}}</td>
                                 <td>{{ $item->depresiasi}}</td>
-                                <td><label class="lable lable-success">{{ ($item->status == 1) ? 'Aktif' : 'Non Aktif'}}</label></td>
+                                <td><span class="badge-bg-success {{ ($item->status_grup_asset == 1) ? 'badge bg-success' : 'badge bg-danger' }}">{{ ($item->status_grup_asset == 1) ? 'Aktif' : 'Non Aktif'}}</span></td>
                                 <td>{{ $item->created_by}}</td>
                                 <td>{{ $item->updated_by}}</td>
                                 <td>
@@ -59,8 +59,8 @@
                                             <i class="fa fa-edit"></i>
                                         </button>
 
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormTrash" class="btn btn-danger">
-                                            <i class="fa fa-trash"></i>
+                                        <button type="button" data-toggle="modal" data-id = "{{ $item->id_grup}}" data-target="#quoteFormTrash" class="btn btn-danger">
+                                            <i class="fa fa-remove"></i>
                                         </button>
                                     </div>
                                 </td>
@@ -69,7 +69,7 @@
                         </tbody>
                     </table>
                 </div>
-                {{ $groupasset->links() }}
+                {{-- {{ $groupasset->links() }} --}}
             </div>
         </div>
         </table>
@@ -227,14 +227,16 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-                <form action="#">
+                <form enctype="multipart/form-data" method="POST" action="{{ route ('deletegroupasset') }}">
+                    {{ csrf_field() }}
+                    <input class="form-control" id="id_grup" name="id_grup" type="text" placeholder="Kode Group Asset" required="" hidden="true"/>
                     <div class="row">
                         <div class="form-group col-3">
                             <label class="font-weight-bold text-small" for="kodegroupasset">Status Group Asset<span
                                     class="text-primary ml-1">*</span></label>
-                            <select name="department" id="department" class="form-select" data-live-search="true">
-                                <option>Aktif</option>
-                                <option>Non-Aktif</option>
+                            <select name="status_grup_asset" id="status_grup_asset" class="form-select" data-live-search="true">
+                                <option value="1">Aktif</option>
+                                <option value="0">Non-Aktif</option>
                             </select>
                         </div>
                         <div class="form-group col-9">
@@ -263,6 +265,10 @@
         $("#quoteFormEdit").find('input[name="id_grup"]').val($(e.relatedTarget).data('id'));
         $("#quoteFormEdit").find('input[name="kode_grup"]').val($(e.relatedTarget).data('kode'));
         $("#quoteFormEdit").find('input[name="nama_grup_aset"]').val($(e.relatedTarget).data('nama'));
+    })
+    $("#quoteFormTrash").on('show.bs.modal', (e) => {
+        //$("#quoteFormEdit").attr("action", $(e.relatedTarget).data('url'));
+        $("#quoteFormTrash").find('input[name="id_grup"]').val($(e.relatedTarget).data('id'));
     })
 </script>
 @endpush('')
