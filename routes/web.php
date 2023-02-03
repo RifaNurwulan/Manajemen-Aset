@@ -18,8 +18,11 @@ Route::get('/login', 'AuthController@index')->name('login');
 Route::post('post-login', 'AuthController@postLogin')->name('login.post'); 
 Route::get('registration', 'AuthController@registration')->name('register');
 Route::post('post-registration', 'AuthController@postRegistration')->name('register.post'); 
+Route::post('resetpassword', 'AuthController@postresetpassword')->name('resetpassword');
+//Route::post('post-resetpassword', 'AuthController@postResetpassword')->name('resetpassword.post'); 
 Route::get('dashboard', 'AuthController@dashboard'); 
 Route::get('logout', 'AuthController@logout')->name('logout');
+
 
 
 Route::get('/home', function () {
@@ -63,12 +66,16 @@ Route::get('/dataKaryawan/search', 'dataKaryawanController@search');
 
 // CRUD Satuan
 Route::post('/simpanSatuan', 'satuanController@store')->name('simpanSatuan');
+Route::get('/editsatuan/{id}', 'satuanController@edit')->name('editsatuan');
+Route::post('/updatesatuan', 'satuanController@update')->name('updatesatuan');
+Route::post('/deletesatuan', 'satuanController@destroy')->name('deletesatuan');
 
 // CRUD Supplier
 Route::post('/simpanSupplier', 'supplierController@store')->name('simpanSupplier');
 Route::get('/editSupplier', 'supplierController@edit')->name('editSupplier');
 Route::post('/updateSupplier', 'supplierController@update')->name('updateSupplier');
-Route::get('/supplier/search', 'supplierController@search');
+// Route::get('/supplier/search', 'supplierController@search');
+Route::post('/deletesupplier', 'supplierController@destroy')->name('deletesupplier');
 
 //Route Modul Transaksi
 Route::get('/listAsset', 'listAssetController@index')->name('listAsset');
@@ -76,6 +83,7 @@ Route::post('/simpanlistAsset', 'listAssetController@store')->name('simpanlistAs
 Route::get('/editlistAsset/{id}', 'listAssetController@edit')->name('editlistasset');
 Route::post('/updatelistAsset', 'listAssetController@update')->name('updatelistasset');
 Route::post('/deletelistAsset', 'listAssetController@destroy')->name('deletelistasset');
+Route::post('/fotoListAsset/{id}', 'listAssetController@listFoto')->name('fotoListAsset');
 Route::get('/upload', 'UploadlistassetController@upload');
 Route::post('/upload/proses', 'UploadlistassetController@proses_upload');
 Route::post('/detaillistAsset', 'listAssetController@update')->name('detaillistasset');
@@ -89,8 +97,17 @@ Route::get('/reportDaftarAsset', 'reportDaftarAssetController@index')->name('rep
 Route::get('/reportDataKaryawan', 'reportDataKaryawanController@index')->name('reportDataKaryawan');
 Route::get('/reportPenghapusanAsset', 'reportPenghapusanAssetController@index')->name('reportPenghapusanAsset');
 
+//Route halaman Profile
+Route::get('/profile', 'profileController@index')->name('profile');
+
 //Route SignIn SignUp ResetPassword
 Route::get('/signIn', 'signInController@index')->name('signIn');
 Route::get('/signUp', 'signUpController@index')->name('signUp');
-Route::get('/resetPass', 'resetPassController@index')->name('resetPass');
+Route::get('/resetPass', 'resetpassController@index')->name('resetpass');
+
+//Send Email
+Route::get('/sendemail', 'KirimEmailController@index')->name('sendemail');
+Route::get('/kirim', 'KirimEmailController@kirim')->name('kirim');
+Route::post('kirim','KirimEmailController@kirim')->name('kirim');
+// Route::get('/formemail', [KirimEmailController::class, 'index']);
 

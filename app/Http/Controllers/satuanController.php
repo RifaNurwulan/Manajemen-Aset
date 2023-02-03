@@ -82,9 +82,9 @@ class satuanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $satuan = satuan::findorfail($id);
+        $satuan = satuan::findorfail($request->id_satuan);
         $satuan->update($request->all());
         return redirect('satuan')->with('success', 'Data Berhasil Diupdate!');
     }
@@ -95,8 +95,10 @@ class satuanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $satuan = satuan::findorfail($request->id_satuan);
+        $satuan->update($request->all());
+        return redirect('satuan')->with('status', 'Data Berhasil Diupdate!');
     }
 }

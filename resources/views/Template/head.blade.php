@@ -5,11 +5,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset ('template/css/bootstrap.css')}}">
+    
 
     <link rel="stylesheet" href="{{ asset ('template/vendors/perfect-scrollbar/perfect-scrollbar.css')}}">
     <link rel="stylesheet" href="{{ asset ('template/vendors/bootstrap-icons/bootstrap-icons.css')}}">
     <link rel="stylesheet" href="{{ asset ('template/css/app.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/bootstrap.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{ asset('assets') }}/js/js/bootstrap.js"></script>
     <link rel="shortcut icon" href="{{ asset ('template/images/favicon.svg')}}" type="image/x-icon">

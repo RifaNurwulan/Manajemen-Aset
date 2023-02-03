@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\jabatan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class jabatanController extends Controller
+class profileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +13,7 @@ class jabatanController extends Controller
      */
     public function index()
     {
-        $jabatan = DB::table('jabatan')->get();
-        //dd($departement);
-        return view('halaman.jabatan', compact('jabatan'));
+        return view('halaman.profile');
     }
 
     /**
@@ -27,7 +23,7 @@ class jabatanController extends Controller
      */
     public function create()
     {
-        return view('halaman.jabatan');
+        //
     }
 
     /**
@@ -38,19 +34,7 @@ class jabatanController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'kode_jabatan' => 'required',
-            'desc_jabatan' => 'required',
-        ]);
-
-        // dd($request->all());
-
-        jabatan::create([
-            'kode_jabatan' => $request->kode_jabatan,
-            'desc_jabatan' => $request->desc_jabatan,
-        ]);
-
-        return redirect('jabatan')->with('success', 'Data Berhasil Disimpan!');
+        //
     }
 
     /**
@@ -72,8 +56,7 @@ class jabatanController extends Controller
      */
     public function edit($id)
     {
-        $jabatan = jabatan::findorfail($id);
-        return view('halaman.jabatan', compact('jabatan'));
+        //
     }
 
     /**
@@ -83,11 +66,9 @@ class jabatanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $jabatan = jabatan::findorfail($request->id_jabatan);
-        $jabatan->update($request->all());
-        return redirect('jabatan')->with('success', 'Data Berhasil Diupdate!');
+        //
     }
 
     /**
@@ -96,12 +77,8 @@ class jabatanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        // $jabatan = jabatan::findorfail($id_jabatan);
-        // $jabatan->delete();
-        $jabatan = jabatan::findorfail($request->id_jabatan);
-        $jabatan->update($request->all());
-        return redirect('jabatan')->with('status', 'Data Berhasil Diupdate!');
+        //
     }
 }

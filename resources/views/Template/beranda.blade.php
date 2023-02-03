@@ -25,18 +25,17 @@
                     @include('Template.left-sidebar')
         </div>
         <div id="main">
-            <header class="mb-3">
+            <!-- <header class="mb-3">
                 <a href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
                 </a>
-            </header>
+            </header> -->
 
             <div class="page-heading">
                 <div class="page-title">
                     <div class="row">
                         <div class="col-12 col-md-6 order-md-1 order-last">
-                          
-                         
+
                         </div>
                         <div class="col-12 col-md-6 order-md-2 order-first">
                             <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -48,14 +47,15 @@
                     </div>
                 </div>
                 <section class="section">
-                    <div class="card">
-                        <div class="card-header">
+                    <!-- <div class="card"> -->
+                        <!-- <div class="card-header">
                             <h4 class="card-title"></h4>
-                        </div>
-                        <div class="card-body">
+                        </div> -->
                         @yield('content')
-                        </div>
-                    </div>
+                        <!-- //<div class="card-body"> -->
+                        @yield('contentdepan')
+                        <!-- </div> -->
+                    <!-- </div> -->
                 </section>
             </div>
             @include('Template.footer')

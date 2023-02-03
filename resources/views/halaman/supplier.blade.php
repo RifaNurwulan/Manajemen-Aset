@@ -11,7 +11,7 @@
             </div>
             <div class="row">
                 <div class="col card-header">
-                    <div class="input-group">
+                    <!-- <div class="input-group">
                         <form action="/supplier/search" method="GET">
                             <div class="input-group input-group-lg">
                                 <div class="input-group-append">
@@ -23,13 +23,10 @@
                                     <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="Search..." name="search" value="{{ old('search') }}">
                                 </div>
                         </form>
-                    </div>
-                </div>
-
-                <button type="button" style="float: right;" data-toggle="modal" data-target="#quoteForm" class="btn btn-success">
+                    </div> -->
+                    <button type="button" style="float: right;" data-toggle="modal" data-target="#quoteForm" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Tambah Data">
                     <i class="fa fa-plus"></i>
                 </button>
-
             </div>
         </div>
     </div>
@@ -49,6 +46,7 @@
                             <th>Fax</th>
                             <th>Email</th>
                             <th>Notes</th>
+                            <th>Status</th>
                             <th>Created By</th>
                             <th>Updated By</th>
                             <th>Action</th>
@@ -57,6 +55,11 @@
                     <tbody>
                         @foreach ($supplier as $item)
                         <tr>
+                        @if ($item->status_supplier == 1)   
+                                <a href="" class ="btn btn-sm btn danger"></a>
+                                @else
+                                <a href="" class ="btn btn-sm btn success"></a>
+                                @endif
                             <td>{{ $item->id_supplier}}</td>
                             <td>{{ $item->nama_supplier}}</td>
                             <td>{{ $item->alamat}}</td>
@@ -67,6 +70,9 @@
                             <td>{{ $item->fax}}</td>
                             <td>{{ $item->email}}</td>
                             <td>{{ $item->keterangan}}</td>
+                            <td>
+                                    <span class="badge-bg-success {{ ($item->status_supplier == 1) ? 'badge bg-success' : 'badge bg-danger' }}">{{ ($item->status_supplier == 1) ? 'Aktif' : 'Non Aktif'}}</span>
+                                </td>
                             <td>{{ $item->created_by}}</td>
                             <td>{{ $item->updated_by}}</td>
                             <td>
@@ -75,11 +81,9 @@
                                     data-id ="{{ $item->id_supplier}}" data-nama ="{{ $item->nama_supplier}}" data-alamat ="{{ $item->alamat}}" data-kota ="{{ $item->kota}}" data-pic ="{{ $item->pic}}" data-telp ="{{ $item->telp}}" data-mobile ="{{ $item->mobile_phone}}" data-fax ="{{ $item->fax}}" data-email ="{{ $item->email}}" data-keterangan ="{{ $item->keterangan}}" >
                                         <i class="fa fa-edit"></i>
                                     </button>
-                                    <!-- 
-                                        <button type="button" data-toggle="modal" data-target="#quoteFormTrash"
-                                            class="btn btn-danger">
-                                            <i class="fa fa-trash"></i>
-                                        </button> -->
+                                    <button type="button" data-toggle="modal" data-id = "{{ $item->id_supplier }}" data-target="#quoteFormTrash" class="btn btn-danger">
+                                            <i class="fa fa-remove"></i>
+                                        </button>
                                 </div>
                             </td>
                         </tr>
@@ -247,6 +251,44 @@
         </div>
     </div>
 </div>
+
+<!--GET a QUOTE MODAL Trash -->
+<div class="modal fade" id="quoteFormTrash" tabindex="-1" role="dialog" aria-labelledby="quoteForm" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Hapus Supplier</span></h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <form enctype="multipart/form-data" method="POST" action="{{ route ('deletesupplier') }}">
+                    {{ csrf_field() }}
+                    <input class="form-control" id="id_supplier" name="id_supplier" type="text" placeholder="ID" required="" hidden="true"/>
+                    <div class="row">
+                        <div class="form-group col-3">
+                            <label class="font-weight-bold text-small" for="status_supplier">Status Data Supplier<span class="text-primary ml-1">*</span></label>
+                            <select name="status_supplier" id="status_supplier" class="form-select" data-live-search="true">
+                                <option value="1">Aktif</option>
+                                <option value="0">Non-Aktif</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-9">
+                            <label class="font-weight-bold text-small" for="ket">Keterangan Hapus<span class="text-primary ml-1">*</span></label>
+                            <textarea class="form-control" id="ket" type="text" placeholder="Keterangan Hapus" required=""></textarea>
+                        </div>
+                        <div class="form-group col-lg-12"><br>
+                            <button class="btn btn-success" style="float: right;" type="submit">
+                                <i class="fa fa-save"></i>
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 @push('script')
 <script>
@@ -262,6 +304,9 @@
         $("#quoteFormEdit").find('input[name="fax"]').val($(e.relatedTarget).data('fax'));
         $("#quoteFormEdit").find('input[name="email"]').val($(e.relatedTarget).data('email'));
         $("#quoteFormEdit").find('input[name="keterangan"]').val($(e.relatedTarget).data('keterangan'));
+    })
+    $("#quoteFormTrash").on('show.bs.modal', (e) => {
+        $("#quoteFormTrash").find('input[name="id_supplier"]').val($(e.relatedTarget).data('id'));
     })
         $('#table1').DataTable();
 </script>

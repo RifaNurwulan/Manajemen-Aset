@@ -37,7 +37,7 @@
                             @endif
                     </div>
                     </div>
-                    <a href="/resetPass">Forgot Password?</a>
+                    <a href="/sendemail">Forgot Password?</a>
                     <input type="submit" class="btn" value="Sign In">
                     <div class="div-regis">
                     <p>Don't have an account? <a href="/signUp">Sign Up</a> now</p>

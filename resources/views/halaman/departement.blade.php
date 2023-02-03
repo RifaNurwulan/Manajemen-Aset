@@ -11,13 +11,13 @@
             </div>
             <div class="row">
                 <div class="col card-header">
-                    <button type="button" style="float: right; margin-right:10px;" data-toggle="modal" data-target="#quoteForm" class="btn btn-success">
+                    <button type="button" style="float: right;" data-toggle="modal" data-target="#quoteForm" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Tambah Data">
                         <i class="fa fa-plus"></i>
                     </button>
-
                 </div>
             </div>
         </div>
+        
         <div class="card-body">
             <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
                 <div class="dataTable-container">
@@ -46,7 +46,9 @@
                                 <td>{{ $item->kode_departement}}</td>
                                 <td>{{ $item->nama_departement}}</td>
                                 <td>{{ $item->singkatan}}</td>
-                                <td><span class="badge-bg-success {{ ($item->status == 1) ? 'badge bg-success' : 'badge bg-danger' }}">{{ ($item->status == 1) ? 'Aktif' : 'Non Aktif'}}</span></td>
+                                <td>
+                                    <span class="badge-bg-success {{ ($item->status == 1) ? 'badge bg-success' : 'badge bg-danger' }}">{{ ($item->status == 1) ? 'Aktif' : 'Non Aktif'}}</span>
+                                </td>
                                 <td>{{ $item->created_by}}</td>
                                 <td>{{ $item->updated_by}}</td>
                                 <td>
@@ -66,17 +68,6 @@
                         </tbody>
                     </table>
                 </div>
-                {{-- {{ $departement->links() }} --}}
-                <!-- <div class="dataTable-bottom">
-                    <div class="dataTable-info">Showing 1 to 10 of 26 entries</div>
-                    <ul class="pagination pagination-primary float-end dataTable-pagination">
-                        <li class="page-item pager"><a href="#" class="page-link" data-page="1">‹</a></li>
-                        <li class="page-item active"><a href="#" class="page-link" data-page="1">1</a></li>
-                        <li class="page-item"><a href="#" class="page-link" data-page="2">2</a></li>
-                        <li class="page-item"><a href="#" class="page-link" data-page="3">3</a></li>
-                        <li class="page-item pager"><a href="#" class="page-link" data-page="2">›</a></li>
-                    </ul>
-                </div> -->
             </div>
         </div>
     </div>
@@ -128,7 +119,7 @@
         </div>
     </div>
 </div>
-</div>
+
 
 <!--GET a QUOTE MODAL Edit-->
 <div class="modal fade" id="quoteFormEdit" tabindex="-1" role="dialog" aria-labelledby="quoteForm" aria-hidden="true">
@@ -176,7 +167,7 @@
         </div>
     </div>
 </div>
-</div>
+
 
 
 <!--GET a QUOTE MODAL Trash -->

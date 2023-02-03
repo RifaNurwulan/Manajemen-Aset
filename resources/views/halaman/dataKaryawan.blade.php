@@ -11,7 +11,11 @@
             </div>
             <div class="row">
                 <div class="col card-header">
-                    <div class="input-group">
+                    <button type="button" style="float: right;" data-toggle="modal"
+                        data-target="#quoteForm" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Tambah Data">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                    <!-- <div class="input-group">
                         <form action="/dataKaryawan/search" method="GET">
                             <div class="input-group input-group-lg">
                                 <div class="input-group-append">
@@ -23,8 +27,8 @@
                                     <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="Search..." name="search" value="{{ old('search') }}">
                                 </div>
                         </form>
-                    </div>
-                </div>
+                    </div> -->
+              
                 <!-- <div class="dropdown">
                         <select class="selector form-select">
                             <option value="5">5</option>
@@ -35,9 +39,7 @@
                         <label>entires per page</label>
                     </div> -->
 
-                <button type="button" style="float: right; margin-right:10px;" data-toggle="modal" data-target="#quoteForm" class="btn btn-success">
-                    <i class="fa fa-plus"></i>
-                </button>
+
 
             </div>
         </div>
@@ -61,28 +63,32 @@
                     <tbody>
                         @foreach ($datakaryawan as $item)
                         <tr>
-                            @if ($item->status_data_karyawan == 1)   
-                            <a href="" class ="btn btn-sm btn danger"></a>
+                            @if ($item->status_data_karyawan == 1)
+                            <a href="" class="btn btn-sm btn danger"></a>
                             @else
-                            <a href="" class ="btn btn-sm btn success"></a>
+                            <a href="" class="btn btn-sm btn success"></a>
                             @endif
                             <td>{{ $item->id_karyawan}}</td>
                             <td>{{ $item->nama_karyawan}}</td>
                             <td>{{ $item->nik}}</td>
-                            <td>{{ $item->jabatan}}</td>
+                            <td>{{ $item->desc_jabatan}}</td>
                             <td>
-                                <span class="badge-bg-success {{ ($item->status_data_karyawan == 1) ? 'badge bg-success' : 'badge bg-danger' }}">{{ ($item->status_data_karyawan == 1) ? 'Aktif' : 'Non Aktif'}}</span>
+                                <span
+                                    class="badge-bg-success {{ ($item->status_data_karyawan == 1) ? 'badge bg-success' : 'badge bg-danger' }}">{{ ($item->status_data_karyawan == 1) ? 'Aktif' : 'Non Aktif'}}</span>
                             </td>
                             <td>{{ $item->created_by}}</td>
                             <td>{{ $item->updated_by}}</td>
                             <td>
                                 <div class="col-group">
-                                    <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning"
-                                    data-id = "{{ $item->id_karyawan }}" data-nama = "{{ $item->nama_karyawan }}" data-nik = "{{ $item->nik }}" data-jabatan = "{{ $item->jabatan }}">
+                                    <button type="button" data-toggle="modal" data-target="#quoteFormEdit"
+                                        class="btn btn-warning" data-id="{{ $item->id_karyawan }}"
+                                        data-nama="{{ $item->nama_karyawan }}" data-nik="{{ $item->nik }}"
+                                        data-jabatan="{{ $item->id_jabatan }}" data-id_jabatan = "{{ $item->id_jabatan }}">
                                         <i class="fa fa-edit"></i>
                                     </button>
 
-                                    <button type="button" data-toggle="modal" data-id = "{{ $item->id_karyawan }}" data-target="#quoteFormTrash" class="btn btn-danger">
+                                    <button type="button" data-toggle="modal" data-id="{{ $item->id_karyawan }}"
+                                        data-target="#quoteFormTrash" class="btn btn-danger">
                                         <i class="fa fa-remove"></i>
                                     </button>
                                 </div>
@@ -94,7 +100,7 @@
             </div>
             {{-- {{ $datakaryawan->links() }} --}}
 
-            
+
         </div>
     </div>
     </div>
@@ -107,37 +113,46 @@
         <div class="modal-content p-md-3">
             <div class="modal-header">
                 <h4 class="modal-title">Tambah Data Karyawan</span></h4>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
                 <form action="{{route('simpandataKaryawan')}}" method="post">
                     {{ csrf_field() }}
                     <div class="row">
                         <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="nama_karyawan">Nama Karyawan<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="nama_karyawan" name="nama_karyawan" type="text" placeholder="Nama Karyawan" required="" />
+                            <label class="font-weight-bold text-small" for="nama_karyawan">Nama Karyawan<span
+                                    class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="nama_karyawan" name="nama_karyawan" type="text"
+                                placeholder="Nama Karyawan" required="" />
                             @error('nama_karyawan')
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="nik">NIK<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="nik" name="nik" type="text" placeholder="NIK" required="" />
+                            <label class="font-weight-bold text-small" for="nik" >NIK<span
+                                    class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="nik" name="nik" type="text" placeholder="NIK" required="" value="{{ $kode }}" readonly="readonly" />
                             @error('nik')
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="jabatan">Nama Jabatan<span class="text-primary ml-1">*</span></label>
-                            <select name="jabatan" class="form-select" data-live-search="true">
+                            <label class="font-weight-bold text-small" for="id_jabatan">Nama Jabatan<span
+                                    class="text-primary ml-1">*</span></label>
+                            <select name="id_jabatan" data-live-search="true"
+                                class="form-select @error('jabatan') is-invalid @enderror">
+                                <option value="">- Pilih -</option>
                                 @foreach($jabatan as $row)
-                                <option value="{{$row->id_jabatan}}">{{$row->jabatan}}</option>
+                                <option value="{{$row->id_jabatan}}"
+                                    {{ old('jabatan')==$row->id_jabatan?'selected' :null}}>{{$row->desc_jabatan}}
+                                </option>
                                 @endforeach
                             </select>
                             @error('jabatan')
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
-                        
+
                         </div>
                         <div class="form-group col-lg-12"><br>
                             <button class="btn btn-success" style="float: right;" type="submit">
@@ -158,38 +173,47 @@
         <div class="modal-content p-md-3">
             <div class="modal-header">
                 <h4 class="modal-title">Edit Data Karyawan</span></h4>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
                 <form enctype="multipart/form-data" method="POST" action="{{ route ('updatedatakaryawan') }}">
                     {{ csrf_field() }}
                     <div class="row">
-                        <input class="form-control" id="id_karyawan" name="id_karyawan" type="text" placeholder="ID Karyawan" required="" hidden="true"/>
+                        <input class="form-control" id="id_karyawan" name="id_karyawan" type="text"
+                            placeholder="ID Karyawan" required="" hidden="true" />
                         <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="nama_karyawan">Nama Karyawan<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="nama_karyawan" name="nama_karyawan" type="text" placeholder="Nama Karyawan" required="" />
+                            <label class="font-weight-bold text-small" for="nama_karyawan">Nama Karyawan<span
+                                    class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="nama_karyawan" name="nama_karyawan" type="text"
+                                placeholder="Nama Karyawan" required="" />
                             @error('nama_karyawan')
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="nik">NIK<span class="text-primary ml-1">*</span></label>
+                            <label class="font-weight-bold text-small" for="nik">NIK<span
+                                    class="text-primary ml-1">*</span></label>
                             <input class="form-control" id="nik" name="nik" type="text" placeholder="NIK" required="" />
                             @error('nik')
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="jabatan">Nama Jabatan<span class="text-primary ml-1">*</span></label>
-                            <select name="jabatan" class="form-select" data-live-search="true">
-                                @foreach($jabatan as $row)
-                                <option value="{{$row->id_jabatan}}">{{$row->jabatan}}</option>
+                            <label class="font-weight-bold text-small" for="id_jabatan">Nama Jabatan<span
+                                    class="text-primary ml-1">*</span></label>
+
+                                    <select name="id_jabatan" id="jabatan_id" data-live-search="true" class="form-select @error('jabatan') is-invalid @enderror">
+                            <option value="">- Pilih -</option>    
+                            @foreach($jabatan as $row)
+                                <option value="{{$row->id_jabatan}}" {{ old('jabatan')==$row->id_jabatan?'selected' :null}}>{{$row->desc_jabatan}}</option>
                                 @endforeach
-                            </select>
+                            </select>    
+
                             @error('jabatan')
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
-                        
+
                         </div>
                         <div class="form-group col-lg-12"><br>
                             <button class="btn btn-success" style="float: right;" type="submit">
@@ -210,23 +234,29 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Hapus Karyawan</span></h4>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
                 <form enctype="multipart/form-data" method="POST" action="{{ route ('deletedatakaryawan') }}">
                     {{ csrf_field() }}
-                    <input class="form-control" id="id_karyawan" name="id_karyawan" type="text" placeholder="ID" required="" hidden="true"/>
+                    <input class="form-control" id="id_karyawan" name="id_karyawan" type="text" placeholder="ID"
+                        required="" hidden="true" />
                     <div class="row">
                         <div class="form-group col-3">
-                            <label class="font-weight-bold text-small" for="status_data_karyawan">Status Data Karyawan<span class="text-primary ml-1">*</span></label>
-                            <select name="status_data_karyawan" id="status_data_karyawan" class="form-select" data-live-search="true">
+                            <label class="font-weight-bold text-small" for="status_data_karyawan">Status Data
+                                Karyawan<span class="text-primary ml-1">*</span></label>
+                            <select name="status_data_karyawan" id="status_data_karyawan" class="form-select"
+                                data-live-search="true">
                                 <option value="1">Aktif</option>
                                 <option value="0">Non-Aktif</option>
                             </select>
                         </div>
                         <div class="form-group col-9">
-                            <label class="font-weight-bold text-small" for="ket">Keterangan Hapus<span class="text-primary ml-1">*</span></label>
-                            <textarea class="form-control" id="ket" type="text" placeholder="Keterangan Hapus" required=""></textarea>
+                            <label class="font-weight-bold text-small" for="ket">Keterangan Hapus<span
+                                    class="text-primary ml-1">*</span></label>
+                            <textarea class="form-control" id="ket" type="text" placeholder="Keterangan Hapus"
+                                required=""></textarea>
                         </div>
                         <div class="form-group col-lg-12"><br>
                             <button class="btn btn-success" style="float: right;" type="submit">
@@ -254,7 +284,8 @@
         $("#quoteFormEdit").find('input[name="id_karyawan"]').val($(e.relatedTarget).data('id'));
         $("#quoteFormEdit").find('input[name="nama_karyawan"]').val($(e.relatedTarget).data('nama'));
         $("#quoteFormEdit").find('input[name="nik"]').val($(e.relatedTarget).data('nik'));
-        $("#quoteFormEdit").find('input[name="jabatan"]').val($(e.relatedTarget).data('jabatan'));
+        // $("#quoteFormEdit").find('input[name="id_jabatan"]').val($(e.relatedTarget).data('id_jabatan'));
+        $("#jabatan_id option[value="+$(e.relatedTarget).data('id_jabatan')+"]").prop("selected", true);
     })
     $("#quoteFormTrash").on('show.bs.modal', (e) => {
         $("#quoteFormTrash").find('input[name="id_karyawan"]').val($(e.relatedTarget).data('id'));

@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 use Session;
 use App\Models\User;
 use Hash;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
+
   
 class AuthController extends Controller
 {
@@ -29,6 +33,16 @@ class AuthController extends Controller
     public function registration()
     {
         return view("halaman.signUp");
+    }
+
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function resetpassword()
+    {
+        return view("halaman.resetpass");
     }
       
     /**
@@ -70,9 +84,54 @@ class AuthController extends Controller
         $data = $request->all();
         $check = $this->create($data);
          
-        return redirect("dashboard")->withSuccess('Anda berhasil Login!');
+        return redirect("signIn")->withSuccess('Silahkan Login!');
     }
     
+
+/**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function postresetpassword(Request $request)
+    {  
+        $request->validate([
+            '_token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+        ]);
+        $groupasset = User::where('email',$request->email);
+        $updatedata = $groupasset->update(['email' => $request->email, 'password' => Hash::make($request->password)]);
+        //Zdd();
+        if ($updatedata > 0) {
+            return redirect()->route('signIn')->with('status', 'Password Berhasil Diubah');
+        }
+        else {
+            back()->withErrors(['email' => ['Terjadi Kesalahan']]);
+        }
+        // $status = Password::reset(
+        //     $request->only('password', 'password_confirmation'),
+        //     function ($user, $password) {
+        //         dd('woi');
+        //         dd($password);
+        //         $user->forceFill([
+        //             'password' => Hash::make($password)
+        //         ])->setRememberToken(Str::random(60));
+                    
+        //         $user->save();
+     
+        //         event(new PasswordReset($user));
+        //     }
+            
+        // );
+    
+        // return $status === Password::PASSWORD_RESET
+        //         ? redirect()->route('signIn')->with('status', __($status))
+        //         : back()->withErrors(['email' => [__($status)]]);
+
+        
+    }
+
     /**
      * Write code on Method
      *
@@ -99,8 +158,7 @@ class AuthController extends Controller
         'email' => $data['email'],
         'password' => Hash::make($data['password'])
       ]);
-    }
-    
+    }   
     /**
      * Write code on Method
      *
@@ -110,6 +168,6 @@ class AuthController extends Controller
         Session::flush();
         Auth::logout();
   
-        return Redirect('login')->withSuccess('Anda gagal Login, Coba lagi!');
+        return Redirect('login')->withSuccess('Anda telah Logout!');
     }
 }

@@ -11,7 +11,7 @@
             </div>
             <div class="row">
                 <div class="col card-header">
-                    <button type="button" style="float: right;" data-toggle="modal" data-target="#quoteForm" class="btn btn-success">
+                    <button type="button" style="float: right;" data-toggle="modal" data-target="#quoteForm" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Tambah Data">
                         <i class="fa fa-plus"></i>
                     </button>
                 </div>
@@ -31,6 +31,7 @@
                                 <th>Created At</th>
                                 <th>Updated By</th>
                                 <th>Updated At</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -43,7 +44,7 @@
                                 @endif
                                 <td>{{ $item->id_jabatan}}</td>
                                 <td>{{ $item->kode_jabatan}}</td>
-                                <td>{{ $item->jabatan}}</td>
+                                <td>{{ $item->desc_jabatan}}</td>
                                 <td>
                                     <span class="badge-bg-success {{ ($item->status_jabatan == 1) ? 'badge bg-success' : 'badge bg-danger' }}">{{ ($item->status_jabatan == 1) ? 'Aktif' : 'Non Aktif'}}</span>
                                 </td>
@@ -54,7 +55,7 @@
                                 <td>
                                     <div class="col-group">
                                         <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning"
-                                        data-id = "{{ $item->id_jabatan }}" data-kode = "{{ $item->kode_jabatan }}" data-jabatan = "{{ $item->jabatan }}" data-created_by = "{{ $item->created_by }}" 
+                                        data-id = "{{ $item->id_jabatan }}" data-kode = "{{ $item->kode_jabatan }}" data-desc_jabatan = "{{ $item->desc_jabatan }}" data-created_by = "{{ $item->created_by }}" 
                                         data-created_at = "{{ $item->created_at }}" data-updated_by = "{{ $item->updated_by }}" data-updated_by = "{{ $item->updated_by }}">
                                             <i class="fa fa-edit"></i>
                                         </button>
@@ -69,8 +70,6 @@
                         </tbody>
                     </table>
                 </div>
-                {{-- {{ $jabatan->links() }} --}}
-
             </div>
         </div>
     </div>
@@ -97,8 +96,8 @@
                             @enderror
                         </div>
                         <div class="form-group col-8">
-                            <label class="font-weight-bold text-small" for="jabatan">Nama Jabatan<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="jabatan" name="jabatan" type="text" placeholder="Nama Jabatan" required="" />
+                            <label class="font-weight-bold text-small" for="desc_jabatan">Nama Jabatan<span class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="desc_jabatan" name="desc_jabatan" type="text" placeholder="Nama Jabatan" required="" />
                             @error('jabatan')
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -137,8 +136,8 @@
                             @enderror
                         </div>
                         <div class="form-group col-lg-6">
-                            <label class="font-weight-bold text-small" for="jabatan">Jabatan<span class="text-primary ml-1">*</span></label>
-                            <input class="form-control" id="jabatan" name="jabatan" type="text" placeholder="Jabatan" required="" />
+                            <label class="font-weight-bold text-small" for="desc_jabatan">Jabatan<span class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="desc_jabatan" name="desc_jabatan" type="text" placeholder="Jabatan" required="" />
                             @error('jabatan')
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -199,7 +198,7 @@
     $("#quoteFormEdit").on('show.bs.modal', (e) => {
         $("#quoteFormEdit").find('input[name="id_jabatan"]').val($(e.relatedTarget).data('id'));
         $("#quoteFormEdit").find('input[name="kode_jabatan"]').val($(e.relatedTarget).data('kode'));
-        $("#quoteFormEdit").find('input[name="jabatan"]').val($(e.relatedTarget).data('jabatan'));
+        $("#quoteFormEdit").find('input[name="desc_jabatan"]').val($(e.relatedTarget).data('desc_jabatan'));
     })
     $("#quoteFormTrash").on('show.bs.modal', (e) => {
         $("#quoteFormTrash").find('input[name="id_jabatan"]').val($(e.relatedTarget).data('id'));

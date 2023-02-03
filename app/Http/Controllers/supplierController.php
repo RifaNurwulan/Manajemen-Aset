@@ -121,10 +121,10 @@ class supplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_supplier)
+    public function destroy(Request $request)
     {
-        $supplier = supplier::findorfail($id_supplier);
-        $supplier->delete();
+        $supplier = supplier::findorfail($request->id_supplier);
+        $supplier->update($request->all());
         return redirect('supplier')->with('status', 'Data Berhasil Dihapus!');
     }
 }

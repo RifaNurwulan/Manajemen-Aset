@@ -16,11 +16,45 @@ class dataKaryawanController extends Controller
      */
     public function index()
     {
-        $datakaryawan = DB::table('data_karyawan')->get();
+        $datakaryawan = DB::table('data_karyawan')
+        ->leftjoin('jabatan','data_karyawan.id_jabatan','=','jabatan.id_jabatan')
+        ->select('data_karyawan.*','jabatan.desc_jabatan')
+        ->get();
         $jabatan = DB::table('jabatan')->where('status_jabatan','=','1')->get();
+        $kode = $this->kode();
+        // dd($kode);
         //dd($datakaryawan);
-        return view('halaman.dataKaryawan', compact('datakaryawan', 'jabatan'));
+        return view('halaman.dataKaryawan', compact('datakaryawan', 'jabatan', 'kode'));
     }
+
+    public function kode(){
+        $datakaryawan = DB::table('data_karyawan')->orderBy('id_karyawan','desc')->limit(1)->get()->toArray();
+        // $this->db->select('RIGHT(barang.kode_barang,2) as kode_barang', FALSE);
+        // $this->db->order_by('kode_barang','DESC');    
+        // $datakaryawan->get('nik');    
+        // $query = $datakaryawan->latest(); 
+        //dd(); //cek dulu apakah ada sudah ada kode di tabel.    
+        if(count($datakaryawan) <> 0){      
+            //cek kode jika telah tersedia  
+            foreach ($datakaryawan as $key => $value) {
+                # code...  
+                $data = $value->nik;      
+            }
+            //  $batas = str_pad(12, 3, "0", STR_PAD_LEFT);   
+            $kodeTemp = intval($data) + 1; 
+            $newKodeString = substr($kodeTemp, -3);
+            $kode = intval($newKodeString);
+            // dd($kode);
+
+        }
+        else{      
+             $kode = 1;  //cek jika kode belum terdapat pada table
+        }
+            $tgl=date('mY'); 
+            $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);    
+            $kodetampil = $tgl.$batas;  //format kode
+            return $kodetampil;  
+       }
 
     public function search(Request $request)
     {
@@ -59,7 +93,7 @@ class dataKaryawanController extends Controller
         $request->validate([
             'nama_karyawan' => 'required',
             'nik' => 'required',
-            // 'jabatan' => 'required',
+            'id_jabatan' => 'required',
         ]);
 
         //dd($request->all());
@@ -67,7 +101,7 @@ class dataKaryawanController extends Controller
         dataKaryawan::create([
             'nama_karyawan' => $request->nama_karyawan,
             'nik' => $request->nik,
-            // 'jabatan' => $request->jabatan,
+            'id_jabatan' => $request->id_jabatan,
         ]);
 
         return redirect('dataKaryawan')->with('success', 'Data Berhasil Disimpan!');
