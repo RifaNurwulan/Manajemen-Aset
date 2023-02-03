@@ -46,9 +46,13 @@
                                 <td>{{ $item->kode_departement}}</td>
                                 <td>{{ $item->nama_departement}}</td>
                                 <td>{{ $item->singkatan}}</td>
+<<<<<<< HEAD
                                 <td>
                                     <span class="badge-bg-success {{ ($item->status == 1) ? 'badge bg-success' : 'badge bg-danger' }}">{{ ($item->status == 1) ? 'Aktif' : 'Non Aktif'}}</span>
                                 </td>
+=======
+                                <td><span class="badge-bg-success {{ ($item->status == 1) ? 'badge bg-success' : 'badge bg-danger' }}">{{ ($item->status == 1) ? 'Aktif' : 'Non Aktif'}}</span></td>
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
                                 <td>{{ $item->created_by}}</td>
                                 <td>{{ $item->updated_by}}</td>
                                 <td>

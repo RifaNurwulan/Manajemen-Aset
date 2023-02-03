@@ -83,10 +83,13 @@ Route::post('/simpanlistAsset', 'listAssetController@store')->name('simpanlistAs
 Route::get('/editlistAsset/{id}', 'listAssetController@edit')->name('editlistasset');
 Route::post('/updatelistAsset', 'listAssetController@update')->name('updatelistasset');
 Route::post('/deletelistAsset', 'listAssetController@destroy')->name('deletelistasset');
+<<<<<<< HEAD
 Route::post('/fotoListAsset/{id}', 'listAssetController@listFoto')->name('fotoListAsset');
 Route::get('/upload', 'UploadlistassetController@upload');
 Route::post('/upload/proses', 'UploadlistassetController@proses_upload');
 Route::post('/detaillistAsset', 'listAssetController@update')->name('detaillistasset');
+=======
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
 Route::get('/listAsset/search', 'listAssetController@search');
 
 //Route Modul Report

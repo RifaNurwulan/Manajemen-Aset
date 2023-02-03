@@ -6,7 +6,7 @@
 <section class="section">
     <div class="card">
         <div class="card-header">
-            <div class="col py-6">
+            <div class="col py-6">     
                 <h5 class="m-0 font-weight-bold text-primary">List Asset</h5>
             </div>
             <div class="row">
@@ -27,6 +27,7 @@
             </div>
         </div>
 
+<<<<<<< HEAD
         <div class="card-body">
             <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
                 <div class="dataTable-container">
@@ -186,6 +187,62 @@
                     </table>
 
                 </div>
+=======
+                            <th>No</th>
+                            <th>Kode Asset</th>
+                            <th>Satuan</th>
+                            <th>Tanggal Beli</th>
+                            <th>Tanggal Pakai</th>
+                            <th>Nama Asset</th>
+                            <th>PIC</th>
+                            <th>Departement</th>
+                            <th>Lokasi</th>
+                            <th>Status</th>
+                            <th>Foto Asset</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($listasset as $item)
+                        <tr>
+                        @if ($item->status_list_aset == 1)   
+                                <a href="" class ="btn btn-sm btn danger"></a>
+                                @else
+                                <a href="" class ="btn btn-sm btn success"></a>
+                                @endif
+
+                            <td>{{ $item->id_list_aset}}</td>
+                            <td>{{ $item->kode_aset}}</td>
+                            <td>{{ $item->satuan}}</td>
+                            <td>{{ $item->tgl_beli}}</td>
+                            <td>{{ $item->tgl_pakai}}</td>
+                            <td>{{ $item->nama_aset}}</td>
+                            <td>{{ $item->pic}}</td>
+                            <td>{{ $item->departement}}</td>
+                            <td>{{ $item->lokasi}}</td>
+                            <td><span class="badge-bg-success {{ ($item->status_list_aset == 1) ? 'badge bg-success' : 'badge bg-danger' }}">{{ ($item->status_list_aset == 1) ? 'Aktif' : 'Non Aktif'}}</span></td>
+                            <td>{{ $item->foto_aset}}</td>
+                            <td>
+                                <div class="col-group">
+                                    <button type="submit" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning" data-id = "{{ $item->id_list_aset}}" data-kode="{{ $item->kode_aset}}" 
+                                    data-nama="{{ $item->nama_aset}}" data-beli="{{ $item->tgl_beli}}" data-pakai="{{ $item->tgl_pakai}}">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+
+                                    <button type="button" data-toggle="modal" data-id = "{{ $item->id_list_aset}}" data-target="#quoteFormTrash" class="btn btn-danger">
+                                            <i class="fa fa-remove"></i>
+                                        </button>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+
+
+                    </tbody>
+                </table>
+                
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
             </div>
         </div>
     </div>
@@ -644,7 +701,11 @@
                             <button class="btn btn-success" type="submit">
                                 <i class="fa fa-save"></i>
                                 Save
+<<<<<<< HEAD
                             </button>
+=======
+                            </button> 
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
                         </div>
                     </div>
                 </form>
@@ -972,31 +1033,91 @@
     </div>
 </div>
 
+<<<<<<< HEAD
 <!--GET a QUOTE MODAL VIEW -->
 <div class="modal fade" id="quoteFormview" tabindex="-1" role="dialog" aria-labelledby="quoteForm" aria-hidden="true">
+=======
+<!--GET a QUOTE MODAL Trash -->
+<div class="modal fade" id="quoteFormTrash" tabindex="-1" role="dialog" aria-labelledby="quoteForm" aria-hidden="true">
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content p-md-3">
             <div class="modal-header">
+<<<<<<< HEAD
                 <h4 class="modal-title">Detail Asset</span></h4>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">×</span></button>
+=======
+                <h4 class="modal-title">Hapus List Asset</span></h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
             </div>
             <div class="modal-body">
-                <form action="#">
+            <form enctype="multipart/form-data" method="POST" action="{{ route ('deletelistasset') }}">
+                    {{ csrf_field() }}
                     <div class="row">
+<<<<<<< HEAD
                         <div class="form-group col-lg-6">
                             <label>Ini Details Asset</label>
                         </div>
 
+=======
+                        <div class="form-group col-3">
+                        <input class="form-control" id="id_list_aset" name="id_list_aset" type="text" placeholder="ID" required="" hidden="true"/>
+                            <label class="font-weight-bold text-small" for="kode_aset">Status List Asset<span
+                                    class="text-primary ml-1">*</span></label>
+                            <select name="status_list_aset" id="status_list_aset" class="form-select" data-live-search="true">
+                            <option value="1">Aktif</option>
+                                <option value="0">Non-Aktif</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-9">
+                            <label class="font-weight-bold text-small" for="namagroupasset">Keterangan Hapus<span class="text-primary ml-1">*</span></label>
+                            <textarea class="form-control" id="firstname" type="text" placeholder="Keterangan Hapus" required=""></textarea>
+                        </div>
+                        <div class="form-group col-lg-12"><br>
+                            <button class="btn btn-success" style="float: right;" type="submit">
+                                <i class="fa fa-save"></i>
+                                Save
+                            </button>
+                        </div>
+                    </div>
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
                 </form>
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 </div>
+=======
+</div>       
+
+ <!--GET a QUOTE MODAL VIEW -->
+        <div class="modal fade" id="quoteFormview" tabindex="-1" role="dialog" aria-labelledby="quoteForm" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content p-md-3">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Detail Asset</span></h4>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="#">
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label>Ini Details Asset</label>
+                                </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
 @endsection
 
 @push('script')
 <script>
+<<<<<<< HEAD
     $(document).ready(function (e) {
         $.ajaxSetup({
             headers: {
@@ -1080,6 +1201,25 @@
         })
     });
 
+=======
+    $("#quoteFormEdit").on('show.bs.modal', (e) => {
+        //$("#quoteFormEdit").attr("action", $(e.relatedTarget).data('url'));
+        $("#quoteFormEdit").find('input[name="id_list_aset"]').val($(e.relatedTarget).data('id'));
+        $("#quoteFormEdit").find('input[name="kode_aset"]').val($(e.relatedTarget).data('kode'));
+        $("#quoteFormEdit").find('input[name="nama_aset"]').val($(e.relatedTarget).data('nama'));
+        // $("#quoteFormEdit").find('input[name="satuan"]').val($(e.relatedTarget).data('satuan'));
+        $("#quoteFormEdit").find('input[name="tgl_beli"]').val($(e.relatedTarget).data('beli'));
+        $("#quoteFormEdit").find('input[name="tgl_pakai"]').val($(e.relatedTarget).data('pakai'));
+        // $("#quoteFormEdit").find('input[name="pic"]').val($(e.relatedTarget).data('pic'));
+        // $("#quoteFormEdit").find('input[name="department"]').val($(e.relatedTarget).data('department'));
+        // $("#quoteFormEdit").find('input[name="lokasi"]').val($(e.relatedTarget).data('lokasi'));
+    })
+
+    $("#quoteFormTrash").on('show.bs.modal', (e) => {
+        //$("#quoteFormEdit").attr("action", $(e.relatedTarget).data('url'));
+        $("#quoteFormTrash").find('input[name="id_list_aset"]').val($(e.relatedTarget).data('id'));
+    })
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
 </script>
 
 @endpush('')

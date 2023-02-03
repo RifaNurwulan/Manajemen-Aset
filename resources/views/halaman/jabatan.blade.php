@@ -44,7 +44,11 @@
                                 @endif
                                 <td>{{ $item->id_jabatan}}</td>
                                 <td>{{ $item->kode_jabatan}}</td>
+<<<<<<< HEAD
                                 <td>{{ $item->desc_jabatan}}</td>
+=======
+                                <td>{{ $item->jabatan}}</td>
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
                                 <td>
                                     <span class="badge-bg-success {{ ($item->status_jabatan == 1) ? 'badge bg-success' : 'badge bg-danger' }}">{{ ($item->status_jabatan == 1) ? 'Aktif' : 'Non Aktif'}}</span>
                                 </td>
@@ -70,6 +74,11 @@
                         </tbody>
                     </table>
                 </div>
+<<<<<<< HEAD
+=======
+                {{-- {{ $jabatan->links() }} --}}
+
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
             </div>
         </div>
     </div>
@@ -199,6 +208,9 @@
         $("#quoteFormEdit").find('input[name="id_jabatan"]').val($(e.relatedTarget).data('id'));
         $("#quoteFormEdit").find('input[name="kode_jabatan"]').val($(e.relatedTarget).data('kode'));
         $("#quoteFormEdit").find('input[name="desc_jabatan"]').val($(e.relatedTarget).data('desc_jabatan'));
+    })
+    $("#quoteFormTrash").on('show.bs.modal', (e) => {
+        $("#quoteFormTrash").find('input[name="id_jabatan"]').val($(e.relatedTarget).data('id'));
     })
     $("#quoteFormTrash").on('show.bs.modal', (e) => {
         $("#quoteFormTrash").find('input[name="id_jabatan"]').val($(e.relatedTarget).data('id'));

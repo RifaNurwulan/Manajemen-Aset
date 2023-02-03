@@ -63,18 +63,29 @@
                     <tbody>
                         @foreach ($datakaryawan as $item)
                         <tr>
+<<<<<<< HEAD
                             @if ($item->status_data_karyawan == 1)
                             <a href="" class="btn btn-sm btn danger"></a>
                             @else
                             <a href="" class="btn btn-sm btn success"></a>
+=======
+                            @if ($item->status_data_karyawan == 1)   
+                            <a href="" class ="btn btn-sm btn danger"></a>
+                            @else
+                            <a href="" class ="btn btn-sm btn success"></a>
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
                             @endif
                             <td>{{ $item->id_karyawan}}</td>
                             <td>{{ $item->nama_karyawan}}</td>
                             <td>{{ $item->nik}}</td>
                             <td>{{ $item->desc_jabatan}}</td>
                             <td>
+<<<<<<< HEAD
                                 <span
                                     class="badge-bg-success {{ ($item->status_data_karyawan == 1) ? 'badge bg-success' : 'badge bg-danger' }}">{{ ($item->status_data_karyawan == 1) ? 'Aktif' : 'Non Aktif'}}</span>
+=======
+                                <span class="badge-bg-success {{ ($item->status_data_karyawan == 1) ? 'badge bg-success' : 'badge bg-danger' }}">{{ ($item->status_data_karyawan == 1) ? 'Aktif' : 'Non Aktif'}}</span>
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
                             </td>
                             <td>{{ $item->created_by}}</td>
                             <td>{{ $item->updated_by}}</td>
@@ -87,8 +98,12 @@
                                         <i class="fa fa-edit"></i>
                                     </button>
 
+<<<<<<< HEAD
                                     <button type="button" data-toggle="modal" data-id="{{ $item->id_karyawan }}"
                                         data-target="#quoteFormTrash" class="btn btn-danger">
+=======
+                                    <button type="button" data-toggle="modal" data-id = "{{ $item->id_karyawan }}" data-target="#quoteFormTrash" class="btn btn-danger">
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
                                         <i class="fa fa-remove"></i>
                                     </button>
                                 </div>
@@ -100,7 +115,11 @@
             </div>
             {{-- {{ $datakaryawan->links() }} --}}
 
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
         </div>
     </div>
     </div>
@@ -240,6 +259,7 @@
             <div class="modal-body">
                 <form enctype="multipart/form-data" method="POST" action="{{ route ('deletedatakaryawan') }}">
                     {{ csrf_field() }}
+<<<<<<< HEAD
                     <input class="form-control" id="id_karyawan" name="id_karyawan" type="text" placeholder="ID"
                         required="" hidden="true" />
                     <div class="row">
@@ -248,15 +268,27 @@
                                 Karyawan<span class="text-primary ml-1">*</span></label>
                             <select name="status_data_karyawan" id="status_data_karyawan" class="form-select"
                                 data-live-search="true">
+=======
+                    <input class="form-control" id="id_karyawan" name="id_karyawan" type="text" placeholder="ID" required="" hidden="true"/>
+                    <div class="row">
+                        <div class="form-group col-3">
+                            <label class="font-weight-bold text-small" for="status_data_karyawan">Status Data Karyawan<span class="text-primary ml-1">*</span></label>
+                            <select name="status_data_karyawan" id="status_data_karyawan" class="form-select" data-live-search="true">
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
                                 <option value="1">Aktif</option>
                                 <option value="0">Non-Aktif</option>
                             </select>
                         </div>
                         <div class="form-group col-9">
+<<<<<<< HEAD
                             <label class="font-weight-bold text-small" for="ket">Keterangan Hapus<span
                                     class="text-primary ml-1">*</span></label>
                             <textarea class="form-control" id="ket" type="text" placeholder="Keterangan Hapus"
                                 required=""></textarea>
+=======
+                            <label class="font-weight-bold text-small" for="ket">Keterangan Hapus<span class="text-primary ml-1">*</span></label>
+                            <textarea class="form-control" id="ket" type="text" placeholder="Keterangan Hapus" required=""></textarea>
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
                         </div>
                         <div class="form-group col-lg-12"><br>
                             <button class="btn btn-success" style="float: right;" type="submit">
@@ -286,6 +318,9 @@
         $("#quoteFormEdit").find('input[name="nik"]').val($(e.relatedTarget).data('nik'));
         // $("#quoteFormEdit").find('input[name="id_jabatan"]').val($(e.relatedTarget).data('id_jabatan'));
         $("#jabatan_id option[value="+$(e.relatedTarget).data('id_jabatan')+"]").prop("selected", true);
+    })
+    $("#quoteFormTrash").on('show.bs.modal', (e) => {
+        $("#quoteFormTrash").find('input[name="id_karyawan"]').val($(e.relatedTarget).data('id'));
     })
     $("#quoteFormTrash").on('show.bs.modal', (e) => {
         $("#quoteFormTrash").find('input[name="id_karyawan"]').val($(e.relatedTarget).data('id'));

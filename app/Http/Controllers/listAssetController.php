@@ -107,6 +107,7 @@ class listAssetController extends Controller
         // dd($request->all());
         // dd($listasset->lokasi);
         $request->validate([
+
             'nama_aset' => 'required',
             'kode_aset' => 'required',
             'id_grup' => 'required',
@@ -126,6 +127,7 @@ class listAssetController extends Controller
         ]);
 
 
+<<<<<<< HEAD
         // if($request->foto_aset('foto_aset')) {
         //     $foto_aset = $request->foto_aset('foto_aset');
         //     $filename = time().'_'.$foto_aset->getClientOriginalName();
@@ -150,12 +152,20 @@ class listAssetController extends Controller
         $requestData["foto_aset"] = '/storage/'.$path;
             
         listAsset::create([
+=======
+        listAsset::create([                                                                                                       
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
             'nama_aset' => $request->nama_aset,
             'kode_aset' => $request->kode_aset,
             'id_grup' => $request->id_grup,
             'tgl_beli' => $request->tgl_beli,
             'tgl_pakai' => $request->tgl_pakai,
+<<<<<<< HEAD
             'lokasi' => $request->lokasi,
+=======
+            'status_list_aset' => $request->status_list_aset,
+            //'lokasi' => $request->lokasi,
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
             'harga_perolehan' => $request->harga_perolehan,
             'keterangan' => $request->keterangan,
             'id_satuan' => $request->id_satuan,
@@ -225,6 +235,10 @@ class listAssetController extends Controller
     {
         $listasset = listAsset::findorfail($request->id_list_aset);
         $listasset->update($request->all());
+<<<<<<< HEAD
         return redirect('listAsset')->with('status', 'Data Berhasil Diupdate!');
+=======
+        return redirect('listAsset')->with('success', 'Data Berhasil Diupdate!');
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
     }
 }
