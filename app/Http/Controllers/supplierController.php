@@ -188,6 +188,7 @@ class supplierController extends Controller
      */
     public function destroy(Request $request)
     {
+<<<<<<< HEAD
         // Ambil pengguna yang sedang login
         $loggedInUser = auth()->user();
         $supplier = supplier::findorfail($request->id_supplier);
@@ -198,5 +199,10 @@ class supplierController extends Controller
         $groupasset->save();
         Alert::success('Selamat', 'Data Berhasil Diupdate');
         return redirect('supplier');
+=======
+        $supplier = supplier::findorfail($request->id_supplier);
+        $supplier->update($request->all());
+        return redirect('supplier')->with('status', 'Data Berhasil Dihapus!');
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
     }
 }

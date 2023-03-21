@@ -94,6 +94,7 @@ class dataKaryawanController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
         $messages = [
             'required' => 'Kolom :attribute wajib diisi',
             'unique' => ':Attribute sudah ada',
@@ -105,6 +106,13 @@ class dataKaryawanController extends Controller
             'nik' => 'required|unique:data_karyawan',
             'id_jabatan' => 'required',
         ], $messages);
+=======
+        $request->validate([
+            'nama_karyawan' => 'required',
+            'nik' => 'required',
+            'id_jabatan' => 'required',
+        ]);
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
 
         //check if validation fails
         if ($validator->fails())
@@ -121,6 +129,7 @@ class dataKaryawanController extends Controller
             'nama_karyawan' => $request->nama_karyawan,
             'nik' => $request->nik,
             'id_jabatan' => $request->id_jabatan,
+<<<<<<< HEAD
             'created_by' => $user->nama_karyawan,
         ]);
         Alert::success('Selamat', 'Data Berhasil Ditambahkan');
@@ -145,6 +154,8 @@ class dataKaryawanController extends Controller
             'editnama_karyawan' => 'nama karyawan',
             'editnik' => 'nik',
             'editid_jabatan' => 'jabatan'
+=======
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
         ]);
 
         if ($validator->fails())

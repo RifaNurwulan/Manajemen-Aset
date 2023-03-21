@@ -1,5 +1,5 @@
 @extends('Template.beranda')
-@section('title', 'Tentang')
+@section('title', 'Dashboard')
 
 @section('content')
 
@@ -8,7 +8,11 @@
     <div class="row">
         <div class="card">
             <div class="card-header">
+<<<<<<< HEAD
                 <h4 class="card-title"></h4>
+=======
+                <h4 class="card-title">Choices</h4>
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
             </div>
             <div class="card-content">
             <div class="card-body">
@@ -23,33 +27,52 @@
                                             <div class="carousel-item active">
                                                 <img src="assets/images/upload.jpg" class="d-block w-100" alt="...">
                                                 <div class="carousel-caption d-none d-md-block">
+<<<<<<< HEAD
                                                     <h5>Adaptive to be a Champion with a spirit of Partnership and Synergy</h5>
                                                     <!-- <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> -->
+=======
+                                                    <h5>First slide label</h5>
+                                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                                                 </div>
                                             </div>
                                             <div class="carousel-item">
                                                 <img src="assets/images/slider-home-2021-01.jpg" class="d-block w-100" alt="...">
                                                 <div class="carousel-caption d-none d-md-block">
+<<<<<<< HEAD
                                                     <h5>Growth with Corporate Innovation</h5>
                                                     <!-- <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> -->
+=======
+                                                    <h5>Second slide label</h5>
+                                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                                                 </div>
                                             </div>
                                         </div>
                                         <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button"
                                             data-bs-slide="prev">
                                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+<<<<<<< HEAD
                                             <span class="visually-hidden">Sebelumnya</span>
+=======
+                                            <span class="visually-hidden">Previous</span>
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                                         </a>
                                         <a class="carousel-control-next" href="#carouselExampleCaptions" role="button"
                                             data-bs-slide="next">
                                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
+<<<<<<< HEAD
                                             <span class="visually-hidden">Selanjutnya</span>
+=======
+                                            <span class="visually-hidden">Next</span>
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                                         </a>
                                     </div>
                                 </div>
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 
     <div class="row">
         <div class="col-6 col-lg-3 col-md-6">
@@ -121,6 +144,8 @@
             </div>
         </div>
     </div>
+=======
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
 </section>
 <!-- Basic choices end -->
 @endsection
@@ -130,12 +155,17 @@
     <div class="row">
         <div class="card">
             <div class="card-header">
+<<<<<<< HEAD
                 <h4 class="card-title">Pemeliharaan Aset</h4>
+=======
+                <h4 class="card-title">Choices</h4>
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
             </div>
             <div class="card-content">
                 <div class="card-body">
                     <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
                         <div class="dataTable-container">
+<<<<<<< HEAD
                             <table class="table table-striped table-bordered dataTable-table" id="table_Kerusakan">
                                 <thead>
                                     <tr class="bg-primary text-center text-white">
@@ -167,6 +197,108 @@
                                 <td>{{ $item->updated_by}}</td>
                                 </tr>
                             @endforeach
+=======
+                            <table class="table table-striped dataTable-table" id="table1">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Kode Asset</th>
+                                        <th>Set</th>
+                                        <th>Nama Asset</th>
+                                        <th>Departement</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Graiden</td>
+                                        <td>vehicula.aliquet@semconsequat.co.uk</td>
+                                        <td>076 4820 8838</td>
+                                        <td>Offenburg</td>
+                                        <td>
+                                            <span class="badge bg-success">Active</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dale</td>
+                                        <td>fringilla.euismod.enim@quam.ca</td>
+                                        <td>0500 527693</td>
+                                        <td>New Quay</td>
+                                        <td>
+                                            <span class="badge bg-success">Active</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nathaniel</td>
+                                        <td>mi.Duis@diam.edu</td>
+                                        <td>(012165) 76278</td>
+                                        <td>Grumo Appula</td>
+                                        <td>
+                                            <span class="badge bg-danger">Inactive</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Darius</td>
+                                        <td>velit@nec.com</td>
+                                        <td>0309 690 7871</td>
+                                        <td>Ways</td>
+                                        <td>
+                                            <span class="badge bg-success">Active</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Oleg</td>
+                                        <td>rhoncus.id@Aliquamauctorvelit.net</td>
+                                        <td>0500 441046</td>
+                                        <td>Rossignol</td>
+                                        <td>
+                                            <span class="badge bg-success">Active</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kermit</td>
+                                        <td>diam.Sed.diam@anteVivamusnon.org</td>
+                                        <td>(01653) 27844</td>
+                                        <td>Patna</td>
+                                        <td>
+                                            <span class="badge bg-success">Active</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jermaine</td>
+                                        <td>sodales@nuncsit.org</td>
+                                        <td>0800 528324</td>
+                                        <td>Mold</td>
+                                        <td>
+                                            <span class="badge bg-success">Active</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ferdinand</td>
+                                        <td>gravida.molestie@tinciduntadipiscing.org</td>
+                                        <td>(016977) 4107</td>
+                                        <td>Marlborough</td>
+                                        <td>
+                                            <span class="badge bg-danger">Inactive</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kuame</td>
+                                        <td>Quisque.purus@mauris.org</td>
+                                        <td>(0151) 561 8896</td>
+                                        <td>Tresigallo</td>
+                                        <td>
+                                            <span class="badge bg-success">Active</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Deacon</td>
+                                        <td>Duis.a.mi@sociisnatoquepenatibus.com</td>
+                                        <td>07740 599321</td>
+                                        <td>Karapınar</td>
+                                        <td>
+                                            <span class="badge bg-success">Active</span>
+                                        </td>
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                                 </tbody>
                             </table>
                         </div>

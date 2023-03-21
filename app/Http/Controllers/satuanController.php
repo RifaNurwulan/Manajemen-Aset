@@ -133,6 +133,15 @@ class satuanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
+=======
+    public function update(Request $request)
+    {
+        $satuan = satuan::findorfail($request->id_satuan);
+        $satuan->update($request->all());
+        return redirect('satuan')->with('success', 'Data Berhasil Diupdate!');
+    }
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
 
     /**
      * Remove the specified resource from storage.
@@ -142,6 +151,7 @@ class satuanController extends Controller
      */
     public function destroy(Request $request)
     {
+<<<<<<< HEAD
         // Ambil pengguna yang sedang login
         $loggedInUser = auth()->user();
         $satuan = satuan::findorfail($request->id_satuan);
@@ -152,5 +162,10 @@ class satuanController extends Controller
         $satuan->save();
         Alert::success('Selamat', 'Data Berhasil Diupdate');
         return redirect('satuan');
+=======
+        $satuan = satuan::findorfail($request->id_satuan);
+        $satuan->update($request->all());
+        return redirect('satuan')->with('status', 'Data Berhasil Diupdate!');
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
     }
 }

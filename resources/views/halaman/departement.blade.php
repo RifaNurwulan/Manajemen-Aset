@@ -7,7 +7,18 @@
     <div class="card">
         <div class="card-header">
             <div class="col py-6">
+<<<<<<< HEAD
                 <h5 class="m-0 font-weight-bold text-primary">Departemen</h5>
+=======
+                <h5 class="m-0 font-weight-bold text-primary">Departement</h5>
+            </div>
+            <div class="row">
+                <div class="col card-header">
+                    <button type="button" style="float: right;" data-toggle="modal" data-target="#quoteForm" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Tambah Data">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
             </div>
         </div>
         
@@ -39,6 +50,22 @@
                                 @else
                                 <a href="" class ="btn btn-sm btn success"></a>
                                 @endif
+<<<<<<< HEAD
+=======
+                                <td>{{ $item->id_departement}}</td>
+                                <td>{{ $item->kode_departement}}</td>
+                                <td>{{ $item->nama_departement}}</td>
+                                <td>{{ $item->singkatan}}</td>
+<<<<<<< HEAD
+                                <td>
+                                    <span class="badge-bg-success {{ ($item->status == 1) ? 'badge bg-success' : 'badge bg-danger' }}">{{ ($item->status == 1) ? 'Aktif' : 'Non Aktif'}}</span>
+                                </td>
+=======
+                                <td><span class="badge-bg-success {{ ($item->status == 1) ? 'badge bg-success' : 'badge bg-danger' }}">{{ ($item->status == 1) ? 'Aktif' : 'Non Aktif'}}</span></td>
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
+                                <td>{{ $item->created_by}}</td>
+                                <td>{{ $item->updated_by}}</td>
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                                 <td>
                                     <div class="col-group" style="display: flex; justify-content: space-between; padding-right: 7px; padding-left: 7px;">
                                         <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Data"

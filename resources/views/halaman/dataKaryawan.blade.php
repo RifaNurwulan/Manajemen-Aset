@@ -11,7 +11,11 @@
             </div>
             <!-- <div class="row">
                 <div class="col card-header">
-                    <div class="input-group">
+                    <button type="button" style="float: right;" data-toggle="modal"
+                        data-target="#quoteForm" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Tambah Data">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                    <!-- <div class="input-group">
                         <form action="/dataKaryawan/search" method="GET">
                             <div class="input-group input-group-lg">
                                 <div class="input-group-append">
@@ -23,8 +27,28 @@
                                     <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="Search..." name="search" value="{{ old('search') }}">
                                 </div>
                         </form>
+<<<<<<< HEAD
                     </div>-->
         </div> 
+=======
+                    </div> -->
+              
+                <!-- <div class="dropdown">
+                        <select class="selector form-select">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                        </select>
+                        <label>entires per page</label>
+                    </div> -->
+
+
+
+            </div>
+        </div>
+    </div>
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
     <div class="card-body">
         <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
             <div class="dataTable-container">
@@ -48,6 +72,7 @@
                     <tbody>
                         @foreach ($datakaryawan as $item)
                         <tr>
+<<<<<<< HEAD
                             @if ($item->status_data_karyawan == 1)
                             <a href="" class="btn btn-sm btn danger"></a>
                             @else
@@ -56,14 +81,54 @@
                             <td>
                                 <div class="col-group" style="display: flex; justify-content: space-between; padding-right: 7px; padding-left: 7px;">
                                     <button type="button" data-toggle="modal" data-target="#quoteFormEdit" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Data"
+=======
+<<<<<<< HEAD
+                            @if ($item->status_data_karyawan == 1)
+                            <a href="" class="btn btn-sm btn danger"></a>
+                            @else
+                            <a href="" class="btn btn-sm btn success"></a>
+=======
+                            @if ($item->status_data_karyawan == 1)   
+                            <a href="" class ="btn btn-sm btn danger"></a>
+                            @else
+                            <a href="" class ="btn btn-sm btn success"></a>
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
+                            @endif
+                            <td>{{ $item->id_karyawan}}</td>
+                            <td>{{ $item->nama_karyawan}}</td>
+                            <td>{{ $item->nik}}</td>
+                            <td>{{ $item->desc_jabatan}}</td>
+                            <td>
+<<<<<<< HEAD
+                                <span
+                                    class="badge-bg-success {{ ($item->status_data_karyawan == 1) ? 'badge bg-success' : 'badge bg-danger' }}">{{ ($item->status_data_karyawan == 1) ? 'Aktif' : 'Non Aktif'}}</span>
+=======
+                                <span class="badge-bg-success {{ ($item->status_data_karyawan == 1) ? 'badge bg-success' : 'badge bg-danger' }}">{{ ($item->status_data_karyawan == 1) ? 'Aktif' : 'Non Aktif'}}</span>
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
+                            </td>
+                            <td>{{ $item->created_by}}</td>
+                            <td>{{ $item->updated_by}}</td>
+                            <td>
+                                <div class="col-group">
+                                    <button type="button" data-toggle="modal" data-target="#quoteFormEdit"
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                                         class="btn btn-warning" data-id="{{ $item->id_karyawan }}"
                                         data-nama="{{ $item->nama_karyawan }}" data-nik="{{ $item->nik }}"
                                         data-jabatan="{{ $item->id_jabatan }}" data-id_jabatan = "{{ $item->id_jabatan }}">
                                         <i class="fa fa-edit"></i>
                                     </button>
 
+<<<<<<< HEAD
                                     <button type="button" data-toggle="modal" data-id="{{ $item->id_karyawan }}" data-status_data_karyawan="{{ $item->status_data_karyawan }}"
                                         data-target="#quoteFormTrash" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus Data">
+=======
+<<<<<<< HEAD
+                                    <button type="button" data-toggle="modal" data-id="{{ $item->id_karyawan }}"
+                                        data-target="#quoteFormTrash" class="btn btn-danger">
+=======
+                                    <button type="button" data-toggle="modal" data-id = "{{ $item->id_karyawan }}" data-target="#quoteFormTrash" class="btn btn-danger">
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                                         <i class="fa fa-remove"></i>
                                     </button>
                                 </div>
@@ -82,7 +147,15 @@
             </div>
             {{-- {{ $datakaryawan->links() }} --}}
 
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+            
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
         </div>
     </div>
     </div>
@@ -106,21 +179,41 @@
                         <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="nama_karyawan">Nama Karyawan<span
                                     class="text-primary ml-1">*</span></label>
+<<<<<<< HEAD
                             <input class="form-control" id="nama_karyawan" name="nama_karyawan" type="text" placeholder="Nama Karyawan" />
                             <div class="invalid-feedback">
                             </div>
+=======
+                            <input class="form-control" id="nama_karyawan" name="nama_karyawan" type="text"
+                                placeholder="Nama Karyawan" required="" />
+                            @error('nama_karyawan')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                         </div>
                         <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="nik" >NIK<span
                                     class="text-primary ml-1">*</span></label>
+<<<<<<< HEAD
                             <input class="form-control" id="nik" name="nik" type="text" placeholder="NIK"  value="{{ $kode }}" readonly="readonly" />
                             <div class="invalid-feedback">
                             </div>
+=======
+                            <input class="form-control" id="nik" name="nik" type="text" placeholder="NIK" required="" value="{{ $kode }}" readonly="readonly" />
+                            @error('nik')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                         </div>
                         <div class="form-group col-lg-6">
                             <label class="font-weight-bold text-small" for="id_jabatan">Nama Jabatan<span
                                     class="text-primary ml-1">*</span></label>
+<<<<<<< HEAD
                             <select name="id_jabatan" data-live-search="true" class="form-select">
+=======
+                            <select name="id_jabatan" data-live-search="true"
+                                class="form-select @error('jabatan') is-invalid @enderror">
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                                 <option value="">- Pilih -</option>
                                 @foreach($jabatan as $row)
                                 <option value="{{$row->id_jabatan}}"
@@ -128,8 +221,15 @@
                                 </option>
                                 @endforeach
                             </select>
+<<<<<<< HEAD
                             <div class="invalid-feedback">
                             </div>
+=======
+                            @error('jabatan')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                         </div>
                         <div class="form-group col-lg-12"><br>
                             <button class="btn btn-success" style="float: right;" type="submit">
@@ -157,6 +257,7 @@
                 <form enctype="multipart/form-data" method="POST" action="{{ route ('updatedatakaryawan') }}" id="editForm">
                     {{ csrf_field() }}
                     <div class="row">
+<<<<<<< HEAD
                         <input class="form-control" id="id_karyawan" name="editid_karyawan" type="text"
                             placeholder="ID Karyawan" required="" hidden="true" />
                         <div class="form-group col-lg-6">
@@ -178,13 +279,46 @@
                             <label class="font-weight-bold text-small" for="editid_jabatan">Nama Jabatan<span
                                     class="text-primary ml-1">*</span></label>
                             <select name="editid_jabatan" id="jabatan_id" data-live-search="true" class="form-select">
+=======
+                        <input class="form-control" id="id_karyawan" name="id_karyawan" type="text"
+                            placeholder="ID Karyawan" required="" hidden="true" />
+                        <div class="form-group col-lg-6">
+                            <label class="font-weight-bold text-small" for="nama_karyawan">Nama Karyawan<span
+                                    class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="nama_karyawan" name="nama_karyawan" type="text"
+                                placeholder="Nama Karyawan" required="" />
+                            @error('nama_karyawan')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label class="font-weight-bold text-small" for="nik">NIK<span
+                                    class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="nik" name="nik" type="text" placeholder="NIK" required="" />
+                            @error('nik')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label class="font-weight-bold text-small" for="id_jabatan">Nama Jabatan<span
+                                    class="text-primary ml-1">*</span></label>
+
+                                    <select name="id_jabatan" id="jabatan_id" data-live-search="true" class="form-select @error('jabatan') is-invalid @enderror">
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                             <option value="">- Pilih -</option>    
                             @foreach($jabatan as $row)
                                 <option value="{{$row->id_jabatan}}" {{ old('jabatan')==$row->id_jabatan?'selected' :null}}>{{$row->desc_jabatan}}</option>
                                 @endforeach
                             </select>    
+<<<<<<< HEAD
                             <div class="invalid-feedback">
                             </div>
+=======
+
+                            @error('jabatan')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
 
                         </div>
                         <div class="form-group col-lg-12"><br>
@@ -212,6 +346,7 @@
             <div class="modal-body">
                 <form enctype="multipart/form-data" method="POST" action="{{ route ('deletedatakaryawan') }}">
                     {{ csrf_field() }}
+<<<<<<< HEAD
                     <input class="form-control" id="id_karyawan" name="id_karyawan" type="text" placeholder="ID"
                         required="" hidden="true" />
                     <div class="row">
@@ -220,15 +355,44 @@
                                 Karyawan<span class="text-primary ml-1">*</span></label>
                             <select name="status_data_karyawan" id="status_data_karyawan" class="form-select"
                                 data-live-search="true">
+=======
+<<<<<<< HEAD
+                    <input class="form-control" id="id_karyawan" name="id_karyawan" type="text" placeholder="ID"
+                        required="" hidden="true" />
+                    <div class="row">
+                        <div class="form-group col-3">
+                            <label class="font-weight-bold text-small" for="status_data_karyawan">Status Data
+                                Karyawan<span class="text-primary ml-1">*</span></label>
+                            <select name="status_data_karyawan" id="status_data_karyawan" class="form-select"
+                                data-live-search="true">
+=======
+                    <input class="form-control" id="id_karyawan" name="id_karyawan" type="text" placeholder="ID" required="" hidden="true"/>
+                    <div class="row">
+                        <div class="form-group col-3">
+                            <label class="font-weight-bold text-small" for="status_data_karyawan">Status Data Karyawan<span class="text-primary ml-1">*</span></label>
+                            <select name="status_data_karyawan" id="status_data_karyawan" class="form-select" data-live-search="true">
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                                 <option value="1">Aktif</option>
                                 <option value="0">Tidak Aktif</option>
                             </select>
                         </div>
                         <div class="form-group col-9">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                             <label class="font-weight-bold text-small" for="ket">Keterangan Hapus<span
                                     class="text-primary ml-1">*</span></label>
                             <textarea class="form-control" id="ket" type="text" placeholder="Keterangan Hapus"
                                 required=""></textarea>
+<<<<<<< HEAD
+=======
+=======
+                            <label class="font-weight-bold text-small" for="ket">Keterangan Hapus<span class="text-primary ml-1">*</span></label>
+                            <textarea class="form-control" id="ket" type="text" placeholder="Keterangan Hapus" required=""></textarea>
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                         </div>
                         <div class="form-group col-lg-12"><br>
                             <button class="btn btn-success" style="float: right;" type="submit">
@@ -412,11 +576,22 @@ var table = $("#table_Karyawan").DataTable({
         $('.invalid-feedback').removeClass('d-block').addClass('d-none');
     });
     $("#quoteFormEdit").on('show.bs.modal', (e) => {
+<<<<<<< HEAD
         $("#quoteFormEdit").find('input[name="editid_karyawan"]').val($(e.relatedTarget).data('id'));
         $("#quoteFormEdit").find('input[name="editnama_karyawan"]').val($(e.relatedTarget).data('nama'));
         $("#quoteFormEdit").find('input[name="editnik"]').val($(e.relatedTarget).data('nik'));
         // $("#quoteFormEdit").find('input[name="id_jabatan"]').val($(e.relatedTarget).data('id_jabatan'));
         $("#jabatan_id option[value="+$(e.relatedTarget).data('id_jabatan')+"]").prop("selected", true);
+=======
+        $("#quoteFormEdit").find('input[name="id_karyawan"]').val($(e.relatedTarget).data('id'));
+        $("#quoteFormEdit").find('input[name="nama_karyawan"]').val($(e.relatedTarget).data('nama'));
+        $("#quoteFormEdit").find('input[name="nik"]').val($(e.relatedTarget).data('nik'));
+        // $("#quoteFormEdit").find('input[name="id_jabatan"]').val($(e.relatedTarget).data('id_jabatan'));
+        $("#jabatan_id option[value="+$(e.relatedTarget).data('id_jabatan')+"]").prop("selected", true);
+    })
+    $("#quoteFormTrash").on('show.bs.modal', (e) => {
+        $("#quoteFormTrash").find('input[name="id_karyawan"]').val($(e.relatedTarget).data('id'));
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
     })
     $("#quoteFormTrash").on('show.bs.modal', (e) => {
         $("#quoteFormTrash").find('input[name="id_karyawan"]').val($(e.relatedTarget).data('id'));

@@ -9,6 +9,16 @@
             <div class="col py-6">
                 <h5 class="m-0 font-weight-bold text-primary">Satuan</h5>
             </div>
+<<<<<<< HEAD
+=======
+            <div class="row">
+                <div class="col card-header">
+                    <button type="button" style="float: right;" data-toggle="modal" data-target="#quoteForm" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Tambah Data">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
         </div>
         <div class="card-body">
             <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
@@ -25,8 +35,16 @@
                                 <th>Kode Satuan</th>
                                 <th>Nama Satuan</th>
                                 <th>Status</th>
+<<<<<<< HEAD
                                 <th>Dibuat Oleh</th>
                                 <th>Diubah Oleh</th>
+=======
+                                <th>Created By</th>
+                                <th>Created At</th>
+                                <th>Updated By</th>
+                                <th>Updated At</th>
+                                <th>Action</th>
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                             </tr>
                         </thead>
                         <tbody>
@@ -37,6 +55,7 @@
                                 @else
                                 <a href="" class ="btn btn-sm btn success"></a>
                                 @endif
+<<<<<<< HEAD
                                 <td>
                                     <div class="col-group" style="display: flex; justify-content: space-between; padding-right: 7px; padding-left: 7px;">
                                         <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Data"
@@ -54,8 +73,33 @@
                                 <td>{{ $item->kode_satuan}}</td>
                                 <td>{{ $item->nama_satuan}}</td>
                                 <td>{{ ($item->status_satuan == 1) ? 'Aktif' : 'Non Aktif'}}</td>
+=======
+                                <td>{{ $item->id_satuan}}</td>
+                                <td>{{ $item->kode_satuan}}</td>
+                                <td>{{ $item->nama_satuan}}</td>
+                                <td>
+                                    <span class="badge-bg-success {{ ($item->status_satuan == 1) ? 'badge bg-success' : 'badge bg-danger' }}">{{ ($item->status_satuan == 1) ? 'Aktif' : 'Non Aktif'}}</span>
+                                </td>
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                                 <td>{{ $item->created_by}}</td>
                                 <td>{{ $item->updated_by}}</td>
+<<<<<<< HEAD
+=======
+                                <td>{{ $item->updated_at}}</td>
+                                <td>
+                                    <div class="col-group">
+                                        <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning"
+                                        data-id = "{{ $item->id_satuan }}" data-kode = "{{ $item->kode_satuan }}" data-nama_satuan = "{{ $item->nama_satuan }}" data-created_by = "{{ $item->created_by }}" 
+                                        data-created_at = "{{ $item->created_at }}" data-updated_by = "{{ $item->updated_by }}" data-updated_by = "{{ $item->updated_by }}">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+
+                                        <button type="button" data-toggle="modal" data-id = "{{ $item->id_satuan }}" data-target="#quoteFormTrash" class="btn btn-danger">
+                                            <i class="fa fa-remove"></i>
+                                        </button>
+                                    </div>
+                                </td>
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                             </tr>
                             @endforeach
                         </tbody>
@@ -113,6 +157,7 @@
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
+<<<<<<< HEAD
                 <form enctype="multipart/form-data" method="POST" action="{{ route ('updatesatuan') }}" id="editForm">
                     {{ csrf_field() }}
                     <div class="row">
@@ -128,11 +173,34 @@
                             <input class="form-control" id="nama_satuan" name="editnama_satuan" type="text" placeholder="Nama Satuan" />
                             <div class="invalid-feedback">
                             </div>
+=======
+                <form enctype="multipart/form-data" method="POST" action="{{ route ('updatesatuan') }}">
+                    {{ csrf_field() }}
+                    <div class="row">
+                        <input class="form-control" id="id_satuan" name="id_satuan" type="text" placeholder="ID Jabatan" required="" hidden="true"/>
+                        <div class="form-group col-lg-6">
+                            <label class="font-weight-bold text-small" for="kode_satuan">Kode Jabatan<span class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="kode_satuan" name="kode_satuan" type="text" placeholder="Kode Satuan" required="" />
+                            @error('kode_satuan')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label class="font-weight-bold text-small" for="nama_satuan">Jabatan<span class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="nama_satuan" name="nama_satuan" type="text" placeholder="Nama Satuan" required="" />
+                            @error('nama_satuan')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                         </div>
                         <div class="form-group col-lg-12"><br>
                             <button class="btn btn-success" style="float: right;" type="submit">
                                 <i class="fa fa-save"></i>
+<<<<<<< HEAD
                                 Simpan
+=======
+                                Save
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                             </button>
                         </div>
                     </div>
@@ -159,7 +227,11 @@
                             <label class="font-weight-bold text-small" for="status_satuan">Status Data Satuan<span class="text-primary ml-1">*</span></label>
                             <select name="status_satuan" id="status_satuan" class="form-select" data-live-search="true">
                                 <option value="1">Aktif</option>
+<<<<<<< HEAD
                                 <option value="0">Tidak Aktif</option>
+=======
+                                <option value="0">Non-Aktif</option>
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                             </select>
                         </div>
                         <div class="form-group col-9">
@@ -169,7 +241,11 @@
                         <div class="form-group col-lg-12"><br>
                             <button class="btn btn-success" style="float: right;" type="submit">
                                 <i class="fa fa-save"></i>
+<<<<<<< HEAD
                                 Simpan
+=======
+                                Save
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                             </button>
                         </div>
                     </div>
@@ -182,6 +258,7 @@
 @endsection
 @push('script')
 <script>
+<<<<<<< HEAD
     var table = $("#table_Satuan").DataTable({
         "columnDefs": [{
             "targets": 4,
@@ -322,6 +399,15 @@
         $("#quoteFormTrash").find('input[name="id_satuan"]').val($(e.relatedTarget).data('id'));
         $("#status_satuan option[value='" + $(e.relatedTarget).data('status_satuan') + "']").prop(
                 "selected", true);
+=======
+    $("#quoteFormEdit").on('show.bs.modal', (e) => {
+        $("#quoteFormEdit").find('input[name="id_satuan"]').val($(e.relatedTarget).data('id'));
+        $("#quoteFormEdit").find('input[name="kode_satuan"]').val($(e.relatedTarget).data('kode'));
+        $("#quoteFormEdit").find('input[name="nama_satuan"]').val($(e.relatedTarget).data('nama_satuan'));
+    })
+    $("#quoteFormTrash").on('show.bs.modal', (e) => {
+        $("#quoteFormTrash").find('input[name="id_satuan"]').val($(e.relatedTarget).data('id'));
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
     })
 </script>
 @endpush('')

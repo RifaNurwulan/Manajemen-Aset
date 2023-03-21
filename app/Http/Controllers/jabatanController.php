@@ -39,6 +39,7 @@ class jabatanController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
         $messages = [
             'required' => 'Kolom :attribute wajib diisi',
             'unique' => ':Attribute sudah ada', 
@@ -52,6 +53,11 @@ class jabatanController extends Controller
         $validator->setAttributeNames([
             'editkode_jabatan' => 'Kode jabatan',
             'desc_jabatan' => 'nama jabatan'
+=======
+        $request->validate([
+            'kode_jabatan' => 'required',
+            'desc_jabatan' => 'required',
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
         ]);
 
         if ($validator->fails())
@@ -67,6 +73,7 @@ class jabatanController extends Controller
         jabatan::create([
             'kode_jabatan' => $request->kode_jabatan,
             'desc_jabatan' => $request->desc_jabatan,
+<<<<<<< HEAD
             'created_by' => $user->nama_karyawan,
         ]);
         Alert::success('Selamat', 'Data Berhasil Ditambahkan');
@@ -89,6 +96,8 @@ class jabatanController extends Controller
         $validator->setAttributeNames([
             'editkode_jabatan' => 'kode jabatan',
             'editdesc_jabatan' => 'nama jabatan'
+=======
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
         ]);
 
         if ($validator->fails())

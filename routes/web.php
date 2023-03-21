@@ -92,6 +92,7 @@ Route::post('/simpanlistAsset', 'listAssetController@store')->name('simpanlistAs
 Route::get('/editlistAsset/{id}', 'listAssetController@edit')->name('editlistasset');
 Route::post('/updatelistAsset', 'listAssetController@update')->name('updatelistasset');
 Route::post('/deletelistAsset', 'listAssetController@destroy')->name('deletelistasset');
+<<<<<<< HEAD
 Route::post('/fotoListAsset/{id}', 'listAssetController@listFoto')->name('fotoListAsset');
 Route::get('/detail/{id_list_aset}', 'listAssetController@detail')->name('detail');
 Route::get('/cetakdetail/{id_list_aset}', 'listAssetController@cetakDetail')->name('cetakDetail');
@@ -108,6 +109,16 @@ Route::get('/listAsset/search', 'listAssetController@search')->name('listAsset.s
 Route::get('/cetak-listAsset-pertanggal/{tglawal}/{tglakhir}', 'listAssetController@cetakListAssetPertanggal')->name('cetak-listAsset-pertanggal');
 
 
+=======
+<<<<<<< HEAD
+Route::post('/fotoListAsset/{id}', 'listAssetController@listFoto')->name('fotoListAsset');
+Route::get('/upload', 'UploadlistassetController@upload');
+Route::post('/upload/proses', 'UploadlistassetController@proses_upload');
+Route::post('/detaillistAsset', 'listAssetController@update')->name('detaillistasset');
+=======
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
+Route::get('/listAsset/search', 'listAssetController@search');
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
 
 //Route Modul Report
 Route::get('/historyAsset', 'reportHistoryController@index')->name('historyAsset');
@@ -133,10 +144,22 @@ Route::get('/reportDaftarAsset', 'reportDaftarAssetController@index')->name('rep
 // Route::get('/previewPertanggal/{tglawal}/{tglakhir}', [App\Http\Controllers\reportDaftarAssetController::class, 'previewPertanggal'])->name('previewPertanggal');
 
 
+//Route halaman Profile
+Route::get('/profile', 'profileController@index')->name('profile');
+
 //Route SignIn SignUp ResetPassword
 Route::get('/signIn', 'signInController@index')->name('signIn');
 Route::get('/signUp', 'signUpController@index')->name('signUp');
 Route::get('/resetPass', 'resetpassController@index')->name('resetpass');
+<<<<<<< HEAD
+=======
+
+//Send Email
+Route::get('/sendemail', 'KirimEmailController@index')->name('sendemail');
+Route::get('/kirim', 'KirimEmailController@kirim')->name('kirim');
+Route::post('kirim','KirimEmailController@kirim')->name('kirim');
+// Route::get('/formemail', [KirimEmailController::class, 'index']);
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
 
 //Send Email
 Route::get('/sendemail', 'KirimEmailController@index')->name('sendemail');

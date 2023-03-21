@@ -7,7 +7,30 @@
     <div class="card">
         <div class="card-header">
             <div class="col py-6">
+<<<<<<< HEAD
                 <h5 class="m-0 font-weight-bold text-primary">Data Pemasok</h5>
+=======
+                <h5 class="m-0 font-weight-bold text-primary">Data Supplier</h5>
+            </div>
+            <div class="row">
+                <div class="col card-header">
+                    <!-- <div class="input-group">
+                        <form action="/supplier/search" method="GET">
+                            <div class="input-group input-group-lg">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit" value="SEARCH">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                                <div class="col-10">
+                                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="Search..." name="search" value="{{ old('search') }}">
+                                </div>
+                        </form>
+                    </div> -->
+                    <button type="button" style="float: right;" data-toggle="modal" data-target="#quoteForm" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Tambah Data">
+                    <i class="fa fa-plus"></i>
+                </button>
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
             </div>
         </div>
     <div class="card-body">
@@ -32,8 +55,14 @@
                             <th>Email</th>
                             <th>Notes</th>
                             <th>Status</th>
+<<<<<<< HEAD
                             <th>Dibuat Oleh</th>
                             <th>Diubah Oleh</th>
+=======
+                            <th>Created By</th>
+                            <th>Updated By</th>
+                            <th>Action</th>
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                         </tr>
                     </thead>
                     <tbody>
@@ -44,6 +73,7 @@
                                 @else
                                 <a href="" class ="btn btn-sm btn success"></a>
                                 @endif
+<<<<<<< HEAD
                             <td>
                                 <div class="col-group" style="display: flex; justify-content: space-between; padding-right: 7px; padding-left: 7px;">
                                     <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Data"
@@ -55,6 +85,8 @@
                                         </button>
                                 </div>
                             </td>
+=======
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                             <td>{{ $item->id_supplier}}</td>
                             <td>{{ $item->nama_supplier}}</td>
                             <td>{{ $item->alamat}}</td>
@@ -65,9 +97,28 @@
                             <td>{{ $item->fax}}</td>
                             <td>{{ $item->email}}</td>
                             <td>{{ $item->keterangan}}</td>
+<<<<<<< HEAD
                             <td>{{ ($item->status_supplier == 1) ? 'Aktif' : 'Non Aktif'}}</td>
                             <td>{{ $item->created_by}}</td>
                             <td>{{ $item->updated_by}}</td>
+=======
+                            <td>
+                                    <span class="badge-bg-success {{ ($item->status_supplier == 1) ? 'badge bg-success' : 'badge bg-danger' }}">{{ ($item->status_supplier == 1) ? 'Aktif' : 'Non Aktif'}}</span>
+                                </td>
+                            <td>{{ $item->created_by}}</td>
+                            <td>{{ $item->updated_by}}</td>
+                            <td>
+                                <div class="col-group">
+                                    <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning" 
+                                    data-id ="{{ $item->id_supplier}}" data-nama ="{{ $item->nama_supplier}}" data-alamat ="{{ $item->alamat}}" data-kota ="{{ $item->kota}}" data-pic ="{{ $item->pic}}" data-telp ="{{ $item->telp}}" data-mobile ="{{ $item->mobile_phone}}" data-fax ="{{ $item->fax}}" data-email ="{{ $item->email}}" data-keterangan ="{{ $item->keterangan}}" >
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button type="button" data-toggle="modal" data-id = "{{ $item->id_supplier }}" data-target="#quoteFormTrash" class="btn btn-danger">
+                                            <i class="fa fa-remove"></i>
+                                        </button>
+                                </div>
+                            </td>
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                         </tr>
                         @endforeach
                     </tbody>
@@ -248,7 +299,11 @@
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
+<<<<<<< HEAD
                 <h4 class="modal-title">Hapus Pemasok</span></h4>
+=======
+                <h4 class="modal-title">Hapus Supplier</span></h4>
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
@@ -257,10 +312,17 @@
                     <input class="form-control" id="id_supplier" name="id_supplier" type="text" placeholder="ID" required="" hidden="true"/>
                     <div class="row">
                         <div class="form-group col-3">
+<<<<<<< HEAD
                             <label class="font-weight-bold text-small" for="status_supplier">Status Data Pemasok<span class="text-primary ml-1">*</span></label>
                             <select name="status_supplier" id="status_supplier" class="form-select" data-live-search="true">
                                 <option value="1">Aktif</option>
                                 <option value="0">Tidak Aktif</option>
+=======
+                            <label class="font-weight-bold text-small" for="status_supplier">Status Data Supplier<span class="text-primary ml-1">*</span></label>
+                            <select name="status_supplier" id="status_supplier" class="form-select" data-live-search="true">
+                                <option value="1">Aktif</option>
+                                <option value="0">Non-Aktif</option>
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                             </select>
                         </div>
                         <div class="form-group col-9">
@@ -270,7 +332,11 @@
                         <div class="form-group col-lg-12"><br>
                             <button class="btn btn-success" style="float: right;" type="submit">
                                 <i class="fa fa-save"></i>
+<<<<<<< HEAD
                                 Simpan
+=======
+                                Save
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                             </button>
                         </div>
                     </div>
@@ -460,6 +526,9 @@
         $("#quoteFormTrash").find('input[name="id_supplier"]').val($(e.relatedTarget).data('id'));
         $("#status_supplier option[value='" + $(e.relatedTarget).data('status_supplier') + "']").prop(
                 "selected", true);
+    })
+    $("#quoteFormTrash").on('show.bs.modal', (e) => {
+        $("#quoteFormTrash").find('input[name="id_supplier"]').val($(e.relatedTarget).data('id'));
     })
         $('#table1').DataTable();
 </script>

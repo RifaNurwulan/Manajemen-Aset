@@ -7,7 +7,18 @@
     <div class="card">
         <div class="card-header">
             <div class="col py-6">
+<<<<<<< HEAD
                 <h5 class="m-0 font-weight-bold text-primary">Grup Asset</h5>
+=======
+                <h5 class="m-0 font-weight-bold text-primary">Group Asset</h5>
+            </div>
+            <div class="row">
+                <div class="col card-header">
+                    <button type="button" style="float: right;" data-toggle="modal" data-target="#quoteForm" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Tambah Data">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
             </div>
         </div>
         <div class="card-body">

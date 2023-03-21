@@ -37,7 +37,11 @@
                             @endif
                     </div>
                     </div>
+<<<<<<< HEAD
                     <a href="/sendemail">Lupa Password?</a>
+=======
+                    <a href="/sendemail">Forgot Password?</a>
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                     <input type="submit" class="btn" value="Sign In">
                     <div class="div-regis">
                     <p>Tidak punya akun? <a href="/signUp">Daftar</a>sekarang</p>

@@ -9,6 +9,16 @@
             <div class="col py-6">
                 <h5 class="m-0 font-weight-bold text-primary">Jabatan</h5>
             </div>
+<<<<<<< HEAD
+=======
+            <div class="row">
+                <div class="col card-header">
+                    <button type="button" style="float: right;" data-toggle="modal" data-target="#quoteForm" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Tambah Data">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
         </div>
         <div class="card-body">
             <div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
@@ -25,8 +35,16 @@
                                 <th>Kode Jabatan</th>
                                 <th>Nama Jabatan</th>
                                 <th>Status</th>
+<<<<<<< HEAD
                                 <th>Dibuat Oleh</th>
                                 <th>Diubah Oleh</th>
+=======
+                                <th>Created By</th>
+                                <th>Created At</th>
+                                <th>Updated By</th>
+                                <th>Updated At</th>
+                                <th>Action</th>
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                             </tr>
                         </thead>
                         <tbody>
@@ -37,9 +55,29 @@
                                 @else
                                 <a href="" class ="btn btn-sm btn success"></a>
                                 @endif
+<<<<<<< HEAD
                                 <td>
                                     <div class="col-group" style="display: flex; justify-content: space-between; padding-right: 7px; padding-left: 7px;">
                                         <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Data"
+=======
+                                <td>{{ $item->id_jabatan}}</td>
+                                <td>{{ $item->kode_jabatan}}</td>
+<<<<<<< HEAD
+                                <td>{{ $item->desc_jabatan}}</td>
+=======
+                                <td>{{ $item->jabatan}}</td>
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
+                                <td>
+                                    <span class="badge-bg-success {{ ($item->status_jabatan == 1) ? 'badge bg-success' : 'badge bg-danger' }}">{{ ($item->status_jabatan == 1) ? 'Aktif' : 'Non Aktif'}}</span>
+                                </td>
+                                <td>{{ $item->created_by}}</td>
+                                <td>{{ $item->created_at}}</td>
+                                <td>{{ $item->updated_by}}</td>
+                                <td>{{ $item->updated_at}}</td>
+                                <td>
+                                    <div class="col-group">
+                                        <button type="button" data-toggle="modal" data-target="#quoteFormEdit" class="btn btn-warning"
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                                         data-id = "{{ $item->id_jabatan }}" data-kode = "{{ $item->kode_jabatan }}" data-desc_jabatan = "{{ $item->desc_jabatan }}" data-created_by = "{{ $item->created_by }}" 
                                         data-created_at = "{{ $item->created_at }}" data-updated_by = "{{ $item->updated_by }}" data-updated_by = "{{ $item->updated_by }}">
                                             <i class="fa fa-edit"></i>
@@ -61,6 +99,14 @@
                         </tbody>
                     </table>
                 </div>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+                {{-- {{ $jabatan->links() }} --}}
+
+>>>>>>> 15922668a8aa208de618c2269cb613c6758c1bdd
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
             </div>
         </div>
     </div>
@@ -87,9 +133,16 @@
                         </div>
                         <div class="form-group col-8">
                             <label class="font-weight-bold text-small" for="desc_jabatan">Nama Jabatan<span class="text-primary ml-1">*</span></label>
+<<<<<<< HEAD
                             <input class="form-control" id="desc_jabatan" name="desc_jabatan" type="text" placeholder="Nama Jabatan" />
                             <div class="invalid-feedback">
                             </div>
+=======
+                            <input class="form-control" id="desc_jabatan" name="desc_jabatan" type="text" placeholder="Nama Jabatan" required="" />
+                            @error('jabatan')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                         </div>
                         <div class="form-group col-lg-12"><br>
                             <button class="btn btn-success" style="float: right;" type="submit">
@@ -124,10 +177,18 @@
                             </div>
                         </div>
                         <div class="form-group col-lg-6">
+<<<<<<< HEAD
                             <label class="font-weight-bold text-small" for="editdesc_jabatan">Nama Jabatan<span class="text-primary ml-1">*</span></label>
                             <input class="form-control" id="desc_jabatan" name="editdesc_jabatan" type="text" placeholder="Nama Jabatan" />
                             <div class="invalid-feedback">
                             </div>
+=======
+                            <label class="font-weight-bold text-small" for="desc_jabatan">Jabatan<span class="text-primary ml-1">*</span></label>
+                            <input class="form-control" id="desc_jabatan" name="desc_jabatan" type="text" placeholder="Jabatan" required="" />
+                            @error('jabatan')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
                         </div>
                         <div class="form-group col-lg-12"><br>
                             <button class="btn btn-success" style="float: right;" type="submit">
@@ -313,9 +374,18 @@
         $('.invalid-feedback').removeClass('d-block').addClass('d-none');
     });
     $("#quoteFormEdit").on('show.bs.modal', (e) => {
+<<<<<<< HEAD
         $("#quoteFormEdit").find('input[name="editid_jabatan"]').val($(e.relatedTarget).data('id'));
         $("#quoteFormEdit").find('input[name="editkode_jabatan"]').val($(e.relatedTarget).data('kode'));
         $("#quoteFormEdit").find('input[name="editdesc_jabatan"]').val($(e.relatedTarget).data('desc_jabatan'));
+=======
+        $("#quoteFormEdit").find('input[name="id_jabatan"]').val($(e.relatedTarget).data('id'));
+        $("#quoteFormEdit").find('input[name="kode_jabatan"]').val($(e.relatedTarget).data('kode'));
+        $("#quoteFormEdit").find('input[name="desc_jabatan"]').val($(e.relatedTarget).data('desc_jabatan'));
+    })
+    $("#quoteFormTrash").on('show.bs.modal', (e) => {
+        $("#quoteFormTrash").find('input[name="id_jabatan"]').val($(e.relatedTarget).data('id'));
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
     })
     $("#quoteFormTrash").on('show.bs.modal', (e) => {
         $("#quoteFormTrash").find('input[name="id_jabatan"]').val($(e.relatedTarget).data('id'));

@@ -11,7 +11,10 @@ use Hash;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
+<<<<<<< HEAD
 use Illuminate\Support\Facades\Validator;
+=======
+>>>>>>> c22277f4c7dafebbbbbd97715d2f4a37afec6ccc
 
   
 class AuthController extends Controller
