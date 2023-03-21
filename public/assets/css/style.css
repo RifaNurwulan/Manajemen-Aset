@@ -172,9 +172,6 @@ form{
     border-bottom: 2px solid #d9d9d9;
 }
 
-.login-content .input-div.one{
-	margin-top: 0;
-}
 
 .i{
 	color: #d9d9d9;
@@ -218,10 +215,6 @@ form{
 
 .input-div:after{
 	left: 50%;
-}
-
-.input-div.focus:before, .input-div.focus:after{
-	width: 50%;
 }
 
 .input-div.focus > div > h5{
@@ -355,5 +348,69 @@ form{
 
 	.login-content{
 		justify-content: center;
-	}
-}
+	}.form-group {
+		position: relative;
+	  }
+	  
+
+}.invalid-feedback{display:none;width:100%;margin-left: 1rem;  top: 50%; /* mengatur posisi invalid feedback di tengah input */
+	right: 10px; /* mengatur jarak antara invalid feedback dengan input */
+	transform: translateY(-50%);font-size:.875em;color:#dc3545}.invalid-tooltip{position:absolute;top:100%;z-index:5;display:none;max-width:100%;padding:.25rem .5rem;margin-top:.1rem;font-size:.875rem;color:#fff;background-color:rgba(220,53,69,.9);border-radius:.25rem}.is-invalid~.invalid-feedback,.is-invalid~.invalid-tooltip,.was-validated :invalid~.invalid-feedback,.was-validated :invalid~.invalid-tooltip{display:block}.form-control.is-invalid,.was-validated .form-control:invalid{padding-right:calc(1.5em + .75rem);background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23dc3545'%3E%3Ccircle cx='6' cy='6' r='4.5'/%3E%3Cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3E%3Ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right calc(.375em + .1875rem) center;background-size:calc(.75em + .375rem) calc(.75em + .375rem)}.form-control.is-invalid:focus,.was-validated .form-control:invalid:focus{outline: none;}.was-validated textarea.form-control:invalid,textarea.form-control.is-invalid{padding-right:calc(1.5em + .75rem);background-position:top calc(.375em + .1875rem) right calc(.375em + .1875rem)}.form-select.is-invalid,.was-validated .form-select:invalid{padding-right:calc(.75em + 2.3125rem);background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3E%3C/svg%3E"),url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23dc3545'%3E%3Ccircle cx='6' cy='6' r='4.5'/%3E%3Cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3E%3Ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3E%3C/svg%3E");background-position:right .75rem center,center right 1.75rem;background-size:16px 12px,calc(.75em + .375rem) calc(.75em + .375rem)}.form-select.is-invalid:focus,.was-validated form-check-input.is-invalid:checked,.was-validated .form-check-input:invalid:checked{background-color:#dc3545}.form-check-input.is-invalid~.form-check-label,.was-validated .form-check-input:invalid~.form-check-label{outline: none;}.form-check-inline .form-check-input~.invalid-feedback{margin-left:.5em}
+	.input-div > div {
+		position: relative;
+		height: 45px;
+	  }
+	  
+	  .input-div > div > .invalid-feedback {
+		position: absolute;
+		top: 135%;
+		font-size: 14px;
+		font-weight: bold;
+		display: none;
+	  }
+	  
+	  .input-div > div > input:focus ~ .invalid-feedback {
+		display: block;
+	  }
+	  
+	  .input-div:before,
+	  .input-div:after {
+		content: '';
+		position: absolute;
+		bottom: -2px;
+		width: 0%;
+		height: 2px;
+		background-color: #38d39f;
+		transition: .4s;
+	  }
+
+	  .input-div input:focus + h5,
+	  .input-div input:not(:placeholder-shown) + h5 {
+		  top: -5px;
+		  font-size: 15px;
+	  }
+	  
+	  .input-div input:focus ~ .i > i,
+	  .input-div input:not(:placeholder-shown) ~ .i > i {
+		  color: #38d39f;
+	  }
+	  
+	  .input-div input:focus ~ :before,
+	  .input-div input:not(:placeholder-shown) ~ :before,
+	  .input-div input:focus ~ :after,
+	  .input-div input:not(:placeholder-shown) ~ :after {
+		  width: 50%;
+	  }
+	  /* Penjelasan CSS di atas:
+	  
+	  .input-div input:focus + h5 dan .input-div input:not(:placeholder-shown) + h5 akan membuat h5 berada di atas input ketika input tersebut di-focus atau sudah terisi.
+	  
+	  .input-div input:focus ~ .i > i dan .input-div input:not(:placeholder-shown) ~ .i > i akan mengubah warna icon i menjadi hijau ketika input di-focus atau sudah terisi.
+	  
+	  .input-div input:focus ~ :before, .input-div input:not(:placeholder-shown) ~ :before, .input-div input:focus ~ :after, dan .input-div input:not(:placeholder-shown) ~ :after akan membuat :before dan :after tidak aktif ketika input sudah terisi. */
+	  
+	  
+	  
+	  
+	  
+	  

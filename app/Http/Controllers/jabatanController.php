@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\jabatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class jabatanController extends Controller
 {
@@ -38,19 +39,72 @@ class jabatanController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'kode_jabatan' => 'required',
-            'jabatan' => 'required',
+        $messages = [
+            'required' => 'Kolom :attribute wajib diisi',
+            'unique' => ':Attribute sudah ada', 
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'kode_jabatan' => 'required|unique:jabatan',
+            'desc_jabatan' => 'required|unique:jabatan',
+        ], $messages);
+
+        $validator->setAttributeNames([
+            'editkode_jabatan' => 'Kode jabatan',
+            'desc_jabatan' => 'nama jabatan'
         ]);
 
+        if ($validator->fails())
+        {
+            // return response()->json(['errors'=>$validator->errors()->all()]);
+            return response()->json(['messages' => $validator->errors(), 'status' => 0]);
+        }
+
         // dd($request->all());
+        // Ambil pengguna yang sedang login
+        $user = auth()->user();
 
         jabatan::create([
             'kode_jabatan' => $request->kode_jabatan,
-            'jabatan' => $request->jabatan,
+            'desc_jabatan' => $request->desc_jabatan,
+            'created_by' => $user->nama_karyawan,
+        ]);
+        Alert::success('Selamat', 'Data Berhasil Ditambahkan');
+        return response()->json(['status' => 1]);
+        // return redirect('jabatan')->with('success', 'Data Berhasil Disimpan!');
+    }
+
+    public function update(Request $request)
+    {
+        $messages = [
+            'required' => 'Kolom :attribute wajib diisi',
+            'unique' => ':Attribute sudah ada',
+        ];
+        
+        $validator = Validator::make($request->all(), [
+            'editkode_jabatan' => 'required|unique:jabatan,kode_jabatan,'.$request->editid_jabatan.',id_jabatan',
+            'editdesc_jabatan' => 'required|unique:jabatan,desc_jabatan,'.$request->editid_jabatan.',id_jabatan',
+        ], $messages);
+
+        $validator->setAttributeNames([
+            'editkode_jabatan' => 'kode jabatan',
+            'editdesc_jabatan' => 'nama jabatan'
         ]);
 
-        return redirect('jabatan')->with('success', 'Data Berhasil Disimpan!');
+        if ($validator->fails())
+        {
+            return response()->json(['messages' => $validator->errors(), 'status' => 0]);
+        }
+        // Ambil pengguna yang sedang login
+        $loggedInUser = auth()->user();
+        $jabatan = jabatan::findorfail($request->editid_jabatan);
+        $jabatan->update([
+            'kode_jabatan' => $request->editkode_jabatan,
+            'desc_jabatan' => $request->editdesc_jabatan,
+            'updated_by' => $loggedInUser->nama_karyawan
+        ]);
+        Alert::success('Selamat', 'Data Berhasil Diupdate');
+        return response()->json(['status' => 1]);
     }
 
     /**
@@ -83,12 +137,7 @@ class jabatanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
-    {
-        $jabatan = jabatan::findorfail($request->id_jabatan);
-        $jabatan->update($request->all());
-        return redirect('jabatan')->with('success', 'Data Berhasil Diupdate!');
-    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -100,8 +149,15 @@ class jabatanController extends Controller
     {
         // $jabatan = jabatan::findorfail($id_jabatan);
         // $jabatan->delete();
+        // Ambil pengguna yang sedang login
+        $loggedInUser = auth()->user();
         $jabatan = jabatan::findorfail($request->id_jabatan);
         $jabatan->update($request->all());
-        return redirect('jabatan')->with('status', 'Data Berhasil Diupdate!');
+
+        // Tandai pengguna yang menghapus data
+        $jabatan->updated_by = $loggedInUser->nama_karyawan;
+        $jabatan->save();
+        Alert::success('Selamat', 'Data Berhasil Diupdate');
+        return redirect('jabatan');
     }
 }

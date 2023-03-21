@@ -9,5 +9,15 @@ class dataKaryawan extends Model
 {
     protected $table = "data_karyawan";
     protected $primaryKey = "id_karyawan";
-    protected $fillable  = ['id_karyawan', 'nama_karyawan', 'nik', 'jabatan', 'status_data_karyawan', 'created_by', 'updated_by'];
+    protected $fillable  = ['id_karyawan', 'nama_karyawan', 'nik', 'id_jabatan', 'status_data_karyawan', 'created_by', 'updated_by'];
+
+    public function jabatan()
+    {
+        return $this->belongsTo(jabatan::class, 'id_jabatan');
+    }
+
+    public function listAsset()
+    {
+        return $this->hasMany(listAsset::class);
+    }
 }

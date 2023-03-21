@@ -1,4 +1,15 @@
-</div>
+<div id="sidebar" class="active">
+    <div class="sidebar-wrapper active">
+        <div class="sidebar-header">
+            <div class="d-flex justify-content-between">
+                <div class="logo">
+                <a href="/dashboard"><img src="{{ asset ('template/images/logo/logoHome.jpg')}}" alt="Logo" srcset="">asset</a>
+                </div>
+                <div class="toggler">
+                    <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                </div>
+            </div>
+        </div>
 <div class="sidebar-menu">
     <ul class="menu">
         <li class="sidebar-title">Menu</li>
@@ -6,7 +17,7 @@
         <li class="sidebar-item  ">
             <a href="/dashboard" class='sidebar-link'>
                 <i class="bi bi-grid-fill"></i>
-                <span>Dashboard</span>
+                <span>Dasbor</span>
             </a>
         </li>
 
@@ -17,10 +28,10 @@
             </a>
             <ul class="submenu ">
                 <li class="submenu-item ">
-                    <a href="/groupAsset">Group Asset</a>
+                    <a href="/groupAsset">Grup Aset</a>
                 </li>
                 <li class="submenu-item ">
-                    <a href="/departement">Departement</a>
+                    <a href="/departement">Departemen</a>
                 </li>
                 <li class="submenu-item ">
                     <a href="/jabatan">Jabatan</a>
@@ -32,7 +43,13 @@
                     <a href="/satuan">Satuan</a>
                 </li>
                 <li class="submenu-item ">
-                    <a href="/supplier">Supplier</a>
+                    <a href="/pelepasanAsset">Status Pelepasan</a>
+                </li>
+                <li class="submenu-item ">
+                    <a href="/supplier">Pemasok</a>
+                </li>
+                <li class="submenu-item ">
+                    <a href="/inputuser">Tambah User</a>
                 </li>
             </ul>
         </li>
@@ -44,7 +61,7 @@
             </a>
             <ul class="submenu ">
                 <li class="submenu-item ">
-                    <a href="/listAsset">List Asset</a>
+                    <a href="/listAsset">List Aset</a>
                 </li>
 
             </ul>
@@ -53,26 +70,26 @@
         <li class="sidebar-item  has-sub">
             <a href="#" class='sidebar-link'>
                 <i class="fa fa-database"></i>
-                <span>Report</span>
+                <span>Laporan</span>
             </a>
             <ul class="submenu ">
                 <li class="submenu-item ">
-                    <a href="/historyAsset">History Asset</a>
+                    <a href="/historyAsset">Histori Aset</a>
                 </li>
                 <li class="submenu-item ">
-                    <a href="/reportDepresiasi">Report Depresiasi</a>
+                    <a href="/reportDepresiasi">Laporan Depresiasi</a>
                 </li>
-                <li class="submenu-item ">
+                <!-- <li class="submenu-item ">
                     <a href="/reportJurnal">Report Jurnal</a>
+                </li> -->
+                <li class="submenu-item ">
+                    <a href="/reportDaftarAsset">Laporan Daftar Aset</a>
                 </li>
                 <li class="submenu-item ">
-                    <a href="/reportDaftarAsset">Report Daftar Asset</a>
+                    <a href="/reportDataKaryawan">Laporan Data Karyawan</a>
                 </li>
                 <li class="submenu-item ">
-                    <a href="/reportDataKaryawan">Report Data Karyawan</a>
-                </li>
-                <li class="submenu-item ">
-                    <a href="/reportPenghapusanAsset">Report Penghapusan Asset</a>
+                    <a href="/reportPenghapusanAsset">Laporan Penghapusan Asset</a>
                 </li>
             </ul>
         </li>

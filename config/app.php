@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Jakarta',
 
     /*
     |--------------------------------------------------------------------------
@@ -139,6 +139,7 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+        
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
@@ -162,7 +163,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
-
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -175,6 +177,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        
 
     ],
 
@@ -231,6 +234,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\pemeliharaanAsset;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class DashboardController extends Controller
 {
@@ -13,7 +15,16 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view("halaman.dashboard");
+        $supplier = DB::table('supplier')->where('status_supplier', 1)->get();
+        $jumlahSupplier = count($supplier);
+        $karyawan = DB::table('data_karyawan')->where('status_data_karyawan', 1)->get();
+        $jumlahKaryawan = count($karyawan);
+        $listAsset = DB::table('list_asset')->where('id_pelepasanstatus', 1)->get();
+        $jumlahListAsset = count($listAsset);
+        $listAssetNon = DB::table('list_asset')->where('id_pelepasanstatus', '<>', 1)->get();
+        $jumlahListAssetNon = count($listAssetNon);
+        $pemeliharaan_asset = DB::table('pemeliharaan_asset')->get();
+        return view('halaman.dashboard',compact('pemeliharaan_asset', 'jumlahSupplier', 'jumlahKaryawan', 'jumlahListAsset', 'jumlahListAssetNon'));
     }
 
     /**

@@ -9,22 +9,50 @@
                 <img src="{{ asset('assets') }}/images/bg.svg">
             </div>
             <div class="login-content">
-                <form action="index.html">
+                <form action="{{ route('resetpassword') }}" method="POST" enctype='multipart/form-data'>
+                    {{ csrf_field() }}
                     <!-- <img src="img/avatar.svg"> -->
-                    <h2 class="title">Forgot Password</h2>
-                    <p>Input your email and we will send you reset password</p>
+                    <h2 class="title">Muat ulang Passsword</h2>
+                    <div class="input-div one">
+                        <div class="i">
+                                <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="div">
+                                <h5>Email</h5>
+                                <input type="email" class="input" id="email" name="email">
+                                @if ($errors->has('email'))
+                                <span class="text-danger">{{ $errors->first('email') }}</span>
+                                @endif
+                        </div>
+                        </div>
                     <div class="input-div one">
                     <div class="i">
-                            <i class="fas fa-envelope"></i>
+                            <i class="fas fa-lock"></i>
                     </div>
                     <div class="div">
-                            <h5>Email</h5>
-                            <input type="text" class="input">
+                            <h5>Password</h5>
+                            <input type="password" class="input" id="password" name="password">
+                            @if ($errors->has('password'))
+                            <span class="text-danger">{{ $errors->first('password') }}</span>
+                            @endif
                     </div>
                     </div>
-                    <input type="submit" class="btn" value="Send">
+                    <div class="input-div pass">
+                    <div class="i"> 
+                            <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="div">
+                            <h5>Konfirmasi Password</h5>
+                            <input type="password" class="input" id="password" name="password">
+                            @if ($errors->has('password'))
+                            <span class="text-danger">{{ $errors->first('password') }}</span>
+                            @endif
+                    </div>
+                    </div>
+                    {{-- <a href="/sendemail">Forgot Password?</a> --}}
+                    <input type="submit" class="btn" value="Reset Password">
                     <div class="div-regis">
-                    <p>Remember your account? <a href="/signIn">Sign In</a> now</p>
+                    <p>Tidak punya akun? <a href="/signIn">Daftar</a>sekarang</p>
                     </div>
                 </form>
             </div>

@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/bootstrap.css">
+    <script type="text/javascript" src="{{ asset('assets') }}/js/js/bootstrap.js"></script>
 </head>
 <body>
     <div class="banner">
@@ -15,8 +17,8 @@
         <img class="layer-2" src="{{ asset('assets') }}/images/meteor.png">
 
         <div class="layer-3">
-            <h1> Welcome to Asset Management</h1>
-            <a href="#text">Get Started</a>
+            <h1> Selamat datang di Manajemen Aset</h1>
+            <a href="#text">Mulai Sekarang</a>
         </div>
 
         <img class="layer-4" src="{{ asset('assets') }}/images/4.png">

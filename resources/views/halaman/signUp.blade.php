@@ -12,7 +12,7 @@
                 <form action="{{ route ('register.post') }}" method="POST">
                     @csrf    
                 <!-- <img src="img/avatar.svg"> -->
-                    <h2 class="title">Welcome</h2>
+                    <h2 class="title">Selamat</h2>
                     <div class="input-div one">
                     <div class="i">
                             <i class="fas fa-user"></i>
@@ -54,7 +54,7 @@
                             <i class="fas fa-lock"></i>
                     </div>
                     <div class="div">
-                            <h5>Re-Password</h5>
+                            <h5>Konfirmasi Password</h5>
                             <input type="password" class="input" id="password" name="password">
                             @if ($errors->has('password'))
                             <span class="text-danger">{{ $errors->first('password') }}</span>
@@ -63,7 +63,7 @@
                     </div>
                     <input type="submit" class="btn" value="Sign Up">
                     <div class="div-regis">
-                    <p>Already have an account? <a href="/signIn">Sign In</a> now</p>
+                    <p>Sudah punya akun? <a href="/signIn">Masuk</a>Sekarang</p>
                     </div>
                 </form>
             </div>

@@ -9,5 +9,10 @@ class jabatan extends Model
 {
     protected $table = "jabatan";
     protected $primaryKey = "id_jabatan";
-    protected $fillable  = ['id_jabatan', 'kode_jabatan', 'jabatan', 'status_jabatan', 'created_by', 'updated_by'];
+    protected $fillable  = ['id_jabatan', 'kode_jabatan', 'desc_jabatan', 'status_jabatan', 'created_by', 'updated_by'];
+
+    public function dataKaryawan()
+    {
+        return $this->hasMany(dataKaryawan::class);
+    }
 }

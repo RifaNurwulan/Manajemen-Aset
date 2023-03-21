@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class supplierController extends Controller
 {
@@ -47,19 +48,33 @@ class supplierController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nama_supplier' => 'required',
+        $messages = [
+            'required' => 'Kolom :attribute wajib diisi',
+            'unique' => ':Attribute sudah ada', 
+            'numeric' => ':Attribute harus berupa angka', 
+            'email' => ':Attribute harus berupa alamat email yang valid', 
+        ];
+        
+        $validator = Validator::make($request->all(), [
+            'nama_supplier' => 'required|unique:supplier',
             'alamat' => 'required',
             'kota' => 'required',
             'pic' => 'required',
-            'telp' => 'required',
-            'mobile_phone' => 'required',
-            'fax' => 'required',
-            'email' => 'required',
-            'keterangan' => 'required',
-        ]);
+            'telp' => 'required|numeric',
+            'mobile_phone' => 'required|numeric',
+            'fax' => 'required|numeric',
+            'email' => 'required|email|unique:supplier',
+        ], $messages);
 
+        if ($validator->fails())
+        {
+            // return response()->json(['errors'=>$validator->errors()->all()]);
+            return response()->json(['messages' => $validator->errors(), 'status' => 0]);
+        }
         //dd($request->all());
+
+        // Ambil pengguna yang sedang login
+        $user = auth()->user();
 
         supplier::create([
             'nama_supplier' => $request->nama_supplier,
@@ -71,9 +86,65 @@ class supplierController extends Controller
             'fax' => $request->fax,
             'email' => $request->email,
             'keterangan' => $request->keterangan,
+            'created_by' => $user->nama_karyawan,
+        ]);
+        Alert::success('Selamat', 'Data Berhasil Ditambahkan');
+        return response()->json(['status' => 1]);
+        // return redirect('groupAsset')->with('success', 'Data Berhasil Disimpan!');
+    }
+
+    public function update(Request $request)
+    {
+        $messages = [
+            'required' => 'Kolom :attribute wajib diisi',
+            'unique' => ':Attribute sudah ada', 
+            'numeric' => ':Attribute harus berupa angka', 
+            'email' => ':Attribute harus berupa alamat email yang valid', 
+        ];
+        
+        $validator = Validator::make($request->all(), [
+            'editnama_supplier' => 'required|unique:supplier,nama_supplier,'.$request->editid_supplier.',id_supplier',
+            'editalamat' => 'required',
+            'editkota' => 'required',
+            'editpic' => 'required',
+            'edittelp' => 'required|numeric',
+            'editmobile_phone' => 'required|numeric',
+            'editfax' => 'required|numeric',
+            'editemail' => 'required|email|unique:supplier,email,'.$request->editid_supplier.',id_supplier',
+        ], $messages);
+
+        $validator->setAttributeNames([
+            'editnama_supplier' => 'nama supplier',
+            'editalamat' => 'alamat',
+            'editkota' => 'kota',
+            'editpic' => 'pic',
+            'edittelp' => 'telp',
+            'editmobile_phone' => 'mobile phone',
+            'editfax' => 'fax',
+            'editemail' => 'email'
         ]);
 
-        return redirect('supplier')->with('success', 'Data Berhasil Disimpan!');
+        if ($validator->fails())
+        {
+            return response()->json(['messages' => $validator->errors(), 'status' => 0]);
+        }
+        // Ambil pengguna yang sedang login
+        $loggedInUser = auth()->user();
+        $supplier = supplier::findorfail($request->editid_supplier);
+        $supplier->update([
+            'nama_supplier' => $request->editnama_supplier,
+            'alamat' => $request->editalamat,
+            'kota' => $request->editkota,
+            'pic' => $request->editpic,
+            'telp' => $request->edittelp,
+            'mobile_phone' => $request->editmobile_phone,
+            'fax' => $request->editfax,
+            'email' => $request->editemail,
+            'keterangan' => $request->editketerangan,
+            'updated_by' => $loggedInUser->nama_karyawan
+        ]);
+        Alert::success('Selamat', 'Data Berhasil Diupdate');
+        return response()->json(['status' => 1]);
     }
 
     /**
@@ -107,12 +178,6 @@ class supplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
-    {
-        $supplier = supplier::findorfail($request->id_supplier);
-        $supplier->update($request->all());
-        return redirect('supplier')->with('success', 'Data Berhasil Diupdate!');
-    }
 
 
     /**
@@ -121,10 +186,17 @@ class supplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_supplier)
+    public function destroy(Request $request)
     {
-        $supplier = supplier::findorfail($id_supplier);
-        $supplier->delete();
-        return redirect('supplier')->with('status', 'Data Berhasil Dihapus!');
+        // Ambil pengguna yang sedang login
+        $loggedInUser = auth()->user();
+        $supplier = supplier::findorfail($request->id_supplier);
+        $supplier->update($request->all());
+
+        // Tandai pengguna yang menghapus data
+        $groupasset->updated_by = $loggedInUser->nama_karyawan;
+        $groupasset->save();
+        Alert::success('Selamat', 'Data Berhasil Diupdate');
+        return redirect('supplier');
     }
 }
